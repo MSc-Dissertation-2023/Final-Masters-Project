@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  bloodParticle: {fileID: 7130098686812768276, guid: 626d8fe69fb379a488fe07689995cf3c, type: 3}
   rigidbody: {fileID: 0}
+  healthPickupPrefab: {fileID: 7931959610014239961}
 --- !u!114 &4812609804781436559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   obstacleRange: 5
+  attackingRange: 1
 --- !u!54 &5062918323071337907
 Rigidbody:
   m_ObjectHideFlags: 0

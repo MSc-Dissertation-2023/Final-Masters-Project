@@ -10,6 +10,7 @@ public class TargetEnemy : MonoBehaviour
     public int health;
     public Rigidbody rigidbody;
     private Animator animator;
+    public GameObject healthPickupPrefab;
 
 
     void Start()
@@ -57,6 +58,9 @@ public class TargetEnemy : MonoBehaviour
         //Enable ridig body and remove collider so that enemies fall into the ground
         //rigidbody.isKinematic = false;
         GetComponent<Collider>().enabled = false;
+
+        // Instantiate a health pickup at this enemy's position
+        Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
 
         /*/Rotate as they fall
         for (int i = 0; i < 5; i++)

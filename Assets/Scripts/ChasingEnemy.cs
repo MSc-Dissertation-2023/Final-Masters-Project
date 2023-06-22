@@ -18,18 +18,12 @@ public class ChasingEnemy : MonoBehaviour
 
     private Animator animator;
 
-
-
-
-
     void Start()
     {
         isAlive = true;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5.0f;
         animator = GetComponent<Animator>();
-      
-
     }
 
     void Update()
@@ -82,12 +76,13 @@ public class ChasingEnemy : MonoBehaviour
                 {
                     //Get game object
                     GameObject hitObject = hit.transform.gameObject;
+                    PlayerCharacter playerCharacter = hitObject.GetComponent<PlayerCharacter>();
                     //If object is a player lock onto player
-                    if (hitObject.GetComponent<PlayerCharacter>())
+                    if (playerCharacter != null)
                     {
                         if (hit.distance < attackingRange)
                         {
-                            StartCoroutine(Attack());
+                            StartCoroutine(Attack(playerCharacter));
                         }
                     }
                 }
@@ -101,12 +96,14 @@ public class ChasingEnemy : MonoBehaviour
         isAlive = alive;
     }
 
-    private IEnumerator Attack()
+    private IEnumerator Attack(PlayerCharacter playerChar)
     {
         animator.SetBool("Attacking", true);
         animator.SetBool("Walking", false);
 
         yield return new WaitForSeconds(3);
+
+        playerChar.Hurt(15);
 
         animator.SetBool("Attacking", false);
     }

@@ -3,7 +3,9 @@ guid: d0745e8fe59db604aa86a1d5c99f6f97
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rigidbody: {instanceID: 0}
+  - healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

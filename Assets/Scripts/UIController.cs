@@ -10,10 +10,11 @@ public class UIController : MonoBehaviour
 {
     //Score label
     [SerializeField] TMP_Text scoreLabel;
+    [SerializeField] TMP_Text healthLabel;
     private int score;
 
     //Declare which method responds to enemy killed event
-    void OnEnable()
+    void OnEnable() 
     {
         Messenger.AddListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
     }
@@ -32,5 +33,10 @@ public class UIController : MonoBehaviour
     {
         score += 1;
         scoreLabel.text = score.ToString();
+    }
+
+    public void UpdateHealthDisplay(int health)
+    {
+        healthLabel.text = $"HP: {health}";
     }
 }

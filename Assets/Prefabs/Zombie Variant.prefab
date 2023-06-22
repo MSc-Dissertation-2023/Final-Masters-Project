@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   obstacleRange: 5
+  attackingRange: 1
 --- !u!114 &499609531592826652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   rigidbody: {fileID: 0}
+  healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
 --- !u!195 &6656039670118239085
 NavMeshAgent:
   m_ObjectHideFlags: 0
