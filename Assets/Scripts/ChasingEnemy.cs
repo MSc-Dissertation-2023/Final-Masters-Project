@@ -11,6 +11,7 @@ public class ChasingEnemy : MonoBehaviour
     public float obstacleRange = 5.0f;
     public float attackingRange = 1.0f;
     private bool isAlive;
+    public float enemyDamage = 15.0f;
 
     private GameObject player;
     private NavMeshAgent agent;
@@ -83,7 +84,7 @@ public class ChasingEnemy : MonoBehaviour
                         if (hit.distance < attackingRange)
                         {
                            
-                            StartCoroutine(Attack(playerCharacter));
+                            StartCoroutine(Attack(playerCharacter, hit));
                         }
                     }
                 }
@@ -97,15 +98,22 @@ public class ChasingEnemy : MonoBehaviour
         isAlive = alive;
     }
 
-    private IEnumerator Attack(PlayerCharacter playerChar)
+    private IEnumerator Attack(PlayerCharacter playerChar, RaycastHit hit)
     {
         this.enabled = false;
-        animator.SetBool("Attacking", true);
+
         animator.SetBool("Walking", false);
+        animator.SetBool("Attacking", true);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
-        playerChar.Hurt(15);
+        //GameObject hitObject = hit.transform.gameObject;
+        if (hit.distance <= attackingRange)
+        {
+            playerChar.Hurt(enemyDamage);
+        }
+        
+        yield return new WaitForSeconds(1);
 
         animator.SetBool("Attacking", false);
         this.enabled = true;

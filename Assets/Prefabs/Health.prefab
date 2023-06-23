@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: health
+  player: {fileID: 8810803087535569453, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+  healthRestoreAmount: 15

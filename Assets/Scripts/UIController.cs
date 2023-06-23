@@ -24,7 +24,7 @@ public class UIController : MonoBehaviour
         scoreLabel.text = score.ToString();
     }
 
-    public void UpdateHealthDisplay(int health)
+    public void UpdateHealthDisplay(float health)
     {
         healthLabel.text = $"HP: {health}";
 
