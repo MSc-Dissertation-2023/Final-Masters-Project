@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /*
  * A class which creates shooting behaviour
@@ -69,7 +70,7 @@ public class Shoot : MonoBehaviour
                 }
 
             }
-        }
+        } 
     }
 
     //Represents bullet holes for missed shots
