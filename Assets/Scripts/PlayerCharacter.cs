@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    private int health = 100;
+    private float health = 100;
     private UIController uiController;
 
     public void Start()
@@ -14,7 +14,7 @@ public class PlayerCharacter : MonoBehaviour
         Debug.Log($"HP: {health}");
         uiController.UpdateHealthDisplay(health); // Update the display with the initial health
     }
-    public void Hurt(int damage)
+    public void Hurt(float damage)
     {
         health -= damage;
         uiController.UpdateHealthDisplay(health);
@@ -25,5 +25,15 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-
+    public void Heal(float heal)
+    {
+        if (health + heal > 100)
+        {
+            health = 100;
+        } else {
+            health += heal;
+        }
+        
+        uiController.UpdateHealthDisplay(health);
+    }
 }

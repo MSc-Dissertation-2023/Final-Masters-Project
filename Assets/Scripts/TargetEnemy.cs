@@ -62,7 +62,6 @@ public class TargetEnemy : MonoBehaviour
 
         Instantiate(healthPickupPrefab, enemyDrops, Quaternion.identity);
 
-       
         yield return new WaitForSeconds(4.0f);
         Destroy(this.gameObject);
     }

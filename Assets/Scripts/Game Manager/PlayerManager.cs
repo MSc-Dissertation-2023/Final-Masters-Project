@@ -6,8 +6,8 @@ public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
-    public int health { get; private set; }
-    public int maxHealth { get; private set; }
+    public float health { get; private set; }
+    public float maxHealth { get; private set; }
 
     // Start is called before the first frame update
     public void Startup()
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         status = ManagerStatus.Started;
     }
 
-    public void ChangHealth(int value)
+    public void ChangeHealth(float value)
     {
         health += value;
         if (health > maxHealth)
