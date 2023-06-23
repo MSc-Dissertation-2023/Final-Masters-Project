@@ -27,5 +27,6 @@ public class UIController : MonoBehaviour
     public void UpdateHealthDisplay(int health)
     {
         healthLabel.text = $"HP: {health}";
+
     }
 }
