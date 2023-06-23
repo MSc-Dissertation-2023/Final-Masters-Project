@@ -82,6 +82,7 @@ public class ChasingEnemy : MonoBehaviour
                     {
                         if (hit.distance < attackingRange)
                         {
+                           
                             StartCoroutine(Attack(playerCharacter));
                         }
                     }
@@ -98,13 +99,16 @@ public class ChasingEnemy : MonoBehaviour
 
     private IEnumerator Attack(PlayerCharacter playerChar)
     {
+        this.enabled = false;
         animator.SetBool("Attacking", true);
         animator.SetBool("Walking", false);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         playerChar.Hurt(15);
 
         animator.SetBool("Attacking", false);
+        this.enabled = true;
+        
     }
 }
