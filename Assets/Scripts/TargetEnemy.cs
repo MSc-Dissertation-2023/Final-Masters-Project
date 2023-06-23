@@ -12,8 +12,6 @@ public class TargetEnemy : MonoBehaviour
     public GameObject healthPickupPrefab;
     private UIController uiController;
 
-
-
     void Start()
     {
         //Default health value

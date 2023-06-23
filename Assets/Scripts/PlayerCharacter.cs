@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    private float health = 100;
+    public float health = 100;
     private UIController uiController;
 
     public void Start()
@@ -21,7 +21,7 @@ public class PlayerCharacter : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Dead");
+            uiController.OnEndGame();
         }
     }
 
