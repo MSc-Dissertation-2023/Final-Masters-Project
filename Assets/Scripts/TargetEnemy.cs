@@ -57,8 +57,10 @@ public class TargetEnemy : MonoBehaviour
 
         GetComponent<Collider>().enabled = false;
 
-        
-        Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+        var enemyPos = transform.position;
+        var enemyDrops = new Vector3(enemyPos.x, 2, enemyPos.z);
+
+        Instantiate(healthPickupPrefab, enemyDrops, Quaternion.identity);
 
        
         yield return new WaitForSeconds(4.0f);
