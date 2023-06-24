@@ -15,12 +15,18 @@ public class SceneController : MonoBehaviour
     //Spawn locations
     private Vector3 spawnOne;
     private Vector3 spawnTwo;
+    private Vector3 spawnThree;
+    private Vector3 spawnFour;
+    private Vector3 spawnFive;
 
     void Start()
     {
         //Create vectors for spawn locations
-        spawnOne = new Vector3(-5.5f, 1.5f, 39f);
-        spawnTwo = new Vector3(44.5f, 1.5f, -19f);
+        spawnOne = new Vector3(11f, 1.5f, -30.5f);
+        spawnTwo = new Vector3(-30.5f, 1.5f, -6.5f);
+        spawnThree = new Vector3(-21f, 1.5f, 30.5f);
+        spawnFour = new Vector3(24f, 1.5f, 30.5f);
+        spawnFive = new Vector3(30.5f, 1.5f, 9.5f);
         //Define the array of enemies
         enemies = new GameObject[numberOfEnemies];
     }
@@ -33,21 +39,41 @@ public class SceneController : MonoBehaviour
             //If any are dead
             if (enemies[i] == null)
             {
-                //Create new enemy
-                enemies[i] = Instantiate(enemyPrefab) as GameObject;
-
+             
                 //Spawn at random location
-                int spawn = Random.Range(1, 3);
+                int spawn = Random.Range(1, 6);
+
+
                 if (spawn == 1)
                 {
-                    enemies[i].transform.position = spawnOne;
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                    enemies[i] = Instantiate(enemyPrefab, spawnOne, rotation);
+                    
+                }
+                else if (spawn == 2)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 90, 0);
+                    enemies[i] = Instantiate(enemyPrefab, spawnTwo, rotation);
+                    
+                }
+                else if (spawn == 3)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 180, 0);
+                    enemies[i] = Instantiate(enemyPrefab, spawnThree, rotation);
+                    
+                }
+                else if (spawn == 4)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 180, 0);
+                    enemies[i] = Instantiate(enemyPrefab, spawnFour, rotation);
+                    
                 }
                 else
                 {
-                    enemies[i].transform.position = spawnTwo;
+                    Quaternion rotation = Quaternion.Euler(0, 270, 0);
+                    enemies[i] = Instantiate(enemyPrefab, spawnFive, rotation);
+                    
                 }
-                float angle = Random.Range(0, 360);
-                enemies[i].transform.Rotate(0, angle, 0);
 
             }
         }
