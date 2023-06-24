@@ -10,6 +10,10 @@ public class DoorOperator : MonoBehaviour
     public void Operate()
     {
         doorOne.OperateDoor();
-        doorTwo.OperateDoor();
+        if (doorOne != doorTwo)
+        {
+            doorTwo.OperateDoor();
+        }
+        
     }
 }
