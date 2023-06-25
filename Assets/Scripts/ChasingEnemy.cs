@@ -25,6 +25,8 @@ public class ChasingEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5.0f;
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerLocked = true;
     }
 
     void Update()
