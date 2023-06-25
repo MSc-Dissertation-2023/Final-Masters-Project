@@ -22,8 +22,8 @@ public class Shoot : MonoBehaviour
         cam = GetComponent<Camera>();
 
         //Lock the mouse and make the cursor invsible
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     void OnGUI()
@@ -41,7 +41,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //When the left mouse button is clicked
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             //Play gunshot sound
             soundSource.PlayOneShot(gunshot);

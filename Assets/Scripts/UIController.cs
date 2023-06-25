@@ -16,13 +16,15 @@ public class UIController : MonoBehaviour
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] EndGamePopup endGamePopup;
 
+    bool showingPopup = false;
+
     private int score;
 
     void Start()
     {
         score = 0;
         scoreLabel.text = score.ToString();
-        settingsPopup.Close();
+        // settingsPopup.Close();
         endGamePopup.Close();
     }
 
@@ -39,11 +41,27 @@ public class UIController : MonoBehaviour
 
     public void OnEndGame()
     {
-        endGamePopup.Open();    
+        showingPopup = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        endGamePopup.Open();
     }
 
     public void OnOpenSettings()
     {
         settingsPopup.Open();
+    }
+
+    public void Update()
+    {
+        if (showingPopup)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        } else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
