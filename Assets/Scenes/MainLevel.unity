@@ -246,7 +246,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1352,7 +1352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3000151410135752781, guid: 5bdb0f33e5668864ebdcfaed06497ff3, type: 3}
       propertyPath: m_Intensity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4153399821770588799, guid: 5bdb0f33e5668864ebdcfaed06497ff3, type: 3}
       propertyPath: m_Name
@@ -3115,7 +3115,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3935,6 +3935,7 @@ GameObject:
   - component: {fileID: 458903020}
   - component: {fileID: 458903019}
   - component: {fileID: 458903018}
+  - component: {fileID: 458903023}
   m_Layer: 0
   m_Name: Door4
   m_TagString: Untagged
@@ -4042,6 +4043,22 @@ Transform:
   m_Father: {fileID: 307250784}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &458903023
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458903017}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &487543105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ef9f53cfcabb9d468f733025e5cbce7, type: 3}
@@ -15654,6 +15671,7 @@ GameObject:
   - component: {fileID: 1772402351}
   - component: {fileID: 1772402350}
   - component: {fileID: 1772402349}
+  - component: {fileID: 1772402354}
   m_Layer: 0
   m_Name: Door3
   m_TagString: Untagged
@@ -15761,6 +15779,22 @@ Transform:
   m_Father: {fileID: 307250784}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1772402354
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772402348}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1806250137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17656,7 +17690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3000151410135752781, guid: 5bdb0f33e5668864ebdcfaed06497ff3, type: 3}
       propertyPath: m_Intensity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4153399821770588799, guid: 5bdb0f33e5668864ebdcfaed06497ff3, type: 3}
       propertyPath: m_Name
