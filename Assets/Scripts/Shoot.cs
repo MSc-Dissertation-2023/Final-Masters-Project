@@ -17,10 +17,12 @@ public class Shoot : MonoBehaviour
     //Ditance for bullet holes
     public float distance = 100f;
 
+    private PlayerCharacter playerChar;
+
     void Start()
     {
         cam = GetComponent<Camera>();
-
+        playerChar = GameObject.Find("Player").GetComponent<PlayerCharacter>();
         //Lock the mouse and make the cursor invsible
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -40,9 +42,10 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //When the left mouse button is clicked
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        //When the left mouse button is clicked && not hovering over game object (popup) && enough ammo
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && playerChar.ammo > 0)
         {
+            playerChar.ConsumeAmmo();
             //Play gunshot sound
             soundSource.PlayOneShot(gunshot);
             //Find what the middle of the screen is pointing at

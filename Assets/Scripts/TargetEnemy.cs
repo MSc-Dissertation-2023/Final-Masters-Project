@@ -10,6 +10,7 @@ public class TargetEnemy : MonoBehaviour
     public int health;
     private Animator animator;
     public GameObject healthPickupPrefab;
+    public GameObject ammoPickupPrefab;
     private UIController uiController;
 
     void Start()
@@ -56,9 +57,17 @@ public class TargetEnemy : MonoBehaviour
         GetComponent<Collider>().enabled = false;
 
         var enemyPos = transform.position;
-        var enemyDrops = new Vector3(enemyPos.x, 2, enemyPos.z);
+        var enemyDropsPos = new Vector3(enemyPos.x, 2, enemyPos.z);
 
-        Instantiate(healthPickupPrefab, enemyDrops, Quaternion.identity);
+        int rand = Random.Range(1, 3);
+
+        if (rand == 1)
+        {
+            Instantiate(ammoPickupPrefab, enemyDropsPos, Quaternion.identity);
+        } else
+        {
+            Instantiate(healthPickupPrefab, enemyDropsPos, Quaternion.identity);
+        }
 
         yield return new WaitForSeconds(4.0f);
         Destroy(this.gameObject);

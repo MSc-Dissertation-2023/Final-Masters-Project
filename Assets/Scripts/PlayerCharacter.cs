@@ -6,14 +6,32 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     public float health = 100;
+    public int ammo = 50;
+
     private UIController uiController;
 
     public void Start()
     {
         uiController = GameObject.Find("UIController").GetComponent<UIController>();
-        Debug.Log($"HP: {health}");
         uiController.UpdateHealthDisplay(health); // Update the display with the initial health
+        uiController.UpdateAmmoDisplay(ammo);
     }
+
+    public void ConsumeAmmo()
+    {
+        if (ammo > 0)
+        {
+            ammo -= 1;
+        }
+        uiController.UpdateAmmoDisplay(ammo);
+    }
+
+    public void RestoreAmmo(int ammoAmt)
+    {
+        ammo += ammoAmt;
+        uiController.UpdateAmmoDisplay(ammo);
+    }
+
     public void Hurt(float damage)
     {
         health -= damage;

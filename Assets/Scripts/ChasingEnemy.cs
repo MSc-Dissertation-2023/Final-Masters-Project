@@ -69,7 +69,7 @@ public class ChasingEnemy : MonoBehaviour
             else
             {
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Walking", true);
+                animator.SetBool("Walking", true); 
                 
 
                 //Send ray directly infront of AI
@@ -85,7 +85,6 @@ public class ChasingEnemy : MonoBehaviour
                     {
                         if (hit.distance < attackingRange)
                         {
-                           
                             StartCoroutine(Attack(playerCharacter, hit));
                         }
                     }
