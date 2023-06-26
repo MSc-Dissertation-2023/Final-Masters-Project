@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     //Score label
     [SerializeField] TMP_Text scoreLabel;
     [SerializeField] TMP_Text healthLabel;
+    [SerializeField] TMP_Text ammoLabel;
 
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] EndGamePopup endGamePopup;
@@ -37,6 +38,11 @@ public class UIController : MonoBehaviour
     public void UpdateHealthDisplay(float health)
     {
         healthLabel.text = $"HP: {health}";
+    }
+
+    public void UpdateAmmoDisplay(int ammo)
+    {
+        ammoLabel.text = $"Ammo: {ammo}";
     }
 
     public void OnEndGame()
