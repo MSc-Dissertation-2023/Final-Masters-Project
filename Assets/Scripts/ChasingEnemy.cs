@@ -13,6 +13,12 @@ public class ChasingEnemy : MonoBehaviour
     private bool isAlive;
     public float enemyDamage = 15.0f;
 
+    [SerializeField] AudioSource soundSource;
+    [SerializeField] AudioClip attackSound;
+    [SerializeField] AudioClip moanSound1;
+    [SerializeField] AudioClip moanSound2;
+    [SerializeField] AudioClip moanSound3;
+
     private GameObject player;
     private NavMeshAgent agent;
     private bool playerLocked;
@@ -27,6 +33,7 @@ public class ChasingEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerLocked = true;
+        soundSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -91,6 +98,24 @@ public class ChasingEnemy : MonoBehaviour
                 }
             }
 
+            if (!soundSource.isPlaying)
+            {
+                int randomZombieNoise = Random.Range(1, 10000);
+                switch (randomZombieNoise)
+                {
+                    case 199:
+                        soundSource.PlayOneShot(moanSound1);
+                        break;
+                    case 299:
+                        soundSource.PlayOneShot(moanSound2);
+                        break;
+                    case 399:
+                        soundSource.PlayOneShot(moanSound3);
+                        break;
+
+                }
+            }
+
         }
     }
 
@@ -105,7 +130,7 @@ public class ChasingEnemy : MonoBehaviour
 
         animator.SetBool("Walking", false);
         animator.SetBool("Attacking", true);
-
+        soundSource.PlayOneShot(attackSound);
         yield return new WaitForSeconds(1);
 
         //GameObject hitObject = hit.transform.gameObject;
