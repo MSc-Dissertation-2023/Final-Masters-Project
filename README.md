@@ -33,4 +33,4 @@
   * Function: Instantiate health, implement damage logic of enemies (brining their health down), Dying logic & animation, Spawn collectible Items
 * UIController
   * Contains: contain UI labels (score, health & ammo), connected to SEttingsPopup and EndgamePopup, score variable
-  * Function: Logic of updating UI display of score, health and ammo, opens and closes popups 
+  * Function: Logic of updating UI display of score, health and ammo, opens and closes popup
