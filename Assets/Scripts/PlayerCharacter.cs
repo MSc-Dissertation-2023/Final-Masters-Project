@@ -7,6 +7,8 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float health = 100;
     public int ammo = 50;
+    [SerializeField] AudioSource soundSource;
+    [SerializeField] AudioClip hurtSound;
 
     private UIController uiController;
 
@@ -15,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour
         uiController = GameObject.Find("UIController").GetComponent<UIController>();
         uiController.UpdateHealthDisplay(health); // Update the display with the initial health
         uiController.UpdateAmmoDisplay(ammo);
+        soundSource = GetComponent<AudioSource>();
     }
 
     public void ConsumeAmmo()
@@ -35,6 +38,16 @@ public class PlayerCharacter : MonoBehaviour
     public void Hurt(float damage)
     {
         health -= damage;
+        if (!soundSource.isPlaying)
+        {
+            soundSource.PlayOneShot(hurtSound);
+        }
+        else
+        {
+            soundSource.Stop();
+            soundSource.PlayOneShot(hurtSound);
+
+        }
         uiController.UpdateHealthDisplay(health);
 
         if (health <= 0)

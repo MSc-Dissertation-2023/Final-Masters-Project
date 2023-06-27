@@ -10,6 +10,7 @@ public class Managers : MonoBehaviour
 {
     public static PlayerManager Player { get; private set; }
     public static InventoryManager Inventory { get; private set; }
+    public static AudioManager Audio { get; private set; }
 
     private List<IGameManager> startSequence;
 
@@ -18,10 +19,12 @@ public class Managers : MonoBehaviour
     {
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
+        Audio = GetComponent<AudioManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
         startSequence.Add(Inventory);
+        startSequence.Add(Audio);
 
         StartCoroutine(StartupManagers());
     }
