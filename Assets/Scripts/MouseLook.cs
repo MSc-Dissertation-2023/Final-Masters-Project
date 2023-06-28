@@ -30,12 +30,12 @@ public class MouseLook : MonoBehaviour
     {
         Rigidbody body = GetComponent<Rigidbody>();
         if (body != null)
-        {
+        {   
             body.freezeRotation = true;
         }
     }
 
-    
+
     void Update()
     {
         //Represents horizontal rotation
