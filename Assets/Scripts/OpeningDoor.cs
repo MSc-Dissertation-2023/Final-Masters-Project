@@ -5,7 +5,7 @@ using UnityEngine;
 /*
  * A simple script to control openning of doors
  */
-public class OpeningDoor : MonoBehaviour
+public class OpeningDoor : Switchable
 {
     [SerializeField] Vector3 offset;
     [SerializeField] AudioSource soundSource;
@@ -14,25 +14,26 @@ public class OpeningDoor : MonoBehaviour
 
     //Whether door is open
     public bool open;
+    public override bool IsActive { get { return open; } }
 
-    //Open or close doors
-    public void OperateDoor()
+
+    //Method to open the door
+    public override void Activate()
     {
-        if (open)
-        {
-            //Move down if open
-            Vector3 pos = transform.position - offset;
-            transform.position = pos;
-            soundSource.PlayOneShot(openSound);
+        //Move up if closed
+        Vector3 pos = transform.position + offset;
+        transform.position = pos;
+        soundSource.PlayOneShot(closeSound);
+        open = true;
+    }
 
-        }
-        else
-        {
-            //Move up if closed
-            Vector3 pos = transform.position + offset;
-            transform.position = pos;
-            soundSource.PlayOneShot(closeSound);
-        }
-        open = !open;
+    //Method to close the door
+    public override void Deactivate()
+    {
+        //Move down if open
+        Vector3 pos = transform.position - offset;
+        transform.position = pos;
+        soundSource.PlayOneShot(openSound);
+        open = false;
     }
 }
