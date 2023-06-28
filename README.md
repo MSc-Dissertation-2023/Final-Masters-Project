@@ -6,7 +6,7 @@
   * Function: Spawns enemies at fixed locations
 * ChasingEnemy
   * Contains: NavMesh Agent, GameObject player, Animator animator
-  * Function: Pathfinding to player, Animation of walking & attacking, implementation of alive/dead, implementation of damaging player 
+  * Function: Pathfinding to player, Animation of walking & attacking, implementation of alive/dead, implementation of damaging player
 * DoorOperator
   * Contains: 2 OpeningDoor Serialized objects
   * Function: Implementation of one door opening leading to another closing
@@ -32,5 +32,9 @@
   * Contains: health variable, animator, healthpickup prefab, ammopickup prefab, and ui controller
   * Function: Instantiate health, implement damage logic of enemies (brining their health down), Dying logic & animation, Spawn collectible Items
 * UIController
-  * Contains: contain UI labels (score, health & ammo), connected to SEttingsPopup and EndgamePopup, score variable
-  * Function: Logic of updating UI display of score, health and ammo, opens and closes popups 
+  * Contains: contain UI labels (score, health & ammo), connected to Settings and EndgamePopup, score variable
+  * Function: Logic of updating UI display of score, health and ammo, opens and closes popupasdf
+* Collectible Item (Parent Class)
+  * Contains: contains player, string item name
+  * Function: An ontriggerenter method that applies specific effect based on the pickup
+  * Child Class: Healthpickup/prefab & Ammopickup/prefab
