@@ -38,11 +38,11 @@ public class TargetEnemy : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-    
+
     //Take health when hit
-    public void ReactToHit()
+    public void ReactToHit(int damage)
     {
-        health -= 25;
+        health -= damage;
     }
 
     //Rotated killed emenies who then dissapear into the ground and the destroys them

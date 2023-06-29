@@ -35,7 +35,7 @@ public class Shoot : MonoBehaviour
         float xPos = cam.pixelWidth / 2 - size / 4;
         float yPos = cam.pixelHeight / 2 - size / 2;
 
-        //Place a star in the centre of he screen to represent crosshair 
+        //Place a star in the centre of he screen to represent crosshair
         GUI.Label(new Rect(xPos, yPos, size, size), "+");
     }
 
@@ -64,7 +64,7 @@ public class Shoot : MonoBehaviour
                 {
                     //Create blood effect on impact
                     StartCoroutine(BloodSplat(hit.point));
-                    target.ReactToHit();
+                    target.ReactToHit(playerChar.damage);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ public class Shoot : MonoBehaviour
                 }
 
             }
-        } 
+        }
     }
 
     //Represents bullet holes for missed shots
@@ -91,7 +91,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    //Create a blood splatter particle system 
+    //Create a blood splatter particle system
     private IEnumerator BloodSplat(Vector3 pos)
     {
         GameObject bS = Instantiate(bloodParticle);

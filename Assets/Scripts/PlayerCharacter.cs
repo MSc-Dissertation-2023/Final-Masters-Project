@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float health = 100;
     public int ammo = 50;
+    public int damage = 25;
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip hurtSound;
 
@@ -64,7 +65,7 @@ public class PlayerCharacter : MonoBehaviour
         } else {
             health += heal;
         }
-        
+
         uiController.UpdateHealthDisplay(health);
     }
 }
