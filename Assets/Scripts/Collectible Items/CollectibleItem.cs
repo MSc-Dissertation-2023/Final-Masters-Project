@@ -5,14 +5,14 @@ using UnityEngine;
 public class CollectibleItem : MonoBehaviour
 {
     [SerializeField] string itemName;
-    protected PlayerCharacter player;
+    public PlayerCharacter player;
 
     public void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Item collected: {itemName}");
         ApplyEffect();

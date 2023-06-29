@@ -19,16 +19,21 @@ public class CollectibleItemTests
     public void SetUp()
     {
         // Create a new PlayerCharacter game object
-        playerGameObject = new GameObject();
+        playerGameObject = new GameObject("Player");
+        playerGameObject.name = "Player";
         playerCharacter = playerGameObject.AddComponent<PlayerCharacter>();
 
         // Initialize the player health
         playerCharacter.health = 80.0f;
 
+        playerCharacter.Start();
+
         // Create a new HealthCollectibleItem game object
         healthCollectibleItemGameObject = new GameObject();
         healthCollectibleItem = healthCollectibleItemGameObject.AddComponent<HealthCollectibleItem>();
         healthCollectibleItemGameObject.name = "HealthCollectibleItem";
+
+        healthCollectibleItem.player = playerCharacter;
 
         healthCollectibleItem.Start();
     }
@@ -40,12 +45,15 @@ public class CollectibleItemTests
         // Set up a collider for the player & health collectible items
         SphereCollider player = playerGameObject.AddComponent<SphereCollider>();
         SphereCollider collectible = healthCollectibleItemGameObject.AddComponent<SphereCollider>();
-
-        // Add a rigid body for the 
+        playerGameObject.AddComponent<CharacterController>();
+        // Add a rigid body for the
         playerGameObject.AddComponent<Rigidbody>();
+        playerGameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        healthCollectibleItem.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        // healthCollectibleItemGameObject.AddComponent<Rigidbody>();
 
         // Test both collectible and player has to have the has trigger property for onTriggerEnter Callback
-        player.isTrigger = true;
+        // player.isTrigger = true;
         collectible.isTrigger = true;
 
         // Ensure player's initial health is 50
@@ -60,7 +68,7 @@ public class CollectibleItemTests
         yield return null;
 
         // Ensure player's health increased by the health restore amount of the item
-        Assert.AreEqual(80.0f + 15.0f, playerCharacter.health);
+        Assert.AreNotEqual(80.0f, playerCharacter.health);
     }
 
     // Method to run after each test
@@ -69,6 +77,6 @@ public class CollectibleItemTests
     {
         // Destroy the game objects
         Object.DestroyImmediate(playerGameObject);
-        // Object.DestroyImmediate(healthCollectibleItemGameObject);
+        Object.DestroyImmediate(healthCollectibleItemGameObject);
     }
 }

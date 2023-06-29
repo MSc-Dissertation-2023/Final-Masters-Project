@@ -106,4 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: ammo
+  player: {fileID: 0}
   ammoRestoreAmount: 50

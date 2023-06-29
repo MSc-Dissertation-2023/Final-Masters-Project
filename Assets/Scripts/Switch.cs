@@ -10,7 +10,7 @@ public class Switch : MonoBehaviour
     //Device to be activated/deactivated
     public Switchable device;
 
-    //When interacted with, operate 
+    //When interacted with, operate
     public void Operate()
     {
        //Deactivate active devices and activate deactive devices
@@ -22,6 +22,5 @@ public class Switch : MonoBehaviour
         {
             device.Activate();
         }
-        
     }
 }
