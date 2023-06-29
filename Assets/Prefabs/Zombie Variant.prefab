@@ -409,6 +409,7 @@ MonoBehaviour:
   health: 0
   healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
   ammoPickupPrefab: {fileID: 4546835102997334662, guid: 4b5c969ba0992ef429f01b4956787c82, type: 3}
+  damageUpgradePickupPrefab: {fileID: 3220695746481013695, guid: afc669c51b8e0464aa2f5ad24fbdb1c6, type: 3}
 --- !u!195 &6656039670118239085
 NavMeshAgent:
   m_ObjectHideFlags: 0
