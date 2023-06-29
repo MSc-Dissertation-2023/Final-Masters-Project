@@ -12,7 +12,6 @@ public class TargetEnemy : MonoBehaviour
     public GameObject healthPickupPrefab;
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
-    private UIController uiController;
 
     void Start()
     {
@@ -20,7 +19,6 @@ public class TargetEnemy : MonoBehaviour
         health = 100;
 
         animator = GetComponent<Animator>();
-        uiController = GameObject.Find("UIController").GetComponent<UIController>();
 
     }
 
@@ -31,7 +29,7 @@ public class TargetEnemy : MonoBehaviour
         {
             health = 1;
             ChasingEnemy behavior = GetComponent<ChasingEnemy>();
-            uiController.OnEnemyKilled();
+            Messenger.Broadcast(GameEvent.ENEMY_KILLED);
             if (behavior != null)
             {
                 behavior.SetAlive(false);

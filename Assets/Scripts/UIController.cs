@@ -25,7 +25,7 @@ public class UIController : MonoBehaviour
     {
         score = 0;
         scoreLabel.text = score.ToString();
-        // settingsPopup.Close();
+        settingsPopup.Close();
         endGamePopup.Close();
     }
 
@@ -55,19 +55,35 @@ public class UIController : MonoBehaviour
 
     public void OnOpenSettings()
     {
+        showingPopup = true;
         settingsPopup.Open();
     }
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnOpenSettings();
+        }
+
         if (showingPopup)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        } else
+        }
+        else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+    void OnEnable()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
+    }
+    void OnDisable()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
+
     }
 }

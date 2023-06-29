@@ -15,6 +15,7 @@ public class MouseLook : MonoBehaviour
     }
 
     //Sensitivity variables
+    public float baseSpeed = 9.0f;
     public float sensHor = 9.0f;
     public float sensVer = 9.0f;
 
@@ -30,7 +31,7 @@ public class MouseLook : MonoBehaviour
     {
         Rigidbody body = GetComponent<Rigidbody>();
         if (body != null)
-        {   
+        {
             body.freezeRotation = true;
         }
     }
@@ -60,4 +61,33 @@ public class MouseLook : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        Messenger<float>.AddListener(GameEvent.SENSITIVITY_CHANGED, OnSensitivityChanged);
+        Messenger.AddListener(GameEvent.GAME_PAUSED, OnGamePaused);
+        Messenger.AddListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
+    }
+    void OnDisable()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SENSITIVITY_CHANGED, OnSensitivityChanged);
+        Messenger.AddListener(GameEvent.GAME_PAUSED, OnGamePaused);
+        Messenger.AddListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
+    }
+
+    private void OnSensitivityChanged(float value)
+    {
+        sensHor = baseSpeed * value;
+        sensVer = baseSpeed * value;
+
+    }
+
+    private void OnGamePaused()
+    {
+        this.enabled = false;
+    }
+
+    private void OnGameUnpaused()
+    {
+        this.enabled = true;
+    }
 }
