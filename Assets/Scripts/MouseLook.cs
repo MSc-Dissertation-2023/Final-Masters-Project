@@ -15,9 +15,12 @@ public class MouseLook : MonoBehaviour
     }
 
     //Sensitivity variables
-    public float baseSpeed = 9.0f;
-    public float sensHor = 9.0f;
-    public float sensVer = 9.0f;
+    public const float baseSpeed = 9.0f;
+    public float sensHor = baseSpeed;
+    public float sensVer = baseSpeed;
+
+    //Temporary sensitivity variables to hold values while paused 
+    public float tempSens = baseSpeed;
 
     //Create a max and min vertical angle to prevent camara being able to fully rotate vertically
     public float minVert = -45.0f;
@@ -70,24 +73,26 @@ public class MouseLook : MonoBehaviour
     void OnDisable()
     {
         Messenger<float>.RemoveListener(GameEvent.SENSITIVITY_CHANGED, OnSensitivityChanged);
-        Messenger.AddListener(GameEvent.GAME_PAUSED, OnGamePaused);
-        Messenger.AddListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
+        Messenger.RemoveListener(GameEvent.GAME_PAUSED, OnGamePaused);
+        Messenger.RemoveListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
     }
 
     private void OnSensitivityChanged(float value)
     {
-        sensHor = baseSpeed * value;
-        sensVer = baseSpeed * value;
+        tempSens = baseSpeed * value;
 
     }
 
     private void OnGamePaused()
     {
-        this.enabled = false;
+        tempSens = sensHor;
+        sensHor = 0; 
+        sensVer = 0;
     }
 
     private void OnGameUnpaused()
     {
-        this.enabled = true;
+        sensHor = tempSens;
+        sensVer = tempSens;
     }
 }

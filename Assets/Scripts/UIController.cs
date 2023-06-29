@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] EndGamePopup endGamePopup;
 
-    bool showingPopup = false;
+    private bool paused = false;
 
     private int score;
 
@@ -47,43 +47,61 @@ public class UIController : MonoBehaviour
 
     public void OnEndGame()
     {
-        showingPopup = true;
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
         endGamePopup.Open();
+        Messenger.Broadcast(GameEvent.GAME_PAUSED);
     }
 
     public void OnOpenSettings()
     {
-        showingPopup = true;
         settingsPopup.Open();
+        Messenger.Broadcast(GameEvent.GAME_PAUSED);
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!paused)
         {
-            OnOpenSettings();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnOpenSettings();
+            }
         }
 
-        if (showingPopup)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
     void OnEnable()
     {
         Messenger.AddListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
+        Messenger.AddListener(GameEvent.GAME_END, OnEndGame);
+        Messenger.AddListener(GameEvent.GAME_PAUSED, PauseGame);
+        Messenger.AddListener(GameEvent.GAME_UNPAUSED, UnpauseGame);
+        Messenger<float>.AddListener(GameEvent.UPDATE_HEALTH, UpdateHealthDisplay);
+        Messenger<int>.AddListener(GameEvent.UPDATE_AMMO, UpdateAmmoDisplay);
+
     }
     void OnDisable()
     {
         Messenger.RemoveListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
+        Messenger.RemoveListener(GameEvent.GAME_END, OnEndGame);
+        Messenger.RemoveListener(GameEvent.GAME_PAUSED, PauseGame);
+        Messenger.RemoveListener(GameEvent.GAME_UNPAUSED, UnpauseGame);
+        Messenger<float>.RemoveListener(GameEvent.UPDATE_HEALTH, UpdateHealthDisplay);
+        Messenger<int>.RemoveListener(GameEvent.UPDATE_AMMO, UpdateAmmoDisplay);
 
+    }
+
+    private void PauseGame()
+    {
+        paused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+    }
+
+    private void UnpauseGame()
+    {
+        paused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+        Cursor.visible = false;
     }
 }

@@ -39,4 +39,16 @@ public class AudioManager : MonoBehaviour, IGameManager
     {
         PlayLevelMusic();
     }
+
+    public float soundVolume
+    {
+        get { return AudioListener.volume; }
+        set { AudioListener.volume = value; }
+    }
+    public bool soundMute
+    {
+        get { return AudioListener.pause; }
+        set { AudioListener.pause = value; }
+    }
+
 }

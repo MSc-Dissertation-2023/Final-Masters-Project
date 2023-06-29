@@ -11,14 +11,11 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip hurtSound;
 
-    private UIController uiController;
-
     public void Start()
     {
-        uiController = GameObject.Find("UIController").GetComponent<UIController>();
-        uiController.UpdateHealthDisplay(health); // Update the display with the initial health
-        uiController.UpdateAmmoDisplay(ammo);
         soundSource = GetComponent<AudioSource>();
+        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo); // Update the display with the initial health
+        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
     }
 
     public void ConsumeAmmo()
@@ -27,13 +24,13 @@ public class PlayerCharacter : MonoBehaviour
         {
             ammo -= 1;
         }
-        uiController.UpdateAmmoDisplay(ammo);
+        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo);
     }
 
     public void RestoreAmmo(int ammoAmt)
     {
         ammo += ammoAmt;
-        uiController.UpdateAmmoDisplay(ammo);
+        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo);
     }
 
     public void Hurt(float damage)
@@ -49,11 +46,11 @@ public class PlayerCharacter : MonoBehaviour
             soundSource.PlayOneShot(hurtSound);
 
         }
-        uiController.UpdateHealthDisplay(health);
+        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
 
         if (health <= 0)
         {
-            uiController.OnEndGame();
+            Messenger.Broadcast(GameEvent.GAME_END);
         }
     }
 
@@ -66,6 +63,6 @@ public class PlayerCharacter : MonoBehaviour
             health += heal;
         }
 
-        uiController.UpdateHealthDisplay(health);
+        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
     }
 }
