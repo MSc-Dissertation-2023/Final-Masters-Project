@@ -38,7 +38,7 @@ public class ChasingEnemy : MonoBehaviour
 
     void Update()
     {
-        if (isAlive) 
+        if (isAlive)
         {
             //If player in not locked onto move forward until an obstacle detected.
             if (!playerLocked)
@@ -46,7 +46,7 @@ public class ChasingEnemy : MonoBehaviour
                 //Move forward reative to speed
                 transform.Translate(0, 0, speed * Time.deltaTime);
                 animator.SetBool("Walking", true);
-                
+
 
                 //Send ray directly infront of AI
                 Ray ray = new Ray(transform.position, transform.forward);
@@ -65,7 +65,7 @@ public class ChasingEnemy : MonoBehaviour
                     //Else turn randomly in a radus
                     if (hit.distance < obstacleRange)
                     {
-                        
+
                         float angle = Random.Range(-110, 110);
                         transform.Rotate(0, angle, 0);
                     }
@@ -76,13 +76,13 @@ public class ChasingEnemy : MonoBehaviour
             else
             {
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Walking", true); 
-                
+                animator.SetBool("Walking", true);
+
 
                 //Send ray directly infront of AI
                 Ray ray = new Ray(transform.position, transform.forward);
-                RaycastHit hit;
-                if (Physics.SphereCast(ray, 2.0f, out hit))
+                // RaycastHit hit;
+                if (Physics.SphereCast(ray, 2.0f, out RaycastHit hit))
                 {
                     //Get game object
                     GameObject hitObject = hit.transform.gameObject;
@@ -138,11 +138,11 @@ public class ChasingEnemy : MonoBehaviour
         {
             playerChar.Hurt(enemyDamage);
         }
-        
+
         yield return new WaitForSeconds(1);
 
         animator.SetBool("Attacking", false);
         this.enabled = true;
-        
+
     }
 }

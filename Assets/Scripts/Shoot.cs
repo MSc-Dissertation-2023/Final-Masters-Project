@@ -59,12 +59,16 @@ public class Shoot : MonoBehaviour
                 //Attain the hit object
                 GameObject hitObject = hit.transform.gameObject;
                 //Determine if hit is an enemy
-                TargetEnemy target = hitObject.GetComponent<TargetEnemy>();
+                Enemy target = hitObject.GetComponent<Enemy>();
+                // Old implementation - to be removed
+                //  TargetEnemy target = hitObject.GetComponent<TargetEnemy>();
                 if (target != null)
                 {
                     //Create blood effect on impact
                     StartCoroutine(BloodSplat(hit.point));
-                    target.ReactToHit(playerChar.damage);
+                    target.TakeDamage(playerChar.damage);
+                    // Old implemetnation - to be removed
+                    // target.ReactToHit(playerChar.damage);
                 }
                 else
                 {
