@@ -15,12 +15,12 @@ public class SettingsPopup : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
-        Messenger.Broadcast(GameEvent.GAME_UNPAUSED);
+        GameEvents.NotifyUnpaused();
     }
 
     public void OnSensitivityChanged(float sens)
     {
-        Messenger<float>.Broadcast(GameEvent.SENSITIVITY_CHANGED, sens);
+        GameEvents.ChangeSensitivity(sens);
     }
 
     public void OnSoundToggle()

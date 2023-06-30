@@ -14,8 +14,8 @@ public class PlayerCharacter : MonoBehaviour
     public void Start()
     {
         soundSource = GetComponent<AudioSource>();
-        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo); // Update the display with the initial health
-        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
+        GameEvents.NotifyAmmo(ammo);
+        GameEvents.NotifyHealth(health);
     }
 
     public void ConsumeAmmo()
@@ -24,13 +24,13 @@ public class PlayerCharacter : MonoBehaviour
         {
             ammo -= 1;
         }
-        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo);
+        GameEvents.NotifyAmmo(ammo);
     }
 
     public void RestoreAmmo(int ammoAmt)
     {
         ammo += ammoAmt;
-        Messenger<int>.Broadcast(GameEvent.UPDATE_AMMO, ammo);
+        GameEvents.NotifyHealth(health);
     }
 
     public void Hurt(float damage)
@@ -46,11 +46,11 @@ public class PlayerCharacter : MonoBehaviour
             soundSource.PlayOneShot(hurtSound);
 
         }
-        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
+        GameEvents.NotifyHealth(health);
 
         if (health <= 0)
         {
-            Messenger.Broadcast(GameEvent.GAME_END);
+            GameEvents.NotifyEnd();
         }
     }
 
@@ -63,6 +63,6 @@ public class PlayerCharacter : MonoBehaviour
             health += heal;
         }
 
-        Messenger<float>.Broadcast(GameEvent.UPDATE_HEALTH, health);
+        GameEvents.NotifyHealth(health);
     }
 }

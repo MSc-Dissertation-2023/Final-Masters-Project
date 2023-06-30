@@ -11,6 +11,9 @@ public class UIController : MonoBehaviour
 {
     //Score label
     [SerializeField] TMP_Text scoreLabel;
+    [SerializeField] TMP_Text finalScore;
+
+
     [SerializeField] TMP_Text healthLabel;
     [SerializeField] TMP_Text ammoLabel;
 
@@ -47,14 +50,15 @@ public class UIController : MonoBehaviour
 
     public void OnEndGame()
     {
+        finalScore.text = $"Score: {score}";
         endGamePopup.Open();
-        Messenger.Broadcast(GameEvent.GAME_PAUSED);
+        GameEvents.NotifyEnd();
     }
 
     public void OnOpenSettings()
     {
         settingsPopup.Open();
-        Messenger.Broadcast(GameEvent.GAME_PAUSED);
+        GameEvents.NotifyPaused();
     }
 
     public void Update()
@@ -70,22 +74,22 @@ public class UIController : MonoBehaviour
     }
     void OnEnable()
     {
-        Messenger.AddListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
-        Messenger.AddListener(GameEvent.GAME_END, OnEndGame);
-        Messenger.AddListener(GameEvent.GAME_PAUSED, PauseGame);
-        Messenger.AddListener(GameEvent.GAME_UNPAUSED, UnpauseGame);
-        Messenger<float>.AddListener(GameEvent.UPDATE_HEALTH, UpdateHealthDisplay);
-        Messenger<int>.AddListener(GameEvent.UPDATE_AMMO, UpdateAmmoDisplay);
+        GameEvents.EnemyKilled += OnEnemyKilled;
+        GameEvents.GamePaused += PauseGame;
+        GameEvents.GameUnpaused += UnpauseGame;
+        GameEvents.GameEnd += OnEndGame;
+        GameEvents.UpdateHealth += UpdateHealthDisplay;
+        GameEvents.UpdateAmmo += UpdateAmmoDisplay;
 
     }
     void OnDisable()
     {
-        Messenger.RemoveListener(GameEvent.ENEMY_KILLED, OnEnemyKilled);
-        Messenger.RemoveListener(GameEvent.GAME_END, OnEndGame);
-        Messenger.RemoveListener(GameEvent.GAME_PAUSED, PauseGame);
-        Messenger.RemoveListener(GameEvent.GAME_UNPAUSED, UnpauseGame);
-        Messenger<float>.RemoveListener(GameEvent.UPDATE_HEALTH, UpdateHealthDisplay);
-        Messenger<int>.RemoveListener(GameEvent.UPDATE_AMMO, UpdateAmmoDisplay);
+        GameEvents.EnemyKilled -= OnEnemyKilled;
+        GameEvents.GamePaused -= PauseGame;
+        GameEvents.GameUnpaused -= UnpauseGame;
+        GameEvents.GameEnd -= OnEndGame;
+        GameEvents.UpdateHealth -= UpdateHealthDisplay;
+        GameEvents.UpdateAmmo -= UpdateAmmoDisplay;
 
     }
 
@@ -101,7 +105,7 @@ public class UIController : MonoBehaviour
     {
         paused = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1f;
         Cursor.visible = false;
+        Time.timeScale = 1f;
     }
 }

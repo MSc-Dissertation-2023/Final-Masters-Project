@@ -66,15 +66,15 @@ public class MouseLook : MonoBehaviour
 
     void OnEnable()
     {
-        Messenger<float>.AddListener(GameEvent.SENSITIVITY_CHANGED, OnSensitivityChanged);
-        Messenger.AddListener(GameEvent.GAME_PAUSED, OnGamePaused);
-        Messenger.AddListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
+        GameEvents.GamePaused += OnGamePaused;
+        GameEvents.GameUnpaused += OnGameUnpaused;
+        GameEvents.SensitivityChanged += OnSensitivityChanged;
     }
     void OnDisable()
     {
-        Messenger<float>.RemoveListener(GameEvent.SENSITIVITY_CHANGED, OnSensitivityChanged);
-        Messenger.RemoveListener(GameEvent.GAME_PAUSED, OnGamePaused);
-        Messenger.RemoveListener(GameEvent.GAME_UNPAUSED, OnGameUnpaused);
+        GameEvents.GamePaused -= OnGamePaused;
+        GameEvents.GameUnpaused -= OnGameUnpaused;
+        GameEvents.SensitivityChanged -= OnSensitivityChanged;
     }
 
     private void OnSensitivityChanged(float value)

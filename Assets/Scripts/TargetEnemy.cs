@@ -29,7 +29,7 @@ public class TargetEnemy : MonoBehaviour
         {
             health = 1;
             ChasingEnemy behavior = GetComponent<ChasingEnemy>();
-            Messenger.Broadcast(GameEvent.ENEMY_KILLED);
+            GameEvents.NotifyDeath();
             if (behavior != null)
             {
                 behavior.SetAlive(false);
