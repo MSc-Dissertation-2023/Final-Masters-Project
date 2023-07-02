@@ -9,6 +9,7 @@ public class CollectibleItem : MonoBehaviour
 
     public void Start()
     {
+        // player object is needed inside the apply effect of its child items
         player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
     }
 

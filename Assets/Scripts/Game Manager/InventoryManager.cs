@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
     // Start is called before the first frame update
     public void Startup()
     {
-        Debug.Log("Inventory amanger starting...");
+        Debug.Log("Inventory manager starting...");
         status = ManagerStatus.Started;
     }
 }

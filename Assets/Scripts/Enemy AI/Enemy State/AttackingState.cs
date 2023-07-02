@@ -31,7 +31,7 @@ public class AttackingState : EnemyState
     {
 			isAttacking = true;
 			animator.SetBool("Attacking", true);
-			// soundSource.PlayOneShot(attackSound);
+			enemy.soundSource.PlayOneShot(enemy.attackSound);
 
 			//keep facing the player & stop moving
 

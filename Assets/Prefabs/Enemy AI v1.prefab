@@ -88,4 +88,13 @@ MonoBehaviour:
   damage: 15
   agent: {fileID: 0}
   player: {fileID: 0}
+  playerChar: {fileID: 0}
+  healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
+  ammoPickupPrefab: {fileID: 4546835102997334662, guid: 4b5c969ba0992ef429f01b4956787c82, type: 3}
+  damageUpgradePickupPrefab: {fileID: 3220695746481013695, guid: afc669c51b8e0464aa2f5ad24fbdb1c6, type: 3}
   attackingRange: 5
+  soundSource: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: b9819e0897c798d4a9ad51b4d667b1f2, type: 3}
+  moanSound1: {fileID: 8300000, guid: 79fec7549e428a84f9f0d8126ad75cc2, type: 3}
+  moanSound2: {fileID: 8300000, guid: 5a83e8bde83fd92438504f3454c3fc07, type: 3}
+  moanSound3: {fileID: 8300000, guid: ac9ebe8c6107d534bbbd435ea319ae5c, type: 3}

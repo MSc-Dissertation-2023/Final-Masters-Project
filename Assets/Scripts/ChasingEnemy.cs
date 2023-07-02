@@ -143,6 +143,5 @@ public class ChasingEnemy : MonoBehaviour
 
         animator.SetBool("Attacking", false);
         this.enabled = true;
-
     }
 }
