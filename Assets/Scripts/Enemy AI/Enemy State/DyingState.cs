@@ -25,6 +25,6 @@ public class DyingState : EnemyState
 		enemy.GetComponent<Collider>().enabled = false;
 
 		yield return new WaitForSeconds(4.0f);
-		UnityEngine.Object.Destroy(enemy);
+		UnityEngine.Object.Destroy(enemy.gameObject);
 	}
 }
