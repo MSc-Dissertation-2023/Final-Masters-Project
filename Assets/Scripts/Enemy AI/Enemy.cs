@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public GameObject healthPickupPrefab;
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
-    public float attackingRange = 5.0f;
+    public float attackingRange = 2.0f;
 
     [SerializeField] public AudioSource soundSource;
     [SerializeField] public AudioClip attackSound;

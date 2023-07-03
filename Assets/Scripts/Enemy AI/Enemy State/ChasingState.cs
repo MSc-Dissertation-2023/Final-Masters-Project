@@ -11,18 +11,32 @@ public class ChasingState : EnemyState
         agent.SetDestination(player.transform.position);
         animator.SetBool("Walking", true);
 
-        Ray ray = new Ray(enemy.transform.position, enemy.transform.forward);
-        if (Physics.SphereCast(ray, enemy.attackingRange, out RaycastHit hit))
-        {
-            PlayerCharacter playerCharacter = hit.transform.GetComponent<PlayerCharacter>();
+        BoxCollider collider = enemy.GetComponent<BoxCollider>();
+        Vector3 size = Vector3.Scale(collider.size, enemy.transform.localScale);
 
-            if (playerCharacter != null && hit.distance < enemy.attackingRange)
+        bool boxColliding = Physics.BoxCast(
+            enemy.transform.position,
+            size / 2,
+            enemy.transform.forward,
+            out RaycastHit hitInfo,
+            Quaternion.identity,
+            enemy.attackingRange
+        );
+
+        if (boxColliding)
+        {
+            PlayerCharacter playerCharacter = hitInfo.transform.GetComponent<PlayerCharacter>();
+            // Debug.Log(hitInfo.distance);
+            // Debug.Log(en)
+
+            if (playerCharacter != null && hitInfo.distance < enemy.attackingRange)
             {
+                Debug.Log("Transitioned to attacking");
                 animator.SetBool("Walking", false);
                 enemy.ChangeState(new AttackingState(enemy));
             }
         }
     }
 
-
+    
 }
