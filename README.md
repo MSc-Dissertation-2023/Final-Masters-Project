@@ -1,5 +1,8 @@
 # Final-Masters-Project
 
+# Assets
+* Zombies - Romero from mixamo
+
 # Scripts & Functions
 * SceneController
   * Contains: Fixed enemy spawn locations, enemyPrefab
