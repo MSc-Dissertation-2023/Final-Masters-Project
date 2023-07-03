@@ -26,8 +26,6 @@ public class ChasingState : EnemyState
         if (boxColliding)
         {
             PlayerCharacter playerCharacter = hitInfo.transform.GetComponent<PlayerCharacter>();
-            // Debug.Log(hitInfo.distance);
-            // Debug.Log(en)
 
             if (playerCharacter != null && hitInfo.distance < enemy.attackingRange)
             {
@@ -38,5 +36,5 @@ public class ChasingState : EnemyState
         }
     }
 
-    
+
 }
