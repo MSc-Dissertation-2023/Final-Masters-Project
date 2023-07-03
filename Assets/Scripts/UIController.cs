@@ -51,10 +51,13 @@ public class UIController : MonoBehaviour
 
     public void OnEndGame()
     {
-        finalScore.text = $"Score: {score}";
-        endGamePopup.Open();
-        GameEvents.NotifyEnd();
-        GameEvents.NotifyPaused();
+
+        if (!isGameEnded) {
+            isGameEnded = true;
+            finalScore.text = $"Score: {score}";
+            endGamePopup.Open();
+            GameEvents.NotifyPaused();
+        }
     }
 
     public void OnOpenSettings()
