@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class StartupController : MonoBehaviour
+{
+    [SerializeField] Slider progressBar;
+    [SerializeField] StartScreen start;
+    private bool gameReady;
+
+    void Start()
+    {
+        gameReady = false;
+        start.Open();
+    }
+    void OnEnable()
+    {
+        StartupEvents.ManagersStarted += OnManagersStarted;
+        StartupEvents.ManagersProgress += OnManagersProgress;
+    }
+
+    void OnDiable()
+    {
+        StartupEvents.ManagersStarted -= OnManagersStarted;
+        StartupEvents.ManagersProgress -= OnManagersProgress;
+    }
+
+    private void OnManagersProgress(int numReady, int numModules)
+    {
+        float progress = (float)numReady / numModules;
+        progressBar.value = progress;
+    }
+
+    private void OnManagersStarted()
+    {
+        gameReady = true;
+        Debug.Log("Game Ready");
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        if (gameReady)
+        {
+            Managers.Mission.GoToNext();
+        }
+    }
+}
