@@ -36,7 +36,6 @@ public class StartupController : MonoBehaviour
     {
         gameReady = true;
         Debug.Log("Game Ready");
-        StartGame();
     }
 
     public void StartGame()
