@@ -21,6 +21,7 @@ public class UIController : MonoBehaviour
     [SerializeField] EndGamePopup endGamePopup;
 
     private bool paused = false;
+    private bool isGameEnded = false;
 
     private int score;
 
@@ -50,9 +51,12 @@ public class UIController : MonoBehaviour
 
     public void OnEndGame()
     {
-        finalScore.text = $"Score: {score}";
-        endGamePopup.Open();
-        GameEvents.NotifyEnd();
+        if (!isGameEnded) {
+            isGameEnded = true;
+            finalScore.text = $"Score: {score}";
+            endGamePopup.Open();
+            GameEvents.NotifyEnd();
+        }
     }
 
     public void OnOpenSettings()
