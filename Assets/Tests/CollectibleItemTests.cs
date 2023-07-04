@@ -36,6 +36,9 @@ public class CollectibleItemTests
         healthCollectibleItem.player = playerCharacter;
 
         healthCollectibleItem.Start();
+
+        // Make HealthCollectibleItem a child of CollectibleItem
+        healthCollectibleItemGameObject.transform.SetParent(playerGameObject.transform);
     }
 
     // Test to ensure that player health increases when a health item is collected
@@ -43,11 +46,11 @@ public class CollectibleItemTests
     public IEnumerator TestHealthIncreasesWhenHealthItemCollected()
     {
         // Set up a collider for the player & health collectible items
-        SphereCollider player = playerGameObject.AddComponent<SphereCollider>();
+        // SphereCollider player = playerGameObject.AddComponent<SphereCollider>();
         SphereCollider collectible = healthCollectibleItemGameObject.AddComponent<SphereCollider>();
         playerGameObject.AddComponent<CharacterController>();
         // Add a rigid body for the
-        playerGameObject.AddComponent<Rigidbody>();
+        // playerGameObject.AddComponent<Rigidbody>();
         playerGameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         healthCollectibleItem.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         // healthCollectibleItemGameObject.AddComponent<Rigidbody>();
@@ -62,9 +65,11 @@ public class CollectibleItemTests
 
         // Position the player and the health item at the same location to simulate a collision
         playerGameObject.transform.position = Vector3.zero;
-        healthCollectibleItemGameObject.transform.position = Vector3.zero;
+        healthCollectibleItemGameObject.transform.localPosition = Vector3.zero;
 
         // Wait for one frame so that the engine can process the collision
+        yield return new WaitForFixedUpdate();
+        yield return null;
         yield return null;
 
         // Ensure player's health increased by the health restore amount of the item
