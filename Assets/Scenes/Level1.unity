@@ -8949,11 +8949,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 869312234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4e57064479bb5488829dfaba817ddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 24615fa3849cf5a43803d0d9aff530ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
-  numberOfEnemies: 8
+  numberOfEnemies: 5
 --- !u!4 &869312236
 Transform:
   m_ObjectHideFlags: 0
@@ -10063,8 +10063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4e57064479bb5488829dfaba817ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
-  numberOfEnemies: 0
 --- !u!1 &970789402
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,15 +3,24 @@
 # Assets
 * Zombies - Romero from mixamo
 
-# Devil in the Details
+# Miscellaeneous
 - Hurt/Damaged UI/UX
 - Do not pick health up if health is full
-- Attack frame damage
+- Attack frame damage?
+  * Important that the game "feels" right
 - Enemy AIs pushing into the player
 - Sound effects when picking up items
 - UI/UX effect of picking up items
+- UI/UX sound effects when clicking & hovering on UI buttons
 - Loading screen
 - Collider object on gun
+- Simple tutorial/popup explaining basic concepts and door interaction
+- Look into performance of the app
+- Database for storign info
+- Non-gamebreaking bug: When settings agent.isStopped = false which resumes the pathfinding. The object might be in the process of being destroyed which have already deleted the navmesh agent before the game object is destroyed
+  * AttackingState/<Attack>d__7:MoveNext () (at Assets/Scripts/Enemy AI/Enemy State/AttackingState.cs:76)
+- Loading just scene 1 won't hve certain audio elements loaded
+- 
 
 # Scripts & Functions
 * SceneController
