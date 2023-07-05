@@ -11,6 +11,15 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip hurtSound;
 
+    public void UpdateData(float health, int ammo, int damage)
+    {
+        this.health = health;
+        this.ammo = ammo;
+        this.damage = damage;
+        GameEvents.NotifyAmmo(ammo);
+        GameEvents.NotifyHealth(health);
+    }
+
     public void Start()
     {
         soundSource = GetComponent<AudioSource>();

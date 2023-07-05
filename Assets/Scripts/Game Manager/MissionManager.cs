@@ -15,10 +15,15 @@ public class MissionManager : MonoBehaviour, IGameManager
     {
         Debug.Log("Mission Manager manager starting...");
 
-        curLevel = 0;
-        maxLevel = 1;
+        UpdateData(0, 1);
 
         status = ManagerStatus.Started;
+    }
+
+    public void UpdateData(int curLevel, int maxLevel)
+    {
+        this.curLevel = curLevel;
+        this.maxLevel = maxLevel;
     }
 
     public void GoToNext()
