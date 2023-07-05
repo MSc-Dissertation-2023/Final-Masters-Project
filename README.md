@@ -3,6 +3,16 @@
 # Assets
 * Zombies - Romero from mixamo
 
+# Devil in the Details
+- Hurt/Damaged UI/UX
+- Do not pick health up if health is full
+- Attack frame damage
+- Enemy AIs pushing into the player
+- Sound effects when picking up items
+- UI/UX effect of picking up items
+- Loading screen
+- Collider object on gun
+
 # Scripts & Functions
 * SceneController
   * Contains: Fixed enemy spawn locations, enemyPrefab
