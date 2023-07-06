@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
+
     [SerializeField] public PlayerCharacter playerCharacter;
     [SerializeField] float maxHealth = 100;
     [SerializeField] int maxAmmo = 50;
@@ -21,15 +22,16 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     void Awake()
     {
+        // For Level 1
         if (playerCharacter != null)
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
         }
-
     }
 
     public void Startup()
     {
+        // For Level 1
         if (playerCharacter != null)
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
