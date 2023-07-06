@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public ManagerStatus status { get; private set; }
 
     [SerializeField] public PlayerCharacter playerCharacter;
+    ShootingMetrics shootingMetric;
+
     float startingHealth = 100;
     int startingAmmo = 50;
     int startingDamage = 25;
@@ -15,13 +17,11 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public float health => playerCharacter.health;
     public float ammo => playerCharacter.ammo;
     public float damage => playerCharacter.damage;
-    public int shotsFired = 0;
-    public int shotsHit = 0;
     public float totalDamageTaken = 0;
-    public float timeElapsed = 0;
 
     void Awake()
     {
+        shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
         // For Level 1
         if (playerCharacter != null)
         {
@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void ConsumeAmmo()
     {
-        shotsFired += 1;
+        if(shootingMetric != null) { shootingMetric.incrementShotsFired(); }
         playerCharacter.ConsumeAmmo();
     }
 
@@ -68,12 +68,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void OnSuccessfulShot()
     {
-        shotsHit += 1;
-    }
-
-    public float HitMissRatio()
-    {
-        return shotsHit/shotsFired;
+        if(shootingMetric != null) { shootingMetric.incrementShotsHit(); }
     }
 
     public static implicit operator PlayerManager(GameObject v)
