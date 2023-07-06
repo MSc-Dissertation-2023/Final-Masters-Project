@@ -17,12 +17,15 @@ public class Shoot : MonoBehaviour
     //Ditance for bullet holes
     public float distance = 100f;
 
-    private PlayerCharacter playerChar;
+    // private PlayerCharacter playerChar;
+
+    private PlayerManager playerManager;
 
     void Start()
     {
         cam = GetComponent<Camera>();
-        playerChar = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+        // playerChar = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+        playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         //Lock the mouse and make the cursor invsible
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -43,9 +46,9 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //When the left mouse button is clicked && not hovering over game object (popup) && enough ammo
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && playerChar.ammo > 0)
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && playerManager.ammo > 0)
         {
-            playerChar.ConsumeAmmo();
+            playerManager.ConsumeAmmo();
             //Play gunshot sound
             soundSource.PlayOneShot(gunshot);
             //Find what the middle of the screen is pointing at
@@ -66,7 +69,7 @@ public class Shoot : MonoBehaviour
                 {
                     //Create blood effect on impact
                     StartCoroutine(BloodSplat(hit.point));
-                    target.TakeDamage(playerChar.damage);
+                    target.TakeDamage(playerManager.damage);
                     // Old implemetnation - to be removed
                     // target.ReactToHit(playerChar.damage);
                 }
