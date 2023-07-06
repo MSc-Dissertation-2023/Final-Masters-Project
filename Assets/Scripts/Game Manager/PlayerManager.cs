@@ -17,11 +17,20 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     void Awake()
     {
-        playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+        if(playerCharacter != null)
+        {
+            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+        }
+
+        status = ManagerStatus.Started;
     }
 
-    public void Startup() {
-        playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+    public void Startup()
+    {
+        if (playerCharacter != null)
+        {
+            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+        }
     }
 
     public void ApplyDamage(float damage)
