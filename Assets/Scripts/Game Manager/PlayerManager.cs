@@ -8,9 +8,9 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public ManagerStatus status { get; private set; }
 
     [SerializeField] public PlayerCharacter playerCharacter;
-    [SerializeField] float maxHealth = 100;
-    [SerializeField] int maxAmmo = 50;
-    [SerializeField] int startingDamage = 25;
+    float startingHealth = 100;
+    int startingAmmo = 50;
+    int startingDamage = 25;
 
     public float health => playerCharacter.health;
     public float ammo => playerCharacter.ammo;
@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         // For Level 1
         if (playerCharacter != null)
         {
-            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
         }
     }
 
@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         // For Level 1
         if (playerCharacter != null)
         {
-            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
         }
         status = ManagerStatus.Started;
     }
