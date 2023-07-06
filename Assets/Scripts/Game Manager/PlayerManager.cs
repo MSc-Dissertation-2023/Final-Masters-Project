@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +6,26 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
+    [SerializeField] public PlayerCharacter playerCharacter;
+    [SerializeField] float maxHealth = 100;
+    [SerializeField] int maxAmmo = 50;
+    [SerializeField] int startingDamage = 25;
 
-    public float health { get; private set; }
-    public float maxHealth { get; private set; }
+    public float health => playerCharacter.health;
+    public float ammo => playerCharacter.ammo;
+    public float damage => playerCharacter.damage;
+    public int shotsFired = 0;
+    public int shotsHit = 0;
+    public float totalDamageTaken = 0;
+    public float timeElapsed = 0;
 
-
-    public void Startup()
+    void Awake()
     {
-
-        if(playerCharacter != null)
+        if (playerCharacter != null)
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
         }
-
-        status = ManagerStatus.Started;
+        
     }
 
     public void Startup()
@@ -27,28 +34,50 @@ public class PlayerManager : MonoBehaviour, IGameManager
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
         }
-    }
-
-    public void ApplyDamage(float damage)
-    { 
-
-        health = 50;
-        maxHealth = 100;
         status = ManagerStatus.Started;
     }
 
-    public void ChangeHealth(float value)
-
+    public void ApplyDamage(float damage)
     {
-        health += value;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        } else if (health < 0)
-        {
-            health = 0;
-        }
-
-        Debug.Log($"Health: {health}/{maxHealth}");
+        totalDamageTaken += damage;
+        playerCharacter.Hurt(damage);
     }
+
+    public void HealPlayer(float healAmount)
+    {
+        playerCharacter.Heal(healAmount);
+    }
+
+    public void GiveAmmo(int ammoAmount)
+    {
+        playerCharacter.RestoreAmmo(ammoAmount);
+    }
+
+    public void ConsumeAmmo()
+    {
+        shotsFired += 1;
+        playerCharacter.ConsumeAmmo();
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        playerCharacter.UpgradeDamage(amount);
+    }
+
+    public void OnSuccessfulShot()
+    {
+        shotsHit += 1;
+    }
+
+    public float HitMissRatio()
+    {
+        return shotsHit / shotsFired;
+    }
+
+    public static implicit operator PlayerManager(GameObject v)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Implement other high-level player management functions here, such as switching players, saving player data, loading player data, etc...
 }
