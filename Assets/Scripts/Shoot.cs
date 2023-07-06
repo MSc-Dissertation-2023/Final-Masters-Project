@@ -24,9 +24,6 @@ public class Shoot : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         playerChar = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-        //Lock the mouse and make the cursor invsible
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 
     void OnGUI()
