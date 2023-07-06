@@ -7,7 +7,7 @@
 - Hurt/Damaged UI/UX
 - Do not pick health up if health is full
 - Attack frame damage?
-  * Important that attack "feels" right
+  * Important that the game "feels" right
 - Enemy AIs pushing into the player
 - Sound effects when picking up items
 - UI/UX effect of picking up items
@@ -20,6 +20,7 @@
 - Non-gamebreaking bug: When settings agent.isStopped = false which resumes the pathfinding. The object might be in the process of being destroyed which have already deleted the navmesh agent before the game object is destroyed
   * AttackingState/<Attack>d__7:MoveNext () (at Assets/Scripts/Enemy AI/Enemy State/AttackingState.cs:76)
 - Loading just scene 1 won't hve certain audio elements loaded
+- 
 
 # Scripts & Functions
 * SceneController

@@ -60,9 +60,9 @@ public class AttackingState : EnemyState
 			// stop facing the player and execute attack
 			isDamaging = true;
 			// start damaging the player
-			if ((playerManager.playerCharacter.transform.position - enemy.transform.position).magnitude <= enemy.attackingRange && isDamaging)
+			if ((playerChar.transform.position - enemy.transform.position).magnitude <= enemy.attackingRange && isDamaging)
 			{
-					playerManager.ApplyDamage(enemy.damage);
+					playerChar.Hurt(enemy.damage);
 			}
 
 			yield return new WaitForSeconds(0.14f);  // wait until 34th frame
@@ -79,25 +79,25 @@ public class AttackingState : EnemyState
     }
 
 		//Draw the BoxCast as a gizmo to show where it currently is testing. Click the Gizmos button to see this. For debugging purposes
-    // void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-		// 		Debug.Log("Coloring");
-    //     //Check if there has been a hit yet
-    //     if (boxColliding)
-    //     {
-    //         //Draw a Ray forward from GameObject toward the hit
-    //         Gizmos.DrawRay(enemy.transform.position, enemy.transform.forward * hitInfo.distance);
-    //         //Draw a cube that extends to where the hit exists
-    //         Gizmos.DrawWireCube(enemy.transform.position + enemy.transform.forward * hitInfo.distance, enemy.transform.localScale);
-    //     }
-    //     //If there hasn't been a hit yet, draw the ray at the maximum distance
-    //     else
-    //     {
-    //         //Draw a Ray forward from GameObject toward the maximum distance
-    //         Gizmos.DrawRay(enemy.transform.position, enemy.transform.forward * enemy.attackingRange);
-    //         //Draw a cube at the maximum distance
-    //         Gizmos.DrawWireCube(enemy.transform.position + enemy.transform.forward * enemy.attackingRange, enemy.transform.localScale);
-    //     }
-    // }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+				Debug.Log("Coloring");
+        //Check if there has been a hit yet
+        if (boxColliding)
+        {
+            //Draw a Ray forward from GameObject toward the hit
+            Gizmos.DrawRay(enemy.transform.position, enemy.transform.forward * hitInfo.distance);
+            //Draw a cube that extends to where the hit exists
+            Gizmos.DrawWireCube(enemy.transform.position + enemy.transform.forward * hitInfo.distance, enemy.transform.localScale);
+        }
+        //If there hasn't been a hit yet, draw the ray at the maximum distance
+        else
+        {
+            //Draw a Ray forward from GameObject toward the maximum distance
+            Gizmos.DrawRay(enemy.transform.position, enemy.transform.forward * enemy.attackingRange);
+            //Draw a cube at the maximum distance
+            Gizmos.DrawWireCube(enemy.transform.position + enemy.transform.forward * enemy.attackingRange, enemy.transform.localScale);
+        }
+    }
 }

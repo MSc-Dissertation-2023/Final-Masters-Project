@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     public PlayerCharacter playerChar;
-    public PlayerManager playerManager;
     public GameObject healthPickupPrefab;
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
@@ -29,7 +28,6 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerChar = player.GetComponent<PlayerCharacter>();
-        playerManager  = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         soundSource = GetComponent<AudioSource>();

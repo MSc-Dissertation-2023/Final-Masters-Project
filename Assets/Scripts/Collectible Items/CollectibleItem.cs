@@ -5,12 +5,12 @@ using UnityEngine;
 public class CollectibleItem : MonoBehaviour
 {
     [SerializeField] string itemName;
-    protected PlayerManager playerManager;
+    public PlayerCharacter player;
 
     public void Start()
     {
         // player object is needed inside the apply effect of its child items
-        playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
     }
 
     public void OnTriggerEnter(Collider other)

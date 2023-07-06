@@ -8,7 +8,7 @@ public class PlayerCharacter : MonoBehaviour
     public float health = 100;
     public int ammo = 50;
     public int damage = 25;
-    [SerializeField] public AudioSource soundSource;
+    [SerializeField] AudioSource soundSource;
     [SerializeField] AudioClip hurtSound;
 
     public void UpdateData(float health, int ammo, int damage)
@@ -53,6 +53,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             soundSource.Stop();
             soundSource.PlayOneShot(hurtSound);
+
         }
         GameEvents.NotifyHealth(health);
 
@@ -72,10 +73,5 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         GameEvents.NotifyHealth(health);
-    }
-
-    public void UpgradeDamage(int amount)
-    {
-        damage += amount;
     }
 }

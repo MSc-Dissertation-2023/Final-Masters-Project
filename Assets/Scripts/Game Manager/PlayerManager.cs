@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +5,14 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
-    [SerializeField] public PlayerCharacter playerCharacter;
-    [SerializeField] float maxHealth = 100;
-    [SerializeField] int maxAmmo = 50;
-    [SerializeField] int startingDamage = 25;
 
-    public float health => playerCharacter.health;
-    public float ammo => playerCharacter.ammo;
-    public float damage => playerCharacter.damage;
+    public float health { get; private set; }
+    public float maxHealth { get; private set; }
 
-    void Awake()
+
+    public void Startup()
     {
+
         if(playerCharacter != null)
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
@@ -34,34 +30,25 @@ public class PlayerManager : MonoBehaviour, IGameManager
     }
 
     public void ApplyDamage(float damage)
-    {
-        playerCharacter.Hurt(damage);
+    { 
+
+        health = 50;
+        maxHealth = 100;
+        status = ManagerStatus.Started;
     }
 
-    public void HealPlayer(float healAmount)
+    public void ChangeHealth(float value)
+
     {
-        playerCharacter.Heal(healAmount);
+        health += value;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        } else if (health < 0)
+        {
+            health = 0;
+        }
+
+        Debug.Log($"Health: {health}/{maxHealth}");
     }
-
-    public void GiveAmmo(int ammoAmount)
-    {
-        playerCharacter.RestoreAmmo(ammoAmount);
-    }
-
-    public void ConsumeAmmo()
-    {
-        playerCharacter.ConsumeAmmo();
-    }
-
-    public void IncreaseDamage(int amount)
-    {
-        playerCharacter.UpgradeDamage(amount);
-    }
-
-  public static implicit operator PlayerManager(GameObject v)
-  {
-    throw new NotImplementedException();
-  }
-
-  // Implement other high-level player management functions here, such as switching players, saving player data, loading player data, etc...
 }

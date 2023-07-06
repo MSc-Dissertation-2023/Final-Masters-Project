@@ -14,7 +14,6 @@ public class EndGamePopup : MonoBehaviour
 
     public void Close()
     {
-
         gameObject.SetActive(false);     
     }
 
@@ -26,6 +25,5 @@ public class EndGamePopup : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
     }
 }
