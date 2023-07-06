@@ -41,7 +41,5 @@ public class FPSInput : MonoBehaviour
 
         //Move the the player object
         charController.Move(movement);
-
-       
     }
 }
