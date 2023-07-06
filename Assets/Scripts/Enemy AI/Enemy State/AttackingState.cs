@@ -39,7 +39,7 @@ public class AttackingState : EnemyState
 				}
 
 				if (!isAttacking) {
-					Debug.Log("Transition to chasing");
+					// Debug.Log("Transition to chasing");
 					enemy.ChangeState(new ChasingState(enemy));
 				}
 			}
@@ -47,7 +47,7 @@ public class AttackingState : EnemyState
 
     private IEnumerator Attack()
     {
-			Debug.Log("STarting Atk");
+			// Debug.Log("STarting Atk");
 			if (isAttacking) yield break;
 			isAttacking = true;
 			agent.isStopped = true;
@@ -75,7 +75,7 @@ public class AttackingState : EnemyState
 			animator.SetBool("Attacking", false);
 			agent.isStopped = false;
 			isAttacking = false;
-			Debug.Log("End of ATk");
+			// Debug.Log("End of ATk");
     }
 
 		//Draw the BoxCast as a gizmo to show where it currently is testing. Click the Gizmos button to see this. For debugging purposes
