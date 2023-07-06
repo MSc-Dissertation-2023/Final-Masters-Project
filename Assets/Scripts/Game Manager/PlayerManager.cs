@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         {
             playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
         }
-        
+
     }
 
     public void Startup()
@@ -71,7 +71,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public float HitMissRatio()
     {
-        return shotsHit / shotsFired;
+        return shotsHit/shotsFired;
     }
 
     public static implicit operator PlayerManager(GameObject v)

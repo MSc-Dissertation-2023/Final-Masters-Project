@@ -18,6 +18,7 @@ public class Shoot : MonoBehaviour
     public float distance = 100f;
 
     private PlayerCharacter playerChar;
+    private PlayerManager playerManager;
 
     void Start()
     {
@@ -65,6 +66,7 @@ public class Shoot : MonoBehaviour
                 if (target != null)
                 {
                     //Create blood effect on impact
+                    playerManager.OnSuccessfulShot();
                     StartCoroutine(BloodSplat(hit.point));
                     target.TakeDamage(playerChar.damage);
                     // Old implemetnation - to be removed
