@@ -15,7 +15,7 @@ public class MissionManager : MonoBehaviour, IGameManager
     {
         Debug.Log("Mission Manager manager starting...");
 
-        UpdateData(0, 1);
+        UpdateData(0, 2);
 
         status = ManagerStatus.Started;
     }
@@ -40,5 +40,11 @@ public class MissionManager : MonoBehaviour, IGameManager
         {
             Debug.Log("Last level");
         }
+    }
+
+    public void ReachObjective()
+    {
+        GameEvents.NotifyLevelComplete(0, 0);
+        Debug.Log("Reach objective called");
     }
 }

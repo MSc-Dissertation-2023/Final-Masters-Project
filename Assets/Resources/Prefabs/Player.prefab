@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensHor: 9
   sensVer: 9
+  tempSens: 9
   minVert: -45
   maxVert: 45
   axes: 1
@@ -145,6 +146,7 @@ GameObject:
   - component: {fileID: 5269406051371349923}
   - component: {fileID: 5495457599543071281}
   - component: {fileID: 8924510564266674943}
+  - component: {fileID: 3632995973348345735}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -272,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensHor: 9
   sensVer: 9
+  tempSens: 9
   minVert: -45
   maxVert: 45
   axes: 0
@@ -288,6 +291,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  ammo: 50
+  damage: 25
+  soundSource: {fileID: 0}
+  hurtSound: {fileID: 0}
 --- !u!82 &8924510564266674943
 AudioSource:
   m_ObjectHideFlags: 0
@@ -384,6 +391,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &3632995973348345735
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9161222652521724438}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &419777158134656753
 PrefabInstance:
   m_ObjectHideFlags: 0

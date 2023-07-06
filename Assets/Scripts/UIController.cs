@@ -19,6 +19,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] EndGamePopup endGamePopup;
+    [SerializeField] LevelCompletePopup endLevelPopup;
 
     private bool paused = false;
     private bool isGameEnded = false;
@@ -30,7 +31,12 @@ public class UIController : MonoBehaviour
         score = 0;
         scoreLabel.text = score.ToString();
         settingsPopup.Close();
+        if (endLevelPopup != null )
+        {
+            endLevelPopup.Close();
+        }
         endGamePopup.Close();
+
     }
 
     public void OnEnemyKilled()
@@ -56,14 +62,12 @@ public class UIController : MonoBehaviour
             isGameEnded = true;
             finalScore.text = $"Score: {score}";
             endGamePopup.Open();
-            GameEvents.NotifyPaused();
         }
     }
 
     public void OnOpenSettings()
     {
         settingsPopup.Open();
-        GameEvents.NotifyPaused();
     }
 
     public void Update()
@@ -85,6 +89,7 @@ public class UIController : MonoBehaviour
         GameEvents.GameEnd += OnEndGame;
         GameEvents.UpdateHealth += UpdateHealthDisplay;
         GameEvents.UpdateAmmo += UpdateAmmoDisplay;
+        GameEvents.LevelCompleted += OnLevelComplete;
 
     }
     void OnDisable()
@@ -95,6 +100,7 @@ public class UIController : MonoBehaviour
         GameEvents.GameEnd -= OnEndGame;
         GameEvents.UpdateHealth -= UpdateHealthDisplay;
         GameEvents.UpdateAmmo -= UpdateAmmoDisplay;
+        GameEvents.LevelCompleted -= OnLevelComplete;
 
     }
 
@@ -112,5 +118,11 @@ public class UIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
+    }
+
+    private void OnLevelComplete(int health, int score)
+    {
+       endLevelPopup.Open();
+        Debug.Log("On Level Complete");
     }
 }

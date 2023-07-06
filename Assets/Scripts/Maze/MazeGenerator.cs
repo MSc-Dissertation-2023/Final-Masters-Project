@@ -39,8 +39,10 @@ public class MazeGenerator : MonoBehaviour
 
         GenerateMaze(null, grid[0,0]);
 
-        Instantiate(player, new Vector3(0, 1.5f, 0), Quaternion.identity);
-        Instantiate(enemy, new Vector3(0, 1.5f, 45), Quaternion.identity);
+        Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
+        Instantiate(enemy, new Vector3(0f, 1.5f, 70f), Quaternion.identity);
+        Instantiate(enemy, new Vector3(70f, 1.5f, 0f), Quaternion.identity);
+        Instantiate(exit, new Vector3(70f, 2.5f, 70f), Quaternion.identity);
     }
 
     private void GenerateMaze(MazeCell previous, MazeCell current)

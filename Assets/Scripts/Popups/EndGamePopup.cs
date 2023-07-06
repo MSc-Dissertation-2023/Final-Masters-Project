@@ -8,18 +8,17 @@ public class EndGamePopup : MonoBehaviour
     private PlayerCharacter playerCharacter;
     public void Open()
     {
-        /*Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;*/
         gameObject.SetActive(true);
+        GameEvents.NotifyPaused();
     }
 
     public void Close()
     {
-        gameObject.SetActive(false);
-        playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-        if (playerCharacter.health <= 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }       
+        gameObject.SetActive(false);     
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

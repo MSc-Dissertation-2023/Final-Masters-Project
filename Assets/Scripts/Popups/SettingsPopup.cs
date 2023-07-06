@@ -10,6 +10,7 @@ public class SettingsPopup : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        GameEvents.NotifyPaused();
     }
 
     public void Close()

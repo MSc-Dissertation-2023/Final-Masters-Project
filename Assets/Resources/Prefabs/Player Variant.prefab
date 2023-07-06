@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5495457599543071281, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f3c6239e8bff26438c0afa7b127d85d, type: 3}
     - target: {fileID: 9161222652521724438, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
       propertyPath: m_Name
       value: Player Variant
