@@ -4,6 +4,6 @@ public class AmmoCollectibleItem : CollectibleItem
 
     protected override void ApplyEffect()
     {
-        player.RestoreAmmo(ammoRestoreAmount);
+        playerManager.GiveAmmo(ammoRestoreAmount);
     }
 }

@@ -10,19 +10,13 @@ public class PlayerManager : MonoBehaviour, IGameManager
     [SerializeField] float maxHealth = 100;
     [SerializeField] int maxAmmo = 50;
     [SerializeField] int startingDamage = 25;
-    [SerializeField] GameObject playerPrefab;
 
-    // public playerCharacter;
+    public float health => playerCharacter.health;
+    public float ammo => playerCharacter.ammo;
+    public float damage => playerCharacter.damage;
 
     void Awake()
     {
-        Debug.Log("test");
-        if (playerCharacter == null)
-        {
-            playerCharacter = Instantiate(playerPrefab).GetComponent<PlayerCharacter>();
-            playerCharacter.name = "Player";
-        }
-
         playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
     }
 
@@ -48,6 +42,11 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public void ConsumeAmmo()
     {
         playerCharacter.ConsumeAmmo();
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        playerCharacter.UpgradeDamage(amount);
     }
 
   public static implicit operator PlayerManager(GameObject v)

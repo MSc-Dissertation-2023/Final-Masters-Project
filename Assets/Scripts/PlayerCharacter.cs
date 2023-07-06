@@ -73,4 +73,9 @@ public class PlayerCharacter : MonoBehaviour
 
         GameEvents.NotifyHealth(health);
     }
+
+    public void UpgradeDamage(int amount)
+    {
+        damage += amount;
+    }
 }

@@ -4,6 +4,6 @@ public class DamageCollectibleItem : CollectibleItem
     // Update is called once per frame
     protected override void ApplyEffect()
     {
-        player.damage += 5;
+        playerManager.IncreaseDamage(5);
     }
 }

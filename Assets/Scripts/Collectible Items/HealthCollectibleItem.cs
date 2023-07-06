@@ -8,6 +8,6 @@ public class HealthCollectibleItem : CollectibleItem
 
     protected override void ApplyEffect()
     {
-        player.Heal(healthRestoreAmount);
+        playerManager.HealPlayer(healthRestoreAmount);
     }
 }
