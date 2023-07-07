@@ -6,12 +6,23 @@ public class PlayerMetrics : MonoBehaviour
 {
   ActionMetrics actions;
   TimerMetrics timer;
-  int APM = 0;
-  // Start is called before the first frame update
+  ShootingMetrics shooting;
+  KillMetrics kills;
+  DamageMetrics damage;
+  private int APM = 0;
+  public double getHitMissRatio => shooting.hitMissRatio();
+  public int getAPM => APM;
+  public int getKillCount => kills.getKillCount();
+  public float getTotalDamageTaken => damage.getTotalDamageTaken;
+  public int getTimeElapsed => timer.getTimer;
+
   void Start()
   {
     actions = GetComponent<ActionMetrics>();
     timer = GetComponent<TimerMetrics>();
+    shooting = GetComponent<ShootingMetrics>();
+    kills = GetComponent<KillMetrics>();
+    damage = GetComponent<DamageMetrics>();
     InvokeRepeating("CalculateAPM", 5, 3);
   }
 
@@ -21,10 +32,5 @@ public class PlayerMetrics : MonoBehaviour
     } else {
       APM = actions.getActions / (timer.getTimer/60);
     }
-    Debug.Log(APM);
 	}
-
-  void Update() {
-
-  }
 }

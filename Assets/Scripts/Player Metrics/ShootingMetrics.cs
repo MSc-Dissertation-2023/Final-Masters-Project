@@ -8,7 +8,7 @@ public class ShootingMetrics : MonoBehaviour
     private int shotsHit = 0;
     // public double hitMissRatio;
 
-    double hitMissRatio() {
+    public double hitMissRatio() {
         return (double)shotsHit/shotsFired;
     }
 

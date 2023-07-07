@@ -6,7 +6,7 @@ public class ActionMetrics : MonoBehaviour
 {
 	private int actions = 0;
 	public int getActions => actions;
-	// Start is called before the first frame update
+
 	void Start()
 	{
 

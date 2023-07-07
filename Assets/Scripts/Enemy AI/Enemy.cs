@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     public PlayerCharacter playerChar;
+    KillMetrics killMetrics;
     public GameObject healthPickupPrefab;
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
@@ -26,12 +27,14 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        // For scene 2 only
+        if(GameObject.Find("Player Metrics") != null) { killMetrics = GameObject.Find("Player Metrics").GetComponent<KillMetrics>(); }
+
         player = GameObject.FindWithTag("Player");
         playerChar = player.GetComponent<PlayerCharacter>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         soundSource = GetComponent<AudioSource>();
-        // Initialize the starting state (e.g., ChasingState);
         currentState = new ChasingState(this);
     }
 
@@ -72,6 +75,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0.0f)
         {
 		    GameEvents.NotifyDeath();
+            if(killMetrics != null) { killMetrics.incrementKillCount(); }
             InstantiateCollectibleItems();
             ChangeState(new DyingState(this));
         }

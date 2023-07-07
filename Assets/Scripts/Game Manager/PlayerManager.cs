@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     [SerializeField] public PlayerCharacter playerCharacter;
     ShootingMetrics shootingMetric;
+    DamageMetrics damageMetric;
 
     float startingHealth = 100;
     int startingAmmo = 50;
@@ -17,11 +18,14 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public float health => playerCharacter.health;
     public float ammo => playerCharacter.ammo;
     public float damage => playerCharacter.damage;
-    public float totalDamageTaken = 0;
 
     void Awake()
     {
-        shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
+        // For Level 2
+        if(GameObject.Find("Player Metrics") != null) {
+            shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
+            damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
+        }
         // For Level 1
         if (playerCharacter != null)
         {
@@ -41,7 +45,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void ApplyDamage(float damage)
     {
-        totalDamageTaken += damage;
+        damageMetric.RegisterDamageTaken(damage);
         playerCharacter.Hurt(damage);
     }
 
