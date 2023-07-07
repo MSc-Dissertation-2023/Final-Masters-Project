@@ -29,7 +29,7 @@ public class ChasingState : EnemyState
 
             if (playerCharacter != null && hitInfo.distance < enemy.attackingRange)
             {
-                Debug.Log("Transitioned to attacking");
+                // Debug.Log("Transitioned to attacking");
                 animator.SetBool("Walking", false);
                 enemy.ChangeState(new AttackingState(enemy));
             }

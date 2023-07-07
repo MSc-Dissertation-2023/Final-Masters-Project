@@ -33,7 +33,7 @@ public class AttackingState : EnemyState
 				if (boxColliding && hitInfo.transform != null) {
 					PlayerCharacter playerCharacter = hitInfo.transform.GetComponent<PlayerCharacter>();
 					if(playerCharacter != null) {
-						Debug.Log("Attack Coroutine");
+						// Debug.Log("Attack Coroutine");
 						enemy.StartCoroutine(Attack());
 					}
 				}
