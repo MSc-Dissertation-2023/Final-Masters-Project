@@ -49,22 +49,22 @@ public class Puzzle : MonoBehaviour
     void Start()
     {
         GenerateCode();
-        string codeString = $"{Code[0]}{Code[1]}{Code[2]}";
-        Debug.Log(codeString);
-        MazeEvents.NotifyCode(codeString);
         SetSqaureColours();
         spawnDigits();
     }
 
     private void SetSqaureColours()
     {
-
             Colours = Colours.OrderBy(x => Random.Range(1, 1000)).ToArray();
             UISquare1.color = Colours[0];
             UISquare2.color = Colours[1];
-            UISquare3.color = Colours[2];
+            UISquare3.color = Colours[2];     
+    }
 
-            
+    private void PublishCode()
+    {
+        string codeString = $"{Code[0]}{Code[1]}{Code[2]}";
+        MazeEvents.NotifyCode(codeString);
     }
 
     private void GenerateCode()
@@ -131,6 +131,16 @@ public class Puzzle : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        MazeEvents.GetCode += PublishCode;
+
+    }
+    void OnDisable()
+    {
+        MazeEvents.GetCode -= PublishCode;
+
+    }
 
 
 }
