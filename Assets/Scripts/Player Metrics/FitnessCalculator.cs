@@ -8,8 +8,8 @@ public class FitnessCalculator : MonoBehaviour
    private float w2 = 0.5f;
    private float w3 = 0.5f;
    private float w4 = 0.5f;
-   private float w5 = 0.5f;
-   private float w6 = 0.5f;
+//    private float w5 = 0.5f;
+//    private float w6 = 0.5f;
    private double fitness;
    PlayerMetrics player;
 
