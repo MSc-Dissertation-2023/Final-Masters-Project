@@ -39,10 +39,13 @@ public class MazeGenerator : MonoBehaviour
 
         GenerateMaze(null, grid[0,0]);
 
+        float cornerValueWidth = 5f * (width - 1);
+        float cornerValueDepth = 5f * (depth - 1);
+
         Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(0f, 1.5f, 70f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(70f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(exit, new Vector3(70f, 2.5f, 70f), Quaternion.identity);
+        Instantiate(enemy, new Vector3(0f, 1.5f, cornerValueDepth), Quaternion.identity);
+        Instantiate(enemy, new Vector3(cornerValueWidth, 1.5f, 0f), Quaternion.identity);
+        Instantiate(exit, new Vector3(cornerValueWidth, 2.5f, cornerValueDepth), Quaternion.identity);
     }
 
     private void GenerateMaze(MazeCell previous, MazeCell current)
@@ -78,6 +81,15 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return rightCell;
             }
+            else
+            {
+                if (!rightCell.leftDestroyed)
+                {
+                    current.DestroyRight();
+                    current.rightDestroyed = true;
+                }
+                
+            }
         }
 
         if (x - 1 >= 0)
@@ -87,6 +99,14 @@ public class MazeGenerator : MonoBehaviour
             if (leftCell.Visited == false)
             {
                 yield return leftCell;
+            }
+            else
+            {
+                if (!leftCell.rightDestroyed)
+                {
+                    current.DestroyLeft();
+                    current.leftDestroyed = true;
+                }
             }
         }
 
@@ -98,6 +118,14 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return frontCell;
             }
+            else
+            {
+                if (!frontCell.backDestroyed)
+                {
+                    current.DestroyFront();
+                    current.frontDestroyed = true;
+                }
+            }
         }
 
         if (z- 1 >= 0)
@@ -108,13 +136,21 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return backCell;
             }
+            else
+            {
+                if (!backCell.frontDestroyed)
+                {
+                    current.DestroyBack();
+                    current.backDestroyed = true;
+                }
+            }
         }
     }
 
     private MazeCell GetNextCell(MazeCell current)
     {
         var unvisitedNeighbours = GetUnvistedNeighbours(current);
-        return unvisitedNeighbours.OrderBy(_ => Random.Range(1, 10)).FirstOrDefault();
+        return unvisitedNeighbours.OrderBy(x => Random.Range(1, 10)).FirstOrDefault();
     }
 
     private void ClearWalls(MazeCell previous, MazeCell current)
