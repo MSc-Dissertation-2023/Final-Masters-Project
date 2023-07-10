@@ -45,7 +45,7 @@ public class MazeGenerator : MonoBehaviour
         Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
         Instantiate(enemy, new Vector3(0f, 1.5f, cornerValueDepth), Quaternion.identity);
         Instantiate(enemy, new Vector3(cornerValueWidth, 1.5f, 0f), Quaternion.identity);
-        Instantiate(exit, new Vector3(cornerValueWidth + 1, 2.5f, cornerValueDepth + 1), Quaternion.identity);
+        Instantiate(exit, new Vector3(cornerValueWidth, 2.5f, cornerValueDepth + 2.5f), Quaternion.identity);
     }
 
     private void GenerateMaze(MazeCell previous, MazeCell current)

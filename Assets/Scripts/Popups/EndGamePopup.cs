@@ -19,6 +19,8 @@ public class EndGamePopup : MonoBehaviour
 
     public void restart()
     {
+        GameObject managers = GameObject.Find("GameManager");
+        Destroy(managers);
         SceneManager.LoadScene("Startup");
     }
 }
