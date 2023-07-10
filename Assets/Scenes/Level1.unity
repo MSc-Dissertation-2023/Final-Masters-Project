@@ -1694,7 +1694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeCellPrefab: {fileID: 489670593179519061, guid: 53b4c09381a05ac4ca469a7547ae7412, type: 3}
   player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
-  enemy: {fileID: 1907530624832798302, guid: 3b0ce4d8affdbd145aca2e83d201503e, type: 3}
+  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
   exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
   width: 10
   depth: 10
