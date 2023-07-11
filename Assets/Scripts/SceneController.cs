@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
     //Array of enemies
     private GameObject[] enemies;
     //Define total number of enemies
-    public int numberOfEnemies;
+    private int numberOfEnemies = 5;
 
     //Vector of Spawn locations
     private Vector3 spawnOne = new Vector3(11f, 1.5f, -30.5f);
@@ -71,4 +71,14 @@ public class SceneController : MonoBehaviour
             }
         }
     }
+
+    public void IncreaseEnemyCount() {
+        numberOfEnemies += 1;
+    }
+
+    public void DecreaseEnemyCount() {
+        numberOfEnemies -= 1;
+    }
+
+    // public void Increase
 }

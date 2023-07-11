@@ -14,12 +14,16 @@ public class FitnessCalculator : MonoBehaviour
    PlayerMetrics player;
 
    void Start() {
-        player = GetComponent<PlayerMetrics>();
-        InvokeRepeating("CalculateFitness", 15, 10);
+      player = GetComponent<PlayerMetrics>();
+      InvokeRepeating("CalculateFitness", 15, 10);
    }
 
-   public void CalculateFitness() {
+   private void CalculateFitness() {
         fitness = w1 * player.getKillCount + w2 * player.getAPM + w3 * player.getTotalDamageTaken + w4 * player.getTimeElapsed;
         Debug.Log(fitness);
+   }
+
+   public double GetFitness() {
+      return fitness;
    }
 }
