@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class DynamicScripting : MonoBehaviour
 {
-    // Start is called before the first frame update
+    EnemyRuleManager enemyRuleManager;
+    GameRuleManager gameRuleManager;
+
     void Start()
     {
-        
+        enemyRuleManager = GetComponent<EnemyRuleManager>();
+        gameRuleManager = GetComponent<GameRuleManager>();
+        InvokeRepeating("SelectRules", 15, 10);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void SelectRules() {
+        enemyRuleManager.SelectRules();
+        gameRuleManager.SelectRules();
     }
 }

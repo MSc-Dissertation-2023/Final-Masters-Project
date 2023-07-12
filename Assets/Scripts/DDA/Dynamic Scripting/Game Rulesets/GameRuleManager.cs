@@ -13,7 +13,6 @@ public class GameRuleManager : MonoBehaviour
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
         gameRulesets = GameObject.Find("DDA").GetComponent<GameRulesets>();
-        InvokeRepeating("SelectRules", 15, 10);
     }
 
     private int calculateScriptSize() {

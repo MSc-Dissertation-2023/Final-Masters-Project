@@ -13,7 +13,6 @@ public class EnemyRuleManager : MonoBehaviour
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
         enemyRulesets = GameObject.Find("DDA").GetComponent<EnemyRulesets>();
-        InvokeRepeating("SelectRules", 15, 10);
     }
 
     private int calculateScriptSize() {

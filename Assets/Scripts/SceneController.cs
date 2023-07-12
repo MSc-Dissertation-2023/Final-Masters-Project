@@ -25,6 +25,8 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
+        enemies = new List<GameObject>();
+
         for (int i = 0; i < numberOfEnemies; i++)
         {
             enemies.Add(null);
