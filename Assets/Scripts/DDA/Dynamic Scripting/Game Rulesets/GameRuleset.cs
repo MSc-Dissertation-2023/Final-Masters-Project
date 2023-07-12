@@ -9,13 +9,20 @@ public class GameRuleset : MonoBehaviour
 
     void Start()
     {
-        rulesets = new List<GameRule>();
-
-        rulesets.Add(new GameRule(1.0f, IncreaseEnemyCount, "enemyCount"));
-		rulesets.Add(new GameRule(1.0f, DecreaseEnemyCount, "enemyCount"));
-        // spawn enemies that are closer to the player
-
         scene = GameObject.Find("Controller").GetComponent<SceneController>();
+    }
+
+    public void ApplyRules(Enemy enemy) {
+        foreach (GameRule gameRule in rulesets) {
+            switch (gameRule.rule) {
+                case "IncreaseEnemyCount":
+                    IncreaseEnemyCount();
+                    break;
+                case "DecreaseEnemyCount":
+                    DecreaseEnemyCount();
+                    break;
+            }
+        }
     }
 
     public void IncreaseEnemyCount() {

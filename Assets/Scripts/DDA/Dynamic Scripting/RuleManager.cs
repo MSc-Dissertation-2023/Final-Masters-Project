@@ -11,7 +11,6 @@ public class RulesetManager : MonoBehaviour
     void Start()
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
-        // enemyRulesets = GameObject.Find("DDA").GetComponent<EnemyRulesets>();
         InvokeRepeating("SelectRules", 15, 10);
     }
 }

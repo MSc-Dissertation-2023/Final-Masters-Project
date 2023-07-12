@@ -3,13 +3,13 @@ using System;
 public class Rule
 {
     public float weight;
-    public Action rule;
+    public string rule;
     public string description;
 
-    public Rule(float initialWeight, Action Rule, string description)
+    public Rule(float initialWeight, string rule, string description)
     {
         this.weight = initialWeight;
-        this.rule = Rule;
+        this.rule = rule;
         this.description = description;
     }
 

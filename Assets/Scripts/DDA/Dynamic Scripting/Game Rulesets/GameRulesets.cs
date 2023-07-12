@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class GameRulesets : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public List<GameRule> rulesets;
+	SceneController scene;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Start()
+	{
+		rulesets = new List<GameRule>();
+
+		rulesets.Add(new GameRule(1.0f, "IncreaseEnemyCount", "enemyCount"));
+		rulesets.Add(new GameRule(1.0f, "DecreaseEnemyCount", "enemyCount"));
+		// spawn enemies that are closer to the player
+
+		scene = GameObject.Find("Controller").GetComponent<SceneController>();
+	}
+
+
 }

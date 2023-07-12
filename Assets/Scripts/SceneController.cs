@@ -53,10 +53,7 @@ public class SceneController : MonoBehaviour
         if (enemyRuleset != null) {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
 
-            foreach (EnemyRule rule in enemyRuleset.rulesets) {
-                rule.apply(enemy);
-            }
-            // enemyScript
+            enemyRuleset.ApplyRules(enemyScript);
         }
 
         enemy.SetActive(true);
@@ -67,6 +64,7 @@ public class SceneController : MonoBehaviour
         if (gameRuleset == null) {
             return Random.Range(1, 6) - 1;
         } else {
+            // gameRuleset.ApplyRules(spawnLocations, )
             return 0;
         }
     }

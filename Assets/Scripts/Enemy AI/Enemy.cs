@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
     public float attackingRange = 2.0f;
+    public float speed = 5.0f;
 
     [SerializeField] public AudioSource soundSource;
     [SerializeField] public AudioClip attackSound;
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
         playerChar = player.GetComponent<PlayerCharacter>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         soundSource = GetComponent<AudioSource>();
         currentState = new ChasingState(this);
     }
@@ -108,5 +110,10 @@ public class Enemy : MonoBehaviour
 
     public float GetDamage() {
         return damage;
+    }
+
+    public void setSpeed(float newSpeed) {
+        speed = newSpeed;
+        agent.speed = speed;
     }
 }

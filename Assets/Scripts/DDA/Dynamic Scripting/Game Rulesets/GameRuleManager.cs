@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRuleManager : MonoBehaviour
+public class GameRuleManager : MonoBehaviour
 {
     FitnessCalculator fitnessCalculator;
-    EnemyRulesets enemyRulesets;
-    EnemyRuleset enemyRuleset;
+    GameRulesets gameRulesets;
+    GameRuleset gameRuleset;
     // Start is called before the first frame update
 
     void Start()
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
-        enemyRulesets = GameObject.Find("DDA").GetComponent<EnemyRulesets>();
+        gameRulesets = GameObject.Find("DDA").GetComponent<GameRulesets>();
         InvokeRepeating("SelectRules", 15, 10);
     }
 
@@ -25,12 +25,12 @@ public class EnemyRuleManager : MonoBehaviour
 
         //         break;
         // }
-        return 3;
+        return 1;
     }
 
     public void SelectRules() {
         float sumWeights = 0;
-        foreach (EnemyRule rule in enemyRulesets.rulesets) {
+        foreach (GameRule rule in gameRulesets.rulesets) {
             sumWeights = sumWeights + rule.weight;
         }
 
@@ -48,14 +48,14 @@ public class EnemyRuleManager : MonoBehaviour
                 int selected = -1;
                 float fraction = RouletteWeights(sumWeights);
                 while (selected < 0) {
-                    sum += enemyRulesets.rulesets[j].weight;
+                    sum += gameRulesets.rulesets[j].weight;
                     if (sum > fraction) {
                         selected = j;
                     } else {
                         j = j + 1;
                     }
                 }
-                lineadded = InsertInScript(enemyRulesets.rulesets[j]);
+                lineadded = InsertInScript(gameRulesets.rulesets[j]);
                 tries += 1;
             }
         }
@@ -67,14 +67,13 @@ public class EnemyRuleManager : MonoBehaviour
         return randomFloat;
     }
 
-    private bool InsertInScript(EnemyRule rule) {
-        foreach (EnemyRule currentRule in enemyRuleset.rulesets) {
+    private bool InsertInScript(GameRule rule) {
+        foreach (GameRule currentRule in gameRuleset.rulesets) {
             if (currentRule.description == rule.description) {
                 return false;
             }
         }
-        enemyRuleset.rulesets.Add(rule);
+        gameRuleset.rulesets.Add(rule);
         return true;
     }
-
 }
