@@ -12,8 +12,6 @@ public class EnemyRulesets : MonoBehaviour
 	{
 		rulesets = new List<EnemyRule>();
 
-		rulesets.Add(new EnemyRule(1.0f, IncreaseEnemyCount, "enemyCount"));
-		rulesets.Add(new EnemyRule(1.0f, DecreaseEnemyCount, "enemyCount"));
 		rulesets.Add(new EnemyRule(1.0f, IncreaseEnemyDamage, "enemyDamage"));
 		rulesets.Add(new EnemyRule(1.0f, DecreaseEnemyDamage, "enemyDamage"));
 		rulesets.Add(new EnemyRule(1.0f, IncreaseEnemySpeed, "enemySpeed"));
@@ -24,35 +22,5 @@ public class EnemyRulesets : MonoBehaviour
 		scene = GameObject.Find("Controller").GetComponent<SceneController>();
 	}
 
-	public void IncreaseEnemyCount() {
-		scene.IncreaseEnemyCount();
-	}
 
-	private void DecreaseEnemyCount() {
-		scene.DecreaseEnemyCount();
-	}
-
-	private void IncreaseEnemyDamage() {
-
-	}
-
-	private void DecreaseEnemyDamage() {
-
-	}
-
-	private void IncreaseEnemySpeed() {
-
-	}
-
-	private void DecreaseEnemySpeed() {
-
-	}
-
-	private void IncreaseEnemyDodging() {
-
-	}
-
-	private void DecreaseEnemyDodging() {
-
-	}
 }

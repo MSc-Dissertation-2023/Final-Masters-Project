@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RuleManager : MonoBehaviour
+public class EnemyRuleManager : MonoBehaviour
 {
     FitnessCalculator fitnessCalculator;
     EnemyRulesets enemyRulesets;
     EnemyRuleset enemyRuleset;
     // Start is called before the first frame update
+
     void Start()
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
@@ -54,29 +55,11 @@ public class RuleManager : MonoBehaviour
                 lineadded = InsertInScript(enemyRulesets.rulesets[j]);
                 tries += 1;
             }
-
         }
-
-
-
-        // // Check player performance, and adjust ruleset weights for next time
-        // AdjustRuleWeights();
-        // enemyRulesets.IncreaseEnemyCount();
     }
 
     private float RouletteWeights(float sumWeights) {
-        // EnemyRule chosenRule;
-        // Random r = new Random();
         float randomFloat = Random.Range(0.0f,1.0f) * sumWeights;
-        // float total = 0;
-        // foreach (EnemyRule rule in enemyRulesets.rulesets) {
-
-        //     if (randomFloat > total && randomFloat <= (total + rule.weight)) {
-        //         chosenRule = rule;
-        //         break;
-        //     }
-        //     total += rule.weight;
-        // }
 
         return randomFloat;
     }

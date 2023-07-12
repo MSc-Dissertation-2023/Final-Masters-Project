@@ -17712,6 +17712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc1d513236654b4f8c21acad972fdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fitnessCalculator: {fileID: 0}
+  enemyRulesets: {fileID: 0}
+  enemyRuleset: {fileID: 0}
 --- !u!4 &1726738999
 Transform:
   m_ObjectHideFlags: 0

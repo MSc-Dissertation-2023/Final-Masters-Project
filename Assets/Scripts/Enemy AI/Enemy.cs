@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     // private EnemyState currentState;
     public Animator animator;
     private EnemyState currentState;
-    public float health = 100; // Health value of the enemy
-    public int damage = 15; // Damage value of the enemy
+    public float health = 100.0f; // Health value of the enemy
+    private float damage = 15.0f; // Damage value of the enemy
     public NavMeshAgent agent;
     public GameObject player;
     public PlayerCharacter playerChar;
@@ -100,5 +100,13 @@ public class Enemy : MonoBehaviour
 				Instantiate(damageUpgradePickupPrefab, enemyDropsPos, Quaternion.identity); // Assuming you have a damagePrefab
 		}
 
+    }
+
+    public void setDamage(float newDamageValue) {
+        damage = newDamageValue;
+    }
+
+    public float GetDamage() {
+        return damage;
     }
 }

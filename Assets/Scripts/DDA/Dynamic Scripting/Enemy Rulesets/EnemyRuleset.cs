@@ -4,4 +4,5 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EnemyRuleset : MonoBehaviour {
     public List<EnemyRule> rulesets;
+    public Enemy enemy;
 }

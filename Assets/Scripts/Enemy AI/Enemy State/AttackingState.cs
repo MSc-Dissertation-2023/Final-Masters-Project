@@ -62,7 +62,7 @@ public class AttackingState : EnemyState
 			// start damaging the player
 			if ((playerChar.transform.position - enemy.transform.position).magnitude <= enemy.attackingRange && isDamaging)
 			{
-					playerChar.Hurt(enemy.damage);
+					playerChar.Hurt(enemy.GetDamage());
 			}
 
 			yield return new WaitForSeconds(0.14f);  // wait until 34th frame
