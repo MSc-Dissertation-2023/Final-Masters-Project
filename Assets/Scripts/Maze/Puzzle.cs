@@ -55,7 +55,7 @@ public class Puzzle : MonoBehaviour
 
     private void SetSqaureColours()
     {
-            Colours = Colours.OrderBy(x => Random.Range(1, 1000)).ToArray();
+            Colours = Colours.OrderBy(x => Random.Range(1, 100)).ToArray();
             UISquare1.color = Colours[0];
             UISquare2.color = Colours[1];
             UISquare3.color = Colours[2];     

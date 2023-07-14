@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 3490268227662550548}
   - component: {fileID: 745179753738401547}
   - component: {fileID: 5657902860210670349}
+  - component: {fileID: 4276315658577171688}
   m_Layer: 0
-  m_Name: HorizonalWall
-  m_TagString: Untagged
+  m_Name: MazeWall
+  m_TagString: MazeWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 191390264633097596}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &745179753738401547
 BoxCollider:
@@ -154,3 +155,15 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4276315658577171688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5132473996442833650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366d94dc6eed90142bdc91b0017d591a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

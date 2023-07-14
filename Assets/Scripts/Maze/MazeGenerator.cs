@@ -23,6 +23,8 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int depth;
 
+    public bool trueForRB; //True for recursive backtracker
+
     private MazeCell[,] grid;
 
     private List<MazeCell> UnvisitedCells; //Prim's Algorithm
@@ -41,19 +43,25 @@ public class MazeGenerator : MonoBehaviour
             for(int z = 0; z < depth; z++)
             {
                grid[x,z] = Instantiate(mazeCellPrefab, new Vector3(x*5, 2.5f, z*5), Quaternion.identity);
-               UnvisitedCells.Add(grid[x,z]); //Prim's Algorithm
+               if(!trueForRB)
+               {
+                    UnvisitedCells.Add(grid[x,z]); //Prim's Algorithm
+               }
+               
             }
         }
 
-        //GenerateMazeBacktracker(null, grid[0,0]); // Recursive Backtracker
-
-
-
-        VisitedCells.Add(grid[0, 0]); //Prim's Algorithm
-        UnvisitedCells.Remove(grid[0, 0]); //Prim's Algorithm
-        grid[0, 0].VisitCell(); //Prim's Algorithm
-        GenerateMazePrim(); //Prim's Algorithm
-
+        if (trueForRB)
+        {
+            GenerateMazeBacktracker(null, grid[0, 0]); // Recursive Backtracker
+        }
+        else
+        {
+            VisitedCells.Add(grid[0, 0]); //Prim's Algorithm
+            UnvisitedCells.Remove(grid[0, 0]); //Prim's Algorithm
+            grid[0, 0].VisitCell(); //Prim's Algorithm
+            GenerateMazePrim(); //Prim's Algorithm
+        }
 
         float cornerValueWidth = 5f * (width - 1);
         float cornerValueDepth = 5f * (depth - 1);
