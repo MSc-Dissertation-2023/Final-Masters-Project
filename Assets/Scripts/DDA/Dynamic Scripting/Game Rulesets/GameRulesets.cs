@@ -14,6 +14,7 @@ public class GameRulesets : MonoBehaviour
 		rulesets.Add(new GameRule(1.0f, "IncreaseEnemyCount", "enemyCount"));
 		rulesets.Add(new GameRule(1.0f, "DecreaseEnemyCount", "enemyCount"));
 		// spawn enemies that are closer to the player
+		// spawn specific pickups 
 
 		scene = GameObject.Find("Controller").GetComponent<SceneController>();
 	}
