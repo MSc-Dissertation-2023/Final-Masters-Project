@@ -23,29 +23,56 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private int depth;
 
+    public bool trueForRB; //True for recursive backtracker
+
     private MazeCell[,] grid;
+
+    private List<MazeCell> UnvisitedCells; //Prim's Algorithm
+
+    private List<MazeCell> VisitedCells; //Prim's Algorithm
 
     void Start()
     {
         grid = new MazeCell[width, depth];
+
+        VisitedCells = new List<MazeCell>();
+        UnvisitedCells = new List<MazeCell>();
 
         for (int x = 0; x < width; x++)
         {
             for(int z = 0; z < depth; z++)
             {
                grid[x,z] = Instantiate(mazeCellPrefab, new Vector3(x*5, 2.5f, z*5), Quaternion.identity);
+               if(!trueForRB)
+               {
+                    UnvisitedCells.Add(grid[x,z]); //Prim's Algorithm
+               }
+               
             }
         }
 
-        GenerateMaze(null, grid[0,0]);
+        if (trueForRB)
+        {
+            GenerateMazeBacktracker(null, grid[0, 0]); // Recursive Backtracker
+        }
+        else
+        {
+            VisitedCells.Add(grid[0, 0]); //Prim's Algorithm
+            UnvisitedCells.Remove(grid[0, 0]); //Prim's Algorithm
+            grid[0, 0].VisitCell(); //Prim's Algorithm
+            GenerateMazePrim(); //Prim's Algorithm
+        }
+
+        float cornerValueWidth = 5f * (width - 1);
+        float cornerValueDepth = 5f * (depth - 1);
 
         Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(0f, 1.5f, 70f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(70f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(exit, new Vector3(70f, 2.5f, 70f), Quaternion.identity);
+        Instantiate(enemy, new Vector3(0f, 1.5f, cornerValueDepth), Quaternion.identity);
+        Instantiate(enemy, new Vector3(cornerValueWidth, 1.5f, 0f), Quaternion.identity);
+        Instantiate(exit, new Vector3(cornerValueWidth, 2.5f, cornerValueDepth + 2.5f), Quaternion.identity);
     }
 
-    private void GenerateMaze(MazeCell previous, MazeCell current)
+    private void GenerateMazeBacktracker(MazeCell previous, MazeCell current)
     {
         current.VisitCell();
         ClearWalls(previous, current);
@@ -58,11 +85,34 @@ public class MazeGenerator : MonoBehaviour
 
             if (nextCell != null)
             {
-                GenerateMaze(current, nextCell);
+                GenerateMazeBacktracker(current, nextCell);
             }
         } while (nextCell != null);
 
         
+    }
+
+    private void GenerateMazePrim()
+    {
+        MazeCell current = choseRandomCell(VisitedCells);
+        MazeCell nextCell = GetNextCell(current);
+
+        if(nextCell != null)
+        {
+            ClearWalls(current, nextCell);
+            nextCell.VisitCell();
+            VisitedCells.Add(nextCell);
+            UnvisitedCells.Remove(nextCell);
+        }
+        if(UnvisitedCells.Count > 0)
+        {
+            GenerateMazePrim();
+        }
+    }
+
+    private MazeCell choseRandomCell(List<MazeCell> mazeCells)
+    {
+        return mazeCells[Random.Range(0, mazeCells.Count)];
     }
 
     private IEnumerable<MazeCell> GetUnvistedNeighbours(MazeCell current)
@@ -78,6 +128,15 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return rightCell;
             }
+            else
+            {
+                if (!rightCell.leftDestroyed)
+                {
+                    current.DestroyRight();
+                    current.rightDestroyed = true;
+                }
+                
+            }
         }
 
         if (x - 1 >= 0)
@@ -87,6 +146,14 @@ public class MazeGenerator : MonoBehaviour
             if (leftCell.Visited == false)
             {
                 yield return leftCell;
+            }
+            else
+            {
+                if (!leftCell.rightDestroyed)
+                {
+                    current.DestroyLeft();
+                    current.leftDestroyed = true;
+                }
             }
         }
 
@@ -98,6 +165,14 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return frontCell;
             }
+            else
+            {
+                if (!frontCell.backDestroyed)
+                {
+                    current.DestroyFront();
+                    current.frontDestroyed = true;
+                }
+            }
         }
 
         if (z- 1 >= 0)
@@ -108,13 +183,21 @@ public class MazeGenerator : MonoBehaviour
             {
                 yield return backCell;
             }
+            else
+            {
+                if (!backCell.frontDestroyed)
+                {
+                    current.DestroyBack();
+                    current.backDestroyed = true;
+                }
+            }
         }
     }
 
     private MazeCell GetNextCell(MazeCell current)
     {
         var unvisitedNeighbours = GetUnvistedNeighbours(current);
-        return unvisitedNeighbours.OrderBy(_ => Random.Range(1, 10)).FirstOrDefault();
+        return unvisitedNeighbours.OrderBy(x => Random.Range(1, 10)).FirstOrDefault();
     }
 
     private void ClearWalls(MazeCell previous, MazeCell current)

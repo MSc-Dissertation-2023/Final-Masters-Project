@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] EndGamePopup endGamePopup;
     [SerializeField] LevelCompletePopup endLevelPopup;
+    [SerializeField] EnterCodePopup codePopup;
 
     private bool paused = false;
     private bool isGameEnded = false;
@@ -31,9 +32,13 @@ public class UIController : MonoBehaviour
         score = 0;
         scoreLabel.text = score.ToString();
         settingsPopup.Close();
-        if (endLevelPopup != null )
+        if (endLevelPopup != null)
         {
             endLevelPopup.Close();
+        }
+        if (codePopup != null)
+        {
+            codePopup.Close();
         }
         endGamePopup.Close();
 
@@ -81,8 +86,15 @@ public class UIController : MonoBehaviour
         }
 
     }
+
+    public void OpenCodeWindow()
+    {
+        codePopup.Open();
+    }
+
     void OnEnable()
     {
+        MazeEvents.ObjectiveReached += OpenCodeWindow;
         GameEvents.EnemyKilled += OnEnemyKilled;
         GameEvents.GamePaused += PauseGame;
         GameEvents.GameUnpaused += UnpauseGame;
@@ -94,6 +106,7 @@ public class UIController : MonoBehaviour
     }
     void OnDisable()
     {
+        MazeEvents.ObjectiveReached += OpenCodeWindow;
         GameEvents.EnemyKilled -= OnEnemyKilled;
         GameEvents.GamePaused -= PauseGame;
         GameEvents.GameUnpaused -= UnpauseGame;

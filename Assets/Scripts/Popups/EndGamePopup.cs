@@ -19,11 +19,8 @@ public class EndGamePopup : MonoBehaviour
 
     public void restart()
     {
-        gameObject.SetActive(false);
-        playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-        if (playerCharacter.health <= 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        GameObject managers = GameObject.Find("GameManager");
+        Destroy(managers);
+        SceneManager.LoadScene("Startup");
     }
 }

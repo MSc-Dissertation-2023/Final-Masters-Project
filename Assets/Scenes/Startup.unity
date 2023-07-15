@@ -1091,6 +1091,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9945d69b98ab6734084d87278b3c4e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 0}
+  maxHealth: 100
+  maxAmmo: 50
+  startingDamage: 25
+  shotsFired: 0
+  shotsHit: 0
+  totalDamageTaken: 0
+  timeElapsed: 0
 --- !u!4 &1059320736
 Transform:
   m_ObjectHideFlags: 0
