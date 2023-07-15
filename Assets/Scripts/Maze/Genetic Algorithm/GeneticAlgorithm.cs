@@ -20,8 +20,10 @@ public class GeneticAlgorithm
     {
         totalCells = width * depth;
         generation = 1;
+        this.random = random;
         MutationRate = mutationRate;
-        population = new List<CandidateSolution>(); 
+        population = new List<CandidateSolution>();
+        bestGenes = new Gene[width, depth];
 
         for(int i = 0; i < popSize; i++)
         {
@@ -43,10 +45,13 @@ public class GeneticAlgorithm
         for (int i = 0; i < population.Count; i++)
         {
             CandidateSolution parent = ChooseParent();
+            newPopulation.Add(parent);
 
             CandidateSolution child = parent.mutate(MutationRate);
+            newPopulation.Add(child);
         }
 
+        population.Clear();
         population = newPopulation;
 
         generation++;
@@ -66,7 +71,7 @@ public class GeneticAlgorithm
         }
 
         bestFitness = best.fitness;
-        //best.Genes.CopyTo(bestGenes, 0);
+        bestGenes = best.Genes;
 
 
     }
@@ -84,7 +89,6 @@ public class GeneticAlgorithm
 
             randomNumber -= population[i].GetFitness();
         }
-
         return null;
     }
 
