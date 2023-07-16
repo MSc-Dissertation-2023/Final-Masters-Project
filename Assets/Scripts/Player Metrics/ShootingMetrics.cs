@@ -8,8 +8,8 @@ public class ShootingMetrics : MonoBehaviour
     private int shotsHit = 0;
     // public double hitMissRatio;
 
-    public double hitMissRatio() {
-        return (double)shotsHit/shotsFired;
+    public float hitMissRatio() {
+        return (float)shotsHit/shotsFired;
     }
 
     public void incrementShotsFired() {

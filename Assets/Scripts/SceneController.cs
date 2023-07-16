@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     //Array of enemies
-    private List<GameObject> enemies;
+    public List<GameObject> enemies;
     private int numberOfEnemies = 5;
     private EnemyRuleset enemyRuleset;
     private GameRuleset gameRuleset;
@@ -54,7 +54,7 @@ public class SceneController : MonoBehaviour
 
         if (enemyRuleset != null) {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-
+            Debug.Log("Applying Rules");
             enemyRuleset.ApplyRules(enemyScript);
         }
 

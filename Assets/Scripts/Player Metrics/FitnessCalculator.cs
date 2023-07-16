@@ -10,7 +10,7 @@ public class FitnessCalculator : MonoBehaviour
    private float w4 = 0.7f;
    private float w5 = 0.7f;
 //    private float w6 = 0.5f;
-   private double fitness;
+   private float fitness;
    PlayerMetrics player;
 
    void Start() {
@@ -19,11 +19,17 @@ public class FitnessCalculator : MonoBehaviour
    }
 
    private void CalculateFitness() {
-        fitness = w1 * player.getKillCount + w2 * player.getAPM + w3 * player.getTotalDamageTaken + w4 * player.getTimeElapsed + w5 * player.getHitMissRatio;
-        Debug.Log(fitness);
+      fitness = w1 * player.getKillCount + w2 * player.getAPM + w3 * player.getTotalDamageTaken + w4 * player.getTimeElapsed + w5 * player.getHitMissRatio;
+
+      int maxValue = 800;
+      int minValue = 0;
+
+      // normalize between 0 and 1
+      fitness = (fitness - minValue) / (maxValue - minValue);
+      Debug.Log($"Player Fitness: {fitness}");
    }
 
-   public double GetFitness() {
+   public float GetFitness() {
       return fitness;
    }
 }

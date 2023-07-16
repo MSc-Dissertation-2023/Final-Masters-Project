@@ -5,14 +5,15 @@ using UnityEngine;
 public class EnemyRuleManager : MonoBehaviour
 {
     FitnessCalculator fitnessCalculator;
-    EnemyRulesets enemyRulesets;
-    EnemyRuleset enemyRuleset;
+    public EnemyRulesets enemyRulesets;
+    public EnemyRuleset enemyRuleset;
     // Start is called before the first frame update
 
     void Start()
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
         enemyRulesets = GameObject.Find("DDA").GetComponent<EnemyRulesets>();
+        enemyRuleset = GameObject.Find("DDA").GetComponent<EnemyRuleset>();
     }
 
     private int calculateScriptSize() {

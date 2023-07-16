@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyRuleset : MonoBehaviour {
     public List<EnemyRule> rulesets;
     // public Enemy enemy;
+    // float enemySpeed = 0.0f;
+    float enemyDamage = 15.0f;
+    float enemySpeed = 5.0f;
 
     public void ApplyRules(Enemy enemy) {
         foreach (EnemyRule enemyRule in rulesets) {
@@ -32,19 +35,25 @@ public class EnemyRuleset : MonoBehaviour {
     }
 
     private void IncreaseEnemyDamage(Enemy enemy) {
-        enemy.setDamage(enemy.GetDamage() + 1.0f);
+        enemyDamage += 1;
+        enemy.setDamage(enemyDamage);
 	}
 
 	private void DecreaseEnemyDamage(Enemy enemy) {
-        enemy.setDamage(enemy.GetDamage() - 1.0f);
+        enemyDamage -= 1;
+        enemy.setDamage(enemyDamage);
 	}
 
 	private void IncreaseEnemySpeed(Enemy enemy) {
-        enemy.setSpeed(enemy.speed += 1);
+        enemySpeed += 1;
+        Debug.Log("Increase Enemy Speed");
+        enemy.setSpeed(enemySpeed);
 	}
 
 	private void DecreaseEnemySpeed(Enemy enemy) {
-        enemy.setSpeed(enemy.speed -= 1);
+        enemySpeed -=1;
+        Debug.Log("Decrease Enemy Speed");
+        enemy.setSpeed(enemySpeed);
 	}
 
 	private void IncreaseEnemyDodging(Enemy enemy) {

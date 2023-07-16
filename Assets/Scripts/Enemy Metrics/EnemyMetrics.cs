@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class EnemyMetrics : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public SceneController scene;
+    public float enemyMetrics = 0.0f;
+
+
     void Start()
     {
-        
+        scene = GameObject.Find("Controller").GetComponent<SceneController>();
+
+        InvokeRepeating("CalculateEnemyMetrics", 5, 5);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void CalculateEnemyMetrics() {
+        int maxValue = 4000;
+        int minValue = 0;
+
+        enemyMetrics = numberOfEnemies() * averageMetricofEnemy();
+
+        // normalize values between 0 and 1
+        enemyMetrics = (enemyMetrics - minValue) / (maxValue - minValue);
+
+        Debug.Log($"Enemy Fitness: {enemyMetrics}");
+    }
+
+    int numberOfEnemies() {
+        return scene.enemies.Count;
+    }
+
+    float averageMetricofEnemy() {
+        float totalScore = 0;
+        foreach (GameObject enemyGameObject in scene.enemies) {
+            Enemy enemy = enemyGameObject.GetComponent<Enemy>();
+            totalScore += score(enemy);
+        }
+        return scene.enemies.Count > 0 ? totalScore / scene.enemies.Count : 0;
+    }
+
+    float score(Enemy enemy) {
+        return enemy.health + enemy.GetDamage() + enemy.DistanceToPlayer();
+    }
+
+    public float getFitness() {
+        return enemyMetrics;
     }
 }

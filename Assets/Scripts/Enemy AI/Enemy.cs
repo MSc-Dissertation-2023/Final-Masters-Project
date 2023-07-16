@@ -116,4 +116,8 @@ public class Enemy : MonoBehaviour
         speed = newSpeed;
         agent.speed = speed;
     }
+
+    public float DistanceToPlayer() {
+        return Vector3.Distance(transform.position, player.transform.position);
+    }
 }

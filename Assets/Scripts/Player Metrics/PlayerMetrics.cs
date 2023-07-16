@@ -10,7 +10,7 @@ public class PlayerMetrics : MonoBehaviour
   KillMetrics kills;
   DamageMetrics damage;
   private int APM = 0;
-  public double getHitMissRatio => shooting.hitMissRatio();
+  public float getHitMissRatio => shooting.hitMissRatio();
   public int getAPM => APM;
   public int getKillCount => kills.getKillCount();
   public float getTotalDamageTaken => damage.getTotalDamageTaken;
