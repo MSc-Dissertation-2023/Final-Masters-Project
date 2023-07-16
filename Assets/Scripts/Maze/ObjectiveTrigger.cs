@@ -8,10 +8,8 @@ public class ObjectiveTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //Managers.Mission.ReachObjective();
             MazeEvents.NotifyObjectiveReached();
             Debug.Log("Trigger entered");
-        }
-        
+        }  
     }
 }

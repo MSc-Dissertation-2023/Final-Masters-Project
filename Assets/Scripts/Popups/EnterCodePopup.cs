@@ -8,6 +8,9 @@ using System;
 
 public class EnterCodePopup : MonoBehaviour
 {
+    [SerializeField, Header("Broadcast message to request puzzle code.")]
+    private GetCodeEvent getCode;
+
     private string puzzleCode;
     private int attempts;
 
@@ -26,7 +29,7 @@ public class EnterCodePopup : MonoBehaviour
         GameEvents.NotifyPaused();
         if (puzzleCode == null)
         {
-            MazeEvents.RequestCode();
+            getCode.Invoke();
         }
     }
 
@@ -36,18 +39,7 @@ public class EnterCodePopup : MonoBehaviour
         GameEvents.NotifyUnpaused();
     }
 
-    void OnEnable()
-    {
-        MazeEvents.SendCode += SetCode;
-
-    }
-    void OnDisable()
-    {
-        MazeEvents.SendCode -= SetCode;
-
-    }
-
-    private void SetCode(string code)
+    public void SetCode(string code)
     {
         puzzleCode = code;
         Debug.Log($"puzzleCode is {puzzleCode}");

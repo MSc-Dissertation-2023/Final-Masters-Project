@@ -7,6 +7,9 @@ using System.Linq;
 
 public class Puzzle : MonoBehaviour
 {
+    [SerializeField, Header("Broadcast code for the puzzle.")]
+    private SendCodeEvent sendCode;
+
     [SerializeField] 
     private Image UISquare1;
     [SerializeField] 
@@ -61,10 +64,11 @@ public class Puzzle : MonoBehaviour
             UISquare3.color = Colours[2];     
     }
 
-    private void PublishCode()
+
+    public void PublishCode()
     {
         string codeString = $"{Code[0]}{Code[1]}{Code[2]}";
-        MazeEvents.NotifyCode(codeString);
+        sendCode.Invoke(codeString);
     }
 
     private void GenerateCode()
@@ -130,17 +134,4 @@ public class Puzzle : MonoBehaviour
                 }
         }
     }
-
-    void OnEnable()
-    {
-        MazeEvents.GetCode += PublishCode;
-
-    }
-    void OnDisable()
-    {
-        MazeEvents.GetCode -= PublishCode;
-
-    }
-
-
 }

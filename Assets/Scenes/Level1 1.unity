@@ -837,50 +837,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351803191}
   m_CullTransparentMesh: 0
---- !u!1 &419922991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 419922993}
-  - component: {fileID: 419922992}
-  m_Layer: 0
-  m_Name: GeneticAlgorithm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &419922992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419922991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a5e79f2793fd84799f4f8f6b2e68f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &419922993
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419922991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.805005, y: 1.2000351, z: 23.518856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426994827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1046,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14f5b003d1bc5a40a1b9659efac1645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getCode:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1307063748}
+        m_TargetAssemblyTypeName: Puzzle, NewAssembly
+        m_MethodName: PublishCode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   enterCodeField: {fileID: 1036994203}
   attemptsDisplay: {fileID: 605195591}
 --- !u!1 &576393528
@@ -1718,6 +1689,7 @@ GameObject:
   - component: {fileID: 732422383}
   - component: {fileID: 732422382}
   - component: {fileID: 732422384}
+  - component: {fileID: 732422385}
   m_Layer: 0
   m_Name: MazeGenerator
   m_TagString: Untagged
@@ -1775,6 +1747,27 @@ MonoBehaviour:
   Wall: {fileID: 5132473996442833650, guid: a779c8ae5c2d68e42bde944545536b47, type: 3}
   width: 10
   depth: 10
+  player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
+  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
+  exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
+--- !u!114 &732422385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732422381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a5e79f2793fd84799f4f8f6b2e68f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 10
+  depth: 10
+  populationSize: 50
+  mutationRate: 0.005
+  OuterWall: {fileID: 9094247702845712971, guid: 2588f9bf6dbc06c41bf49af5cf6ed1d1, type: 3}
+  Wall: {fileID: 5132473996442833650, guid: a779c8ae5c2d68e42bde944545536b47, type: 3}
   player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
   enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
   exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
@@ -3558,6 +3551,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0637031377e434d9ff61370367e49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sendCode:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 535743943}
+        m_TargetAssemblyTypeName: EnterCodePopup, NewAssembly
+        m_MethodName: SetCode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   UISquare1: {fileID: 608575380}
   UISquare2: {fileID: 1645142574}
   UISquare3: {fileID: 351803193}

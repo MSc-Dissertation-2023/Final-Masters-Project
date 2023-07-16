@@ -104,7 +104,7 @@ public class CandidateSolution
         {
             var frontCell = Genes[xPos, zPos + 1];
 
-            if (!frontCell.hasBackWall() && !Genes[xPos, zPos].hasFrontWall() && frontCell.IsVisited())
+            if (!frontCell.hasBackWall() && !Genes[xPos, zPos].hasFrontWall() && !frontCell.IsVisited())
             {
                 int[] front = {xPos, zPos + 1};
                 yield return front;
@@ -114,7 +114,7 @@ public class CandidateSolution
         {
             var backCell = Genes[xPos, zPos - 1];
 
-            if (!backCell.hasFrontWall() && !Genes[xPos, zPos].hasBackWall() && backCell.IsVisited())
+            if (!backCell.hasFrontWall() && !Genes[xPos, zPos].hasBackWall() && !backCell.IsVisited())
             {
                 int[] back = {xPos, zPos - 1};
                 yield return back;
