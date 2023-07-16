@@ -6,40 +6,30 @@ using System.Linq;
 public class MazeGeneratorDivision : MonoBehaviour
 {
     [SerializeField]
-    private GameObject OuterWall;
-
-    [SerializeField]
     private GameObject Wall;
 
-    [SerializeField]
     private int width;
-
-    [SerializeField]
     private int depth;
 
-    [SerializeField]
-    private GameObject player;
+    [SerializeField, Header("Request maze sizes for generators.")]
+    private RequestMazeSizesEvent RequestMazeSizes;
 
-    [SerializeField]
-    private GameObject enemy;
+    [SerializeField, Header("Spawn prefabs into the maze.")]
+    private SpawnPrefabsEvent SpawnPrefabs;
 
-    [SerializeField]
-    private GameObject exit;
+    [SerializeField, Header("Build the outer walls for the maze.")]
+    private BuildOuterWallsEvent BuildOuterWalls;
 
     private List<Chamber> chambers;
 
+    void Awake()
+    {
+        RequestMazeSizes.Invoke();
+    }
+
     void Start()
     {
-        for(int i = 0; i < width; i++)
-        {
-            Instantiate(OuterWall, new Vector3(i * 5, 2.5f, -2.5f), Quaternion.Euler(0, 90, 0));
-            Instantiate(OuterWall, new Vector3(i * 5, 2.5f, depth * 5 - 2.5f), Quaternion.Euler(0, 90, 0));
-        }
-        for(int j = 0; j < depth; j++)
-        {
-            Instantiate(OuterWall, new Vector3(-2.5f, 2.5f, j * 5), Quaternion.identity);
-            Instantiate(OuterWall, new Vector3(width * 5 - 2.5f, 2.5f, j * 5), Quaternion.identity);
-        }
+        BuildOuterWalls.Invoke();
 
         chambers = new List<Chamber>();
         chambers.Add(new Chamber(width, depth, 0f, 0f));
@@ -51,13 +41,7 @@ public class MazeGeneratorDivision : MonoBehaviour
             Divide(chamber);
         }
 
-        float cornerValueWidth = 5f * (width - 1);
-        float cornerValueDepth = 5f * (depth - 1);
-
-        Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(0f, 1.5f, cornerValueDepth), Quaternion.identity);
-        Instantiate(enemy, new Vector3(cornerValueWidth, 1.5f, 0f), Quaternion.identity);
-        Instantiate(exit, new Vector3(cornerValueWidth, 2.5f, cornerValueDepth + 2.5f), Quaternion.identity);
+        SpawnPrefabs.Invoke();
     }
 
     private string ChooseOrientation(int width, int height)
@@ -159,7 +143,11 @@ public class MazeGeneratorDivision : MonoBehaviour
                 walls[i].SetActive(false);
             }
         }
+    }
 
-
+    public void SetMazeSizes(int width, int depth)
+    {
+        this.width = width;
+        this.depth = depth;
     }
 }

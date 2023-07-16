@@ -837,6 +837,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351803191}
   m_CullTransparentMesh: 0
+--- !u!1 &363016672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363016674}
+  - component: {fileID: 363016673}
+  m_Layer: 0
+  m_Name: MazeSceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &363016673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363016672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa157171c44fc443a83d0aa5943682d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OuterWall: {fileID: 9094247702845712971, guid: 2588f9bf6dbc06c41bf49af5cf6ed1d1, type: 3}
+  width: 10
+  depth: 10
+  player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
+  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
+  exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
+  PublishWithDepth:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 732422382}
+        m_TargetAssemblyTypeName: MazeGenerator, NewAssembly
+        m_MethodName: SetMazeSizes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 732422384}
+        m_TargetAssemblyTypeName: MazeGeneratorDivision, NewAssembly
+        m_MethodName: SetMazeSizes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 732422385}
+        m_TargetAssemblyTypeName: GenerateMazeGA, NewAssembly
+        m_MethodName: SetMazeSizes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &363016674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363016672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.882773, y: 6.9412174, z: 25.28462}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426994827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,18 +1793,43 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732422381}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5148110dc3264d647b2ed93d8778ceb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mazeCellPrefab: {fileID: 489670593179519061, guid: 53b4c09381a05ac4ca469a7547ae7412, type: 3}
-  player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
-  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
-  exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
-  width: 10
-  depth: 10
-  trueForRB: 0
+  trueForRB: 1
+  RequestMazeSizes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: PublishMazeSizes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SpawnPrefabs:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: SpawnPrefabs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &732422383
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,13 +1857,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e840a3bfdf5f84ba8c0ce2e22eeab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OuterWall: {fileID: 9094247702845712971, guid: 2588f9bf6dbc06c41bf49af5cf6ed1d1, type: 3}
   Wall: {fileID: 5132473996442833650, guid: a779c8ae5c2d68e42bde944545536b47, type: 3}
-  width: 10
-  depth: 10
-  player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
-  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
-  exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
+  RequestMazeSizes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: PublishMazeSizes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SpawnPrefabs:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: SpawnPrefabs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BuildOuterWalls:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: BuildOuterWalls
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &732422385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,20 +1910,59 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732422381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a5e79f2793fd84799f4f8f6b2e68f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  depth: 10
   populationSize: 50
   mutationRate: 0.005
-  OuterWall: {fileID: 9094247702845712971, guid: 2588f9bf6dbc06c41bf49af5cf6ed1d1, type: 3}
   Wall: {fileID: 5132473996442833650, guid: a779c8ae5c2d68e42bde944545536b47, type: 3}
-  player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
-  enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
-  exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
+  RequestMazeSizes:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: PublishMazeSizes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SpawnPrefabs:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: SpawnPrefabs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BuildOuterWalls:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 363016673}
+        m_TargetAssemblyTypeName: MazeSceneController, NewAssembly
+        m_MethodName: BuildOuterWalls
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &747173149
 GameObject:
   m_ObjectHideFlags: 0

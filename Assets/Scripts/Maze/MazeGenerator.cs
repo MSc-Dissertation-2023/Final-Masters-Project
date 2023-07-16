@@ -8,19 +8,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField]
     private MazeCell mazeCellPrefab;
 
-    [SerializeField] 
-    private GameObject player;
-
-    [SerializeField] 
-    private GameObject enemy;
-
-    [SerializeField] 
-    private GameObject exit;
-
-    [SerializeField]
     private int width;
-
-    [SerializeField]
     private int depth;
 
     public bool trueForRB; //True for recursive backtracker
@@ -31,12 +19,26 @@ public class MazeGenerator : MonoBehaviour
 
     private List<MazeCell> VisitedCells; //Prim's Algorithm
 
+    [SerializeField, Header("Request maze sizes for generators.")]
+    private RequestMazeSizesEvent RequestMazeSizes;
+
+    [SerializeField, Header("Spawn prefabs into the maze.")]
+    private SpawnPrefabsEvent SpawnPrefabs;
+
+    void Awake()
+    {
+        RequestMazeSizes.Invoke();
+    }
+
     void Start()
     {
         grid = new MazeCell[width, depth];
-
-        VisitedCells = new List<MazeCell>();
-        UnvisitedCells = new List<MazeCell>();
+        
+        if (!trueForRB)
+        {
+            VisitedCells = new List<MazeCell>();
+            UnvisitedCells = new List<MazeCell>();
+        }
 
         for (int x = 0; x < width; x++)
         {
@@ -63,13 +65,7 @@ public class MazeGenerator : MonoBehaviour
             GenerateMazePrim(); //Prim's Algorithm
         }
 
-        float cornerValueWidth = 5f * (width - 1);
-        float cornerValueDepth = 5f * (depth - 1);
-
-        Instantiate(player, new Vector3(0f, 1.5f, 0f), Quaternion.identity);
-        Instantiate(enemy, new Vector3(0f, 1.5f, cornerValueDepth), Quaternion.identity);
-        Instantiate(enemy, new Vector3(cornerValueWidth, 1.5f, 0f), Quaternion.identity);
-        Instantiate(exit, new Vector3(cornerValueWidth, 2.5f, cornerValueDepth + 2.5f), Quaternion.identity);
+        SpawnPrefabs.Invoke();
     }
 
     private void GenerateMazeBacktracker(MazeCell previous, MazeCell current)
@@ -235,5 +231,11 @@ public class MazeGenerator : MonoBehaviour
             return;
         }
 
+    }
+
+    public void SetMazeSizes(int width, int depth)
+    {
+        this.width = width;
+        this.depth = depth;
     }
 }

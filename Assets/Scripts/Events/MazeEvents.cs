@@ -21,3 +21,16 @@ public class SendCodeEvent : UnityEvent<string> { };
 
 [System.Serializable]
 public class GetCodeEvent : UnityEvent { };
+
+[System.Serializable]
+public class BuildOuterWallsEvent : UnityEvent { };
+
+[System.Serializable]
+public class SpawnPrefabsEvent : UnityEvent { };
+
+[System.Serializable]
+public class RequestMazeSizesEvent : UnityEvent { };
+
+[System.Serializable]
+public class PublishMazeSizesEvent : UnityEvent<int, int> { };
+
