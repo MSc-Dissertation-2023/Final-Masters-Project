@@ -11,7 +11,7 @@ public class LevelCompletePopup : MonoBehaviour
 
     [SerializeField] TMP_Text levelScore;
 
-    [SerializeField, Header("Broadcast code for the puzzle.")]
+    [SerializeField, Header("Request time from scene controller to work out the score.")]
     private RequestScoreEvent requestScore;
 
     public void Open()
