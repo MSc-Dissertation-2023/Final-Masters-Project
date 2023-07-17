@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public GameObject damageUpgradePickupPrefab;
     public float attackingRange = 2.0f;
     public float speed = 5.0f;
+    public bool isAlive = true;
 
     [SerializeField] public AudioSource soundSource;
     [SerializeField] public AudioClip attackSound;
@@ -76,6 +77,10 @@ public class Enemy : MonoBehaviour
         // Immediate death check, in case damage was taken outside of Update() loop
         if (health <= 0.0f)
         {
+            if(currentState.attackRoutine != null) {
+                StopCoroutine(currentState.attackRoutine);
+            }
+
 		    GameEvents.NotifyDeath();
             if(killMetrics != null) { killMetrics.incrementKillCount(); }
             InstantiateCollectibleItems();
@@ -120,4 +125,6 @@ public class Enemy : MonoBehaviour
     public float DistanceToPlayer() {
         return Vector3.Distance(transform.position, player.transform.position);
     }
+
+
 }

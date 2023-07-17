@@ -25,10 +25,11 @@ public class EnemyRuleManager : MonoBehaviour
 
         //         break;
         // }
-        return 3;
+        return 2;
     }
 
     public void SelectRules() {
+
         float sumWeights = 0;
         foreach (EnemyRule rule in enemyRulesets.rulesets) {
             sumWeights = sumWeights + rule.weight;
@@ -39,7 +40,7 @@ public class EnemyRuleManager : MonoBehaviour
         for (int i = 0; i < scriptSize; i++) {
             int tries = 0;
             bool lineadded = false;
-            int maxtries = 0;
+            int maxtries = 3;
 
             // repeated roulette wheel selection
             while (tries < maxtries && !lineadded) {
@@ -59,6 +60,10 @@ public class EnemyRuleManager : MonoBehaviour
                 tries += 1;
             }
         }
+
+        foreach(EnemyRule rule in enemyRuleset.rulesets) {
+            Debug.Log($"Rule: {rule.rule} - {rule.weight}");
+        }
     }
 
     private float RouletteWeights(float sumWeights) {
@@ -73,6 +78,7 @@ public class EnemyRuleManager : MonoBehaviour
                 return false;
             }
         }
+
         enemyRuleset.rulesets.Add(rule);
         return true;
     }

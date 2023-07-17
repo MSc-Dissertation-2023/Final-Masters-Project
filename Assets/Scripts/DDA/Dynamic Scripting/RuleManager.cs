@@ -11,6 +11,6 @@ public class RulesetManager : MonoBehaviour
     void Start()
     {
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
-        InvokeRepeating("SelectRules", 15, 10);
+        // InvokeRepeating("SelectRules", 6, 5);
     }
 }

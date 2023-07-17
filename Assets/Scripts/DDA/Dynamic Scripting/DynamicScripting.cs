@@ -11,7 +11,7 @@ public class DynamicScripting : MonoBehaviour
     {
         enemyRuleManager = GetComponent<EnemyRuleManager>();
         gameRuleManager = GetComponent<GameRuleManager>();
-        InvokeRepeating("SelectRules", 15, 10);
+        InvokeRepeating("SelectRules", 6, 5);
     }
 
     void SelectRules() {

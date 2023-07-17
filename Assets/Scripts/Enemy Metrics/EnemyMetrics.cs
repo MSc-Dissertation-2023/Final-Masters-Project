@@ -23,8 +23,6 @@ public class EnemyMetrics : MonoBehaviour
 
         // normalize values between 0 and 1
         enemyMetrics = (enemyMetrics - minValue) / (maxValue - minValue);
-
-        Debug.Log($"Enemy Fitness: {enemyMetrics}");
     }
 
     int numberOfEnemies() {

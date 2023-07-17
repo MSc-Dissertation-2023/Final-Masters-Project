@@ -9,6 +9,8 @@ public class ShootingMetrics : MonoBehaviour
     // public double hitMissRatio;
 
     public float hitMissRatio() {
+        if (shotsFired == 0) return 0;
+
         return (float)shotsHit/shotsFired;
     }
 

@@ -23,7 +23,7 @@ public class PlayerMetrics : MonoBehaviour
     shooting = GetComponent<ShootingMetrics>();
     kills = GetComponent<KillMetrics>();
     damage = GetComponent<DamageMetrics>();
-    InvokeRepeating("CalculateAPM", 5, 3);
+    InvokeRepeating("CalculateAPM", 3, 3);
   }
 
   void CalculateAPM() {

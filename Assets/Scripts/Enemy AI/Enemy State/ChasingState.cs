@@ -8,6 +8,8 @@ public class ChasingState : EnemyState
 
     public override void Update()
     {
+        if (!enemy.isAlive) return;
+
         agent.SetDestination(player.transform.position);
         animator.SetBool("Walking", true);
 

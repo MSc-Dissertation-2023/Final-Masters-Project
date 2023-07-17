@@ -18,11 +18,12 @@ public class WeightAdjustment : MonoBehaviour
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
         enemyMetrics = GameObject.Find("Enemy Metrics").GetComponent<EnemyMetrics>();
 
-        InvokeRepeating("AdjustWeights", 18, 5);
+        InvokeRepeating("AdjustWeights", 7, 5);
         // InvokeRepeating("AdjustGameWeights", 15, 10);
     }
 
     void AdjustWeights() {
+        Debug.Log($"Enemy Fitness: {enemyMetrics.getFitness()}.Player Fitness: {fitnessCalculator.GetFitness()}");
         enemyRuleset = enemyRuleManager.enemyRuleset.rulesets;
         enemyRulesets = enemyRuleManager.enemyRulesets.rulesets;
 

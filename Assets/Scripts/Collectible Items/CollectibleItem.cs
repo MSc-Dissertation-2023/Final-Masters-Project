@@ -15,7 +15,6 @@ public class CollectibleItem : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Item collected: {itemName}");
         ApplyEffect();
         Destroy(this.gameObject);
     }

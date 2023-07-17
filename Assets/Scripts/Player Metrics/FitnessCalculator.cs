@@ -15,10 +15,15 @@ public class FitnessCalculator : MonoBehaviour
 
    void Start() {
       player = GetComponent<PlayerMetrics>();
-      InvokeRepeating("CalculateFitness", 15, 10);
+      InvokeRepeating("CalculateFitness", 5, 5);
    }
 
    private void CalculateFitness() {
+      // Debug.Log(player.getKillCount);
+      // Debug.Log(player.getAPM);
+      // Debug.Log(player.getTotalDamageTaken);
+      // Debug.Log(player.getTimeElapsed);
+      // Debug.Log(player.getHitMissRatio);
       fitness = w1 * player.getKillCount + w2 * player.getAPM + w3 * player.getTotalDamageTaken + w4 * player.getTimeElapsed + w5 * player.getHitMissRatio;
 
       int maxValue = 800;
@@ -26,7 +31,6 @@ public class FitnessCalculator : MonoBehaviour
 
       // normalize between 0 and 1
       fitness = (fitness - minValue) / (maxValue - minValue);
-      Debug.Log($"Player Fitness: {fitness}");
    }
 
    public float GetFitness() {

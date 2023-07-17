@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class EnemyRuleset : MonoBehaviour {
-    public List<EnemyRule> rulesets;
+    public List<EnemyRule> rulesets = new List<EnemyRule>();
     // public Enemy enemy;
     // float enemySpeed = 0.0f;
     float enemyDamage = 15.0f;
@@ -24,12 +24,12 @@ public class EnemyRuleset : MonoBehaviour {
                 case "DecreaseEnemySpeed":
                     DecreaseEnemySpeed(enemy);
                     break;
-                case "IncreaseEnemyDodging":
-                    IncreaseEnemyDodging(enemy);
-                    break;
-                case "DecreaseEnemyDodging":
-                    DecreaseEnemyDodging(enemy);
-                    break;
+                // case "IncreaseEnemyDodging":
+                //     IncreaseEnemyDodging(enemy);
+                //     break;
+                // case "DecreaseEnemyDodging":
+                //     DecreaseEnemyDodging(enemy);
+                //     break;
             }
         }
     }

@@ -34,7 +34,8 @@ public class AttackingState : EnemyState
 					PlayerCharacter playerCharacter = hitInfo.transform.GetComponent<PlayerCharacter>();
 					if(playerCharacter != null) {
 						// Debug.Log("Attack Coroutine");
-						enemy.StartCoroutine(Attack());
+						attackRoutine = enemy.StartCoroutine(Attack());
+						// enemy.StartCoroutine(Attack());
 					}
 				}
 
