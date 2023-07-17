@@ -38,9 +38,7 @@ public class Puzzle : MonoBehaviour
     [SerializeField] 
     private GameObject nine;
 
-    [SerializeField] 
     private int width;
-    [SerializeField] 
     private int depth;
 
     private GameObject[] SpawnedDigits;
@@ -54,6 +52,14 @@ public class Puzzle : MonoBehaviour
         GenerateCode();
         SetSqaureColours();
         spawnDigits();
+    }
+
+    void Update()
+    {
+        foreach(GameObject digit in SpawnedDigits)
+        {
+            digit.transform.Rotate(0.0f, 0.2f, 0.0f, Space.Self);
+        }
     }
 
     private void SetSqaureColours()
@@ -82,56 +88,65 @@ public class Puzzle : MonoBehaviour
 
     private void spawnDigits()
     {
-        for(int i = 0; i < Code.Length; i++)
+        SpawnedDigits = new GameObject[3];
+
+        for (int i = 0; i < Code.Length; i++)
         {
             float x = Random.Range(0, width);
             float z = Random.Range(0, depth);
             
             GameObject number;
             switch (Code[i])
-                {
-                    case 0:
-                        number = Instantiate(zero, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 1:
-                        number = Instantiate(one, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 2:
-                        number = Instantiate(two, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 3:
-                        number = Instantiate(three, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 4:
-                        number = Instantiate(four, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 5:
-                        number = Instantiate(five, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 6:
-                        number = Instantiate(six, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 7:
-                        number = Instantiate(seven, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 8:
-                        number = Instantiate(eight, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
-                    case 9:
-                        number = Instantiate(nine, new Vector3(x*5, 1f, z*5), Quaternion.identity);
-                        number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
-                        break;
+            {
+                case 0:
+                    number = Instantiate(zero, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 1:
+                    number = Instantiate(one, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 2:
+                    number = Instantiate(two, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 3:
+                    number = Instantiate(three, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 4:
+                    number = Instantiate(four, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 5:
+                    number = Instantiate(five, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 6:
+                    number = Instantiate(six, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 7:
+                    number = Instantiate(seven, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                case 8:
+                    number = Instantiate(eight, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
+                default:
+                    number = Instantiate(nine, new Vector3(x*5, 1f, z*5), Quaternion.identity);
+                    number.GetComponent<MeshRenderer>().material.SetColor("_Color", Colours[i]);
+                    break;
 
-                }
+            }
+            SpawnedDigits[i] = (number);
         }
+    }
+
+    public void SetMazeSizes(int width, int depth)
+    {
+        this.width = width;
+        this.depth = depth;
     }
 }

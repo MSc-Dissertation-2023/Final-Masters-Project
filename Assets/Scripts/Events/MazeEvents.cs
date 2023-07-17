@@ -34,3 +34,10 @@ public class RequestMazeSizesEvent : UnityEvent { };
 [System.Serializable]
 public class PublishMazeSizesEvent : UnityEvent<int, int> { };
 
+[System.Serializable]
+public class RequestScoreEvent : UnityEvent { };
+
+[System.Serializable]
+public class SendScoreInfoEvent : UnityEvent<int> { };
+
+
