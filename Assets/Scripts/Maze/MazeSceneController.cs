@@ -70,6 +70,7 @@ public class MazeSceneController : MonoBehaviour
             GenAlgo.enabled = true;
         }
     }
+
     void Update()
     {
         time = (int)Time.realtimeSinceStartup;
