@@ -11,8 +11,6 @@ public class SceneController : MonoBehaviour
   //Array of enemies
   public List<GameObject> enemies;
   private int numberOfEnemies = 5;
-  private EnemyRuleset enemyRuleset;
-  private GameRuleset gameRuleset;
 
   private List<SpawnLocation> spawnLocations = new List<SpawnLocation>()
     {
@@ -50,15 +48,7 @@ public class SceneController : MonoBehaviour
 
   private int DetermineSpawnLocation()
   {
-    if (gameRuleset == null)
-    {
-      return Random.Range(1, 6) - 1;
-    }
-    else
-    {
-      // gameRuleset.ApplyRules(spawnLocations, )
-      return 0;
-    }
+    return Random.Range(1, 6) - 1;
   }
 
 
