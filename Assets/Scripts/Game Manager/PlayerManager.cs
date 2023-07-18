@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public void ApplyDamage(float damage)
     {
         damageMetric.RegisterDamageTaken(damage);
+        damageMetric.incrementHitsTaken();
         playerCharacter.Hurt(damage);
     }
 

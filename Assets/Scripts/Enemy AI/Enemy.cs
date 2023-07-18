@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     public PlayerCharacter playerChar;
-    KillMetrics killMetrics;
+    KillCountMetrics killMetrics;
     public GameObject healthPickupPrefab;
     public GameObject ammoPickupPrefab;
     public GameObject damageUpgradePickupPrefab;
@@ -30,13 +30,14 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         // For scene 2 only
-        if(GameObject.Find("Player Metrics") != null) { killMetrics = GameObject.Find("Player Metrics").GetComponent<KillMetrics>(); }
+        if(GameObject.Find("Player Metrics") != null) { killMetrics = GameObject.Find("Player Metrics").GetComponent<KillCountMetrics>(); }
 
         player = GameObject.FindWithTag("Player");
         playerChar = player.GetComponent<PlayerCharacter>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        agent.autoBraking = true;
         soundSource = GetComponent<AudioSource>();
         currentState = new ChasingState(this);
     }

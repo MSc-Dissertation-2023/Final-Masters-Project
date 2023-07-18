@@ -7,12 +7,15 @@ public class PlayerMetrics : MonoBehaviour
   ActionMetrics actions;
   TimerMetrics timer;
   ShootingMetrics shooting;
-  KillMetrics kills;
+  KillCountMetrics kills;
   DamageMetrics damage;
   private int APM = 0;
+
+  private int maxAPM = 500;
   public float getHitMissRatio => shooting.hitMissRatio();
-  public int getAPM => APM;
+  public int getAPM => Mathf.Min(APM, maxAPM) / maxAPM;
   public int getKillCount => kills.getKillCount();
+  public int getHitsTaken => damage.getHitsTakenCount();
   public float getTotalDamageTaken => damage.getTotalDamageTaken;
   public int getTimeElapsed => timer.getTimer;
 
@@ -21,7 +24,7 @@ public class PlayerMetrics : MonoBehaviour
     actions = GetComponent<ActionMetrics>();
     timer = GetComponent<TimerMetrics>();
     shooting = GetComponent<ShootingMetrics>();
-    kills = GetComponent<KillMetrics>();
+    kills = GetComponent<KillCountMetrics>();
     damage = GetComponent<DamageMetrics>();
     InvokeRepeating("CalculateAPM", 3, 3);
   }
