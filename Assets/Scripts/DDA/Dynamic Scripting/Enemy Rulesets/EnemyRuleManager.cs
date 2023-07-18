@@ -35,7 +35,9 @@ public class EnemyRuleManager : MonoBehaviour
             sumWeights = sumWeights + rule.weight;
         }
 
-        int scriptSize = calculateScriptSize();
+        enemyRuleset.rulesets = new List<EnemyRule>();
+
+        int scriptSize = 2;
 
         for (int i = 0; i < scriptSize; i++) {
             int tries = 0;
@@ -61,9 +63,11 @@ public class EnemyRuleManager : MonoBehaviour
             }
         }
 
-        foreach(EnemyRule rule in enemyRuleset.rulesets) {
-            Debug.Log($"Rule: {rule.rule} - {rule.weight}");
-        }
+        Debug.Log($"Rule Count: {enemyRuleset.rulesets.Count}");
+
+        // foreach(EnemyRule rule in enemyRuleset.rulesets) {
+        //     Debug.Log($"Rule: {rule.rule} - {rule.weight}");
+        // }
     }
 
     private float RouletteWeights(float sumWeights) {
@@ -73,14 +77,31 @@ public class EnemyRuleManager : MonoBehaviour
     }
 
     private bool InsertInScript(EnemyRule rule) {
-        foreach (EnemyRule currentRule in enemyRuleset.rulesets) {
-            if (currentRule.description == rule.description) {
-                return false;
-            }
+        if (enemyRuleset.rulesets.Contains(rule)) return false;
+
+        int increase = enemyRulesets.rulesets.FindIndex(item => item.rule == "increase");
+
+        if (enemyRuleset.rulesets.Count == 0) {
+            enemyRuleset.rulesets.Add(rule);
+            return true;
+        } else if (increase >= 0 && rule.description == "increase") {
+            enemyRuleset.rulesets.Add(rule);
+            return true;
+        } else if (increase < 0 && rule.description == "decrease") {
+            enemyRuleset.rulesets.Add(rule);
+            return true;
+        } else {
+            return false;
         }
 
-        enemyRuleset.rulesets.Add(rule);
-        return true;
+        // if(rule.description == "increase") {
+
+        // }
+        // foreach (EnemyRule currentRule in enemyRuleset.rulesets) {
+        //     if (currentRule.description == rule.description) {
+        //         return false;
+        //     }
+        // }
     }
 
 }

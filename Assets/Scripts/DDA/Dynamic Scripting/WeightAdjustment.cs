@@ -10,6 +10,7 @@ public class WeightAdjustment : MonoBehaviour
     List<EnemyRule> enemyRulesets;
     List<EnemyRule> enemyRuleset;
     EnemyMetrics enemyMetrics;
+    float previousEnemyFitness = 0.0f;
 
     void Start()
     {
@@ -64,31 +65,39 @@ public class WeightAdjustment : MonoBehaviour
             }
         }
 
+        previousEnemyFitness = enemyMetrics.getFitness();
+
+        // Debug.Log(adjustment);
+        // Debug.Log(compensation);
+        // Debug.Log(remainder);
+
         // DistributeRemainder();
     }
-
-    // void AdjustEnemyWeights() {
-    //     int active = 3; // TO BE CHANGED
-
-    //     int nonactive = 3;
-    //     double adjustment = CalculateAdjustment(fitnessCalculator.GetFitness());
-    // }
-
-    // void AdjustGameWeights() {
-
-    // }
 
     private float CalculateAdjustment() {
         float playerFitness = fitnessCalculator.GetFitness();
         float enemyFitness = enemyMetrics.getFitness();
         float amount = 0.0f;
 
-        if(playerFitness < enemyFitness) {
-            amount = -0.2f*((enemyFitness-playerFitness)/enemyFitness);
+        // Calculate the change in enemy fitness since the last round
+        float deltaEnemyFitness = enemyFitness - previousEnemyFitness;
+
+        if (playerFitness > enemyFitness) {
+            // If the enemy fitness improved since the last round, even though the player is stronger, reinforce the strategy
+            float diff = playerFitness - enemyFitness;
+
+            if (deltaEnemyFitness > 0) {
+                amount = 0.5f * deltaEnemyFitness / (1 - previousEnemyFitness);
+            } else {
+                amount = -0.5f * ((enemyFitness - playerFitness) / enemyFitness);
+            }
         } else {
-            amount = 0.2f*((playerFitness-enemyFitness)/(1-enemyFitness));
+            amount = 0.2f * ((playerFitness - enemyFitness) / (1 - enemyFitness));
         }
+
+        Debug.Log($"Weight Adj Amt: {amount}");
 
         return amount;
     }
+
 }

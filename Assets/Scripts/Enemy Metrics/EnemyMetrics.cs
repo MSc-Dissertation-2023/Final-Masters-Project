@@ -7,19 +7,18 @@ public class EnemyMetrics : MonoBehaviour
     public SceneController scene;
     public float enemyMetrics = 0.0f;
 
-
     void Start()
     {
         scene = GameObject.Find("Controller").GetComponent<SceneController>();
 
-        InvokeRepeating("CalculateEnemyMetrics", 5, 5);
+        InvokeRepeating("CalculateEnemyMetrics", 5, 2);
     }
 
     void CalculateEnemyMetrics() {
         int maxValue = 4000;
         int minValue = 0;
 
-        enemyMetrics = numberOfEnemies() * averageMetricofEnemy();
+        enemyMetrics = numberOfEnemies() + 0.4f * averageMetricofEnemy();
 
         // normalize values between 0 and 1
         enemyMetrics = (enemyMetrics - minValue) / (maxValue - minValue);
@@ -39,7 +38,7 @@ public class EnemyMetrics : MonoBehaviour
     }
 
     float score(Enemy enemy) {
-        return enemy.health + enemy.GetDamage() + enemy.DistanceToPlayer();
+        return 0.8f * enemy.speed + 0.5f * enemy.GetDamage() + 0.4f * (-1.0f * enemy.DistanceToPlayer());
     }
 
     public float getFitness() {

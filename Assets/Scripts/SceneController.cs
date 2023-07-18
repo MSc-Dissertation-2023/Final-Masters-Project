@@ -52,9 +52,10 @@ public class SceneController : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnLocation, rotation);
         enemy.SetActive(false);
 
-        if (enemyRuleset != null) {
+        enemyRuleset = GameObject.Find("DDA").GetComponent<EnemyRuleset>();
+
+        if (enemyRuleset.rulesets.Count != 0) {
             Enemy enemyScript = enemy.GetComponent<Enemy>();
-            Debug.Log("Applying Rules");
             enemyRuleset.ApplyRules(enemyScript);
         }
 

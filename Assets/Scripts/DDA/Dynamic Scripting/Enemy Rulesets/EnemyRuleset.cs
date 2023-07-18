@@ -24,43 +24,32 @@ public class EnemyRuleset : MonoBehaviour {
                 case "DecreaseEnemySpeed":
                     DecreaseEnemySpeed(enemy);
                     break;
-                // case "IncreaseEnemyDodging":
-                //     IncreaseEnemyDodging(enemy);
-                //     break;
-                // case "DecreaseEnemyDodging":
-                //     DecreaseEnemyDodging(enemy);
-                //     break;
             }
         }
+        Debug.Log($"Enemy Damage: {enemyDamage}, Enemy Speed: {enemySpeed}");
     }
 
     private void IncreaseEnemyDamage(Enemy enemy) {
-        enemyDamage += 1;
+        if (enemyDamage >= 50.0f) return;
+        enemyDamage += 1.0f;
         enemy.setDamage(enemyDamage);
 	}
 
 	private void DecreaseEnemyDamage(Enemy enemy) {
-        enemyDamage -= 1;
+        if (enemyDamage <= 5.0f) return;
+        enemyDamage -= 1.0f;
         enemy.setDamage(enemyDamage);
 	}
 
 	private void IncreaseEnemySpeed(Enemy enemy) {
-        enemySpeed += 1;
-        Debug.Log("Increase Enemy Speed");
+        if (enemySpeed >= 10.0f) return;
+        enemySpeed += 1.0f;
         enemy.setSpeed(enemySpeed);
 	}
 
 	private void DecreaseEnemySpeed(Enemy enemy) {
-        enemySpeed -=1;
-        Debug.Log("Decrease Enemy Speed");
+        if (enemyDamage <= 2.0f) return;
+        enemySpeed -= 1.0f;
         enemy.setSpeed(enemySpeed);
-	}
-
-	private void IncreaseEnemyDodging(Enemy enemy) {
-
-	}
-
-	private void DecreaseEnemyDodging(Enemy enemy) {
-
 	}
 }

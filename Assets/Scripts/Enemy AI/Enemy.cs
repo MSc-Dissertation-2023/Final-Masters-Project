@@ -41,6 +41,12 @@ public class Enemy : MonoBehaviour
         currentState = new ChasingState(this);
     }
 
+    // needed for DDA
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     void Update()
     {
         // Delegate the Update behavior to the current state

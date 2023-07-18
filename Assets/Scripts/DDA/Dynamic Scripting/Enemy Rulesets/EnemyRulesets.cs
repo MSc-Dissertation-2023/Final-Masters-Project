@@ -12,10 +12,10 @@ public class EnemyRulesets : MonoBehaviour
 	{
 		rulesets = new List<EnemyRule>();
 
-		rulesets.Add(new EnemyRule(0.5f, "IncreaseEnemyDamage", "enemyDamage"));
-		rulesets.Add(new EnemyRule(0.5f, "DecreaseEnemyDamage", "enemyDamage"));
-		rulesets.Add(new EnemyRule(0.5f, "IncreaseEnemySpeed", "enemySpeed"));
-		rulesets.Add(new EnemyRule(0.5f, "DecreaseEnemySpeed", "enemySpeed"));
+		rulesets.Add(new EnemyRule(0.5f, "IncreaseEnemyDamage", "increase"));
+		rulesets.Add(new EnemyRule(0.5f, "DecreaseEnemyDamage", "decrease"));
+		rulesets.Add(new EnemyRule(0.5f, "IncreaseEnemySpeed", "increase"));
+		rulesets.Add(new EnemyRule(0.5f, "DecreaseEnemySpeed", "decrease"));
 		// rulesets.Add(new EnemyRule(0.0f, "IncreaseEnemyDodging", "enemyDodging"));
 		// rulesets.Add(new EnemyRule(0.0f, "DecreaseEnemyDodging", "enemyDodging"));
 
