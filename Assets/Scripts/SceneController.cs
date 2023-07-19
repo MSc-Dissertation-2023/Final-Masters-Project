@@ -75,7 +75,7 @@ public class SceneController : MonoBehaviour
     for (int i = 0; i < numberOfEnemies; i++)
     {
       //If any are dead
-      if (enemies[i] == null)
+      if (enemies[i] != null)
       {
         Enemy enemyScript = enemies[i].GetComponent<Enemy>();
 

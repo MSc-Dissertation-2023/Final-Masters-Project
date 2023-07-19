@@ -6,14 +6,10 @@ public class AttackingState : EnemyState
     bool isAttacking = false;
 		bool isDamaging = false;
 		// for debugging purposess
-		bool boxColliding = false;
 		RaycastHit hitInfo;
 
     public AttackingState(Enemy enemy) : base(enemy) { }
 
-    void Start()
-    {
-    }
 
     public override void Update()
     {
@@ -61,10 +57,8 @@ public class AttackingState : EnemyState
 			// stop facing the player and execute attack
 			isDamaging = true;
 			// start damaging the player
-			Debug.Log(playerIsInEnemyAttackRange(player,enemy));
 			if (playerIsInEnemyAttackRange(player, enemy) && isDamaging)
 			{
-				Debug.Log("hurting");
 				playerChar.Hurt(enemy.GetDamage());
 			}
 
@@ -78,7 +72,6 @@ public class AttackingState : EnemyState
 			animator.SetBool("Attacking", false);
 			agent.isStopped = false;
 			isAttacking = false;
-			// Debug.Log("End of ATk");
     }
 
 	private bool playerIsInEnemyAttackRange (GameObject player, Enemy enemy) {

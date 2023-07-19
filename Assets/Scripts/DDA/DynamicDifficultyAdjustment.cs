@@ -29,8 +29,7 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         float enemyFitness = enemyMetrics.getFitness();
         float playerFitness = fitnessCalculator.GetFitness();
 
-        Debug.Log($"Enemy Fitness: {enemyFitness}");
-        Debug.Log($"Player Fitness: {playerFitness}");
+        Debug.Log($"Enemy Fitness: {enemyFitness}, Player Fitness: {playerFitness}");
 
         float weightAdjustment = 0.0f;
         float threshold = 0.2f;

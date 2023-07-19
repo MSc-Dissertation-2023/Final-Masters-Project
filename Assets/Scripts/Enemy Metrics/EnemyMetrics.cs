@@ -18,6 +18,7 @@ public class EnemyMetrics : MonoBehaviour
     }
 
     void CalculateEnemyMetrics() {
+        scene.AddLiveEnemyStats();
         allEnemyStats.AddRange(deadEnemyStats);
         allEnemyStats.AddRange(liveEnemyStats);
 
@@ -27,7 +28,7 @@ public class EnemyMetrics : MonoBehaviour
             sum += (1/(2.0f*allEnemyStats.Count) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
         }
 
-        enemyMetrics = sum;
+        enemyMetrics = sum * (allEnemyStats.Count/50.0f);
     }
 
     int numberOfEnemies() {
