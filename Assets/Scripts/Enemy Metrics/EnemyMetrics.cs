@@ -6,22 +6,28 @@ public class EnemyMetrics : MonoBehaviour
 {
     public SceneController scene;
     public float enemyMetrics = 0.0f;
+    private List<EnemyStat> deadEnemyStats = new List<EnemyStat>();
+
+    public List<EnemyStat> liveEnemyStats = new List<EnemyStat>();
+
+    public List<EnemyStat> allEnemyStats = new List<EnemyStat>();
 
     void Start()
     {
         scene = GameObject.Find("Controller").GetComponent<SceneController>();
-
-        InvokeRepeating("CalculateEnemyMetrics", 5, 2);
     }
 
     void CalculateEnemyMetrics() {
-        int maxValue = 4000;
-        int minValue = 0;
+        allEnemyStats.AddRange(deadEnemyStats);
+        allEnemyStats.AddRange(liveEnemyStats);
 
-        enemyMetrics = numberOfEnemies() + 0.4f * averageMetricofEnemy();
+        float sum = 0;
 
-        // normalize values between 0 and 1
-        enemyMetrics = (enemyMetrics - minValue) / (maxValue - minValue);
+        foreach(EnemyStat stat in allEnemyStats) {
+            sum += (1/(2.0f*allEnemyStats.Count) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
+        }
+
+        enemyMetrics = sum;
     }
 
     int numberOfEnemies() {
@@ -42,6 +48,32 @@ public class EnemyMetrics : MonoBehaviour
     }
 
     public float getFitness() {
+        CalculateEnemyMetrics();
         return enemyMetrics;
     }
+
+    public void addEnemyStats(float startDistance, float endDistance, float speed, float damage) {
+        deadEnemyStats.Add(new EnemyStat(startDistance, endDistance, speed, damage));
+    }
+
+    public void addLiveEnemyStats(float startDistance, float endDistance, float speed, float damage) {
+        liveEnemyStats.Add(new EnemyStat(startDistance, endDistance, speed, damage));
+    }
+}
+
+
+public struct EnemyStat
+{
+  public float StartDistance { get; }
+  public float EndDistance { get; }
+  public float Speed { get; }
+  public float Damage { get; }
+
+  public EnemyStat(float startDistance, float endDistance, float speed, float damage)
+  {
+    StartDistance = startDistance;
+    EndDistance = endDistance;
+    Speed = speed;
+    Damage = damage;
+  }
 }

@@ -26,6 +26,7 @@ public class EnemyFactory : MonoBehaviour
 
         enemyComponent.setDamage(damage);
         enemyComponent.speed = speed;
+        enemyComponent.spawnLocation = location;
 
         float angularSpeed = speed * speedToAngularSpeedRatio;
         enemyComponent.agent.angularSpeed = speed * speedToAngularSpeedRatio;

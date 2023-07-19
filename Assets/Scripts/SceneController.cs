@@ -10,7 +10,8 @@ public class SceneController : MonoBehaviour
   [SerializeField] GameObject enemyPrefab;
   //Array of enemies
   public List<GameObject> enemies;
-  private int numberOfEnemies = 5;
+  EnemyMetrics enemyMetrics;
+  private int numberOfEnemies = 1;
 
   private List<SpawnLocation> spawnLocations = new List<SpawnLocation>()
     {
@@ -23,6 +24,8 @@ public class SceneController : MonoBehaviour
 
   void Start()
   {
+    enemyMetrics = GameObject.Find("Enemy Metrics").GetComponent<EnemyMetrics>();
+
     enemies = new List<GameObject>();
 
     for (int i = 0; i < numberOfEnemies; i++)
@@ -65,6 +68,20 @@ public class SceneController : MonoBehaviour
   public void DecreaseEnemyCount()
   {
     numberOfEnemies -= 1;
+  }
+
+  public void AddLiveEnemyStats() {
+    enemyMetrics.liveEnemyStats = new List<EnemyStat>();
+    for (int i = 0; i < numberOfEnemies; i++)
+    {
+      //If any are dead
+      if (enemies[i] == null)
+      {
+        Enemy enemyScript = enemies[i].GetComponent<Enemy>();
+
+        enemyMetrics.addEnemyStats(enemyScript.StartDistanceToPlayer(), enemyScript.DistanceToPlayer(), enemyScript.speed, enemyScript.GetDamage());
+      }
+    }
   }
 }
 
