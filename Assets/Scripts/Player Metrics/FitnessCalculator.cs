@@ -19,11 +19,37 @@ public class FitnessCalculator : MonoBehaviour
    }
 
    private void CalculateFitness() {
-      fitness = 1.0f/10 * (w1 * player.getKillCount + w2 * player.getAPM + w4 * player.getTimeElapsed + w5 * player.getHitMissRatio - w3 * player.getHitsTaken);
+      // Debug.Log(weightedKillCount());
+      // Debug.Log(weightedAPM());
+      // Debug.Log(weightedTimeElapsed());
+      // Debug.Log(weightedHitMissRatio());
+      // Debug.Log(weightedHitsTaken());
+      fitness = 1.0f/10 * (weightedKillCount() + weightedAPM()  + weightedTimeElapsed() + weightedHitMissRatio() - weightedHitsTaken());
    }
 
    public float GetFitness() {
       CalculateFitness();
       return fitness;
+   }
+
+   private float weightedKillCount() {
+      return w1 * player.getKillCount;
+   }
+
+   private float weightedAPM() {
+      return w2 * player.getAPM;
+   }
+
+   private float weightedTimeElapsed() {
+      Debug.Log(player.getTimeElapsed);
+      return w4 * player.getTimeElapsed;
+   }
+
+   private float weightedHitMissRatio() {
+      return w5 * player.getHitMissRatio;
+   }
+
+   private float weightedHitsTaken() {
+      return w3 * player.getHitsTaken;
    }
 }

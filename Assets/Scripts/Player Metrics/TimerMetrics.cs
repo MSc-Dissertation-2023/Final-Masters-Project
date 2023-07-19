@@ -6,7 +6,7 @@ public class TimerMetrics : MonoBehaviour
 {
     private int timer = 0;
     private int maxTimer = 300;
-    public int getTimer => Mathf.Min(timer, maxTimer)/maxTimer;
+    public float getTimer => (float) Mathf.Min(timer, maxTimer)/maxTimer;
     // Start is called before the first frame update
     void Start()
     {

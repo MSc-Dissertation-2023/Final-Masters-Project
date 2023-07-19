@@ -5,13 +5,13 @@ using UnityEngine;
 public class KillCountMetrics : MonoBehaviour
 {
     private int killCount = 0;
-    private int maxKillCount = 300;
+    private int maxKillCount = 30;
 
     public void incrementKillCount() {
         killCount += 1;
     }
 
-    public int getKillCount() {
-        return killCount / maxKillCount;
+    public float getKillCount() {
+        return (float)killCount / maxKillCount;
     }
 }

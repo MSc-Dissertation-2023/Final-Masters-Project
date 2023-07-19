@@ -18,7 +18,7 @@ public class DamageMetrics : MonoBehaviour
         hitsTakenCount += 1;
     }
 
-    public int getHitsTakenCount() {
-        return Mathf.Min(hitsTakenCount) / maxHitsTaken;
+    public float getHitsTakenCount() {
+        return (float) Mathf.Min(hitsTakenCount) / maxHitsTaken;
     }
 }
