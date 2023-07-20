@@ -7,9 +7,7 @@ public class EnemyMetrics : MonoBehaviour
     public SceneController scene;
     public float enemyMetrics = 0.0f;
     private List<EnemyStat> deadEnemyStats = new List<EnemyStat>();
-
     public List<EnemyStat> liveEnemyStats = new List<EnemyStat>();
-
     public List<EnemyStat> allEnemyStats = new List<EnemyStat>();
 
     void Start()
@@ -22,13 +20,23 @@ public class EnemyMetrics : MonoBehaviour
         allEnemyStats.AddRange(deadEnemyStats);
         allEnemyStats.AddRange(liveEnemyStats);
 
-        float sum = 0;
+        float currentFitness = 0.0f;
+        float previousFitness = 0.0f;
 
-        foreach(EnemyStat stat in allEnemyStats) {
-            sum += (1/(2.0f*allEnemyStats.Count) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
+        foreach(EnemyStat stat in liveEnemyStats) {
+            currentFitness += (liveEnemyStats.Count/50.0f) * (1/(2.0f *(liveEnemyStats.Count)) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
         }
 
-        enemyMetrics = sum * (allEnemyStats.Count/50.0f);
+        foreach(EnemyStat stat in deadEnemyStats) {
+            previousFitness += (deadEnemyStats.Count/500.0f) * (1/(2.0f *(deadEnemyStats.Count)) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
+        }
+
+        previousFitness = previousFitness * 0.1f;
+
+        float sum = currentFitness + previousFitness;
+
+        // Debug.Log($"Dead Enemies: {deadEnemyStats.Count}, Alive Enemies: {liveEnemyStats.Count}");
+        enemyMetrics = sum ;
     }
 
     int numberOfEnemies() {

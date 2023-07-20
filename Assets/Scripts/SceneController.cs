@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
   //Array of enemies
   public List<GameObject> enemies;
   EnemyMetrics enemyMetrics;
-  private int numberOfEnemies = 1;
+  private int numberOfEnemies = 5;
 
   private List<SpawnLocation> spawnLocations = new List<SpawnLocation>()
     {
@@ -36,10 +36,17 @@ public class SceneController : MonoBehaviour
 
   void Update()
   {
+    if(numberOfEnemies > enemies.Count) {
+      for (int i = 0; i < numberOfEnemies - enemies.Count; i++) {
+        enemies.Add(null);
+      }
+
+    }
+
     for (int i = 0; i < numberOfEnemies; i++)
     {
       //If any are dead
-      if (enemies[i] == null)
+      if (enemies[i] == null && !(numberOfEnemies < enemies.Count))
       {
         //Spawn at random location
         int spawnLocation = DetermineSpawnLocation();
@@ -60,6 +67,11 @@ public class SceneController : MonoBehaviour
     numberOfEnemies = number;
   }
 
+  public int getEnemyCount()
+  {
+    return numberOfEnemies;
+  }
+
   public void IncreaseEnemyCount()
   {
     numberOfEnemies += 1;
@@ -74,12 +86,10 @@ public class SceneController : MonoBehaviour
     enemyMetrics.liveEnemyStats = new List<EnemyStat>();
     for (int i = 0; i < numberOfEnemies; i++)
     {
-      //If any are dead
       if (enemies[i] != null)
       {
         Enemy enemyScript = enemies[i].GetComponent<Enemy>();
-
-        enemyMetrics.addEnemyStats(enemyScript.StartDistanceToPlayer(), enemyScript.DistanceToPlayer(), enemyScript.speed, enemyScript.GetDamage());
+        enemyMetrics.addLiveEnemyStats(enemyScript.StartDistanceToPlayer(), enemyScript.DistanceToPlayer(), enemyScript.speed, enemyScript.GetDamage());
       }
     }
   }

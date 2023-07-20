@@ -7,6 +7,7 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
     EnemyFactory enemyFactory;
     FitnessCalculator fitnessCalculator;
     EnemyMetrics enemyMetrics;
+    SceneController scene;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         enemyFactory = GameObject.Find("Enemy Factory").GetComponent<EnemyFactory>();
         fitnessCalculator = GameObject.Find("Player Metrics").GetComponent<FitnessCalculator>();
         enemyMetrics = GameObject.Find("Enemy Metrics").GetComponent<EnemyMetrics>();
+        scene = GameObject.Find("Controller").GetComponent<SceneController>();
         InvokeRepeating("AdjustDifficulty", 5, 5);
     }
 
@@ -21,6 +23,8 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         float adjustment = CalculateAdjustment();
         enemyFactory.speed += enemyFactory.speed * adjustment;
         enemyFactory.damage += enemyFactory.damage * adjustment;
+        scene.setEnemyCount(Mathf.RoundToInt(scene.getEnemyCount() + (scene.getEnemyCount() * adjustment)));
+
 
         Debug.Log($"Adj: {adjustment}");
     }

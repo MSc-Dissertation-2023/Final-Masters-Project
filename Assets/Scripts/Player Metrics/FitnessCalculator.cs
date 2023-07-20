@@ -15,15 +15,9 @@ public class FitnessCalculator : MonoBehaviour
 
    void Start() {
       player = GetComponent<PlayerMetrics>();
-      // InvokeRepeating("CalculateFitness", 3, 2);
    }
 
    private void CalculateFitness() {
-      // Debug.Log(weightedKillCount());
-      // Debug.Log(weightedAPM());
-      // Debug.Log(weightedTimeElapsed());
-      // Debug.Log(weightedHitMissRatio());
-      // Debug.Log(weightedHitsTaken());
       fitness = 1.0f/10 * (weightedKillCount() + weightedAPM()  + weightedTimeElapsed() + weightedHitMissRatio() - weightedHitsTaken());
    }
 
@@ -41,7 +35,6 @@ public class FitnessCalculator : MonoBehaviour
    }
 
    private float weightedTimeElapsed() {
-      Debug.Log(player.getTimeElapsed);
       return w4 * player.getTimeElapsed;
    }
 
