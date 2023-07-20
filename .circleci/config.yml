@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  unity: game-ci/unity@1.2
+  unity: game-ci/unity@1.4.0
 
 executors:
   unity/windows-2022:
@@ -16,8 +16,11 @@ jobs:
       - checkout
       - unity/test:
           context: unity
-          editor_version: 2022.3.1f1
-          name: test-windows
+          executor:
+            editor_version: 2022.3.1f1
+            name: 'unity/windows-2022'
+            resource_class: medium
+            target_platform: 'windows-il2cpp'
           project-path: ''
           step-name: Check if the tests run and results are uploaded
           test-platform: editmode
@@ -33,7 +36,8 @@ jobs:
           build-target: StandaloneWindows64
           compress: true
           context: unity
-          editor_version: 2022.3.1f1
+          executor:
+            editor_version: 2022.3.1f1
           name: build-Windows64-il2cpp
           project-path: ''
           requires:
