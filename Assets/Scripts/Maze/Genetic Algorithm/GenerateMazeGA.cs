@@ -7,34 +7,84 @@ public class GenerateMazeGA : MonoBehaviour
 {
     private GeneticAlgorithm mazeGA;
     System.Random random;
-    [SerializeField] int width;
-    [SerializeField] int depth;
-    [SerializeField] int population;
+    private int width;
+    private int depth;
+
     [SerializeField] int populationSize;
-    [SerializeField] int fitnessTarget;
+    [SerializeField] float mutationRate;
+
+    [SerializeField]
+    private GameObject Wall;
+
+    private int fitnessTarget;
+
+    [SerializeField, Header("Request maze sizes for generators.")]
+    private RequestMazeSizesEvent RequestMazeSizes;
+
+    [SerializeField, Header("Spawn prefabs into the maze.")]
+    private SpawnPrefabsEvent SpawnPrefabs;
+
+    [SerializeField, Header("Build the outer walls for the maze.")]
+    private BuildOuterWallsEvent BuildOuterWalls;
+
+    void Awake()
+    {
+        RequestMazeSizes.Invoke();
+    }
 
     void Start()
     {
         random = new System.Random();
 
-        mazeGA = new GeneticAlgorithm(10, 10, 10, random);
-        for(int i = 0; i < 20; i++) 
+        fitnessTarget = width * depth;
+
+
+        mazeGA = new GeneticAlgorithm(populationSize, width, depth, random, mutationRate);
+        mazeGA.NewGeneration();
+        Debug.Log($"{mazeGA.bestFitness}");
+        Debug.Log($"Generation: {mazeGA.generation}");
+
+        while (mazeGA.bestFitness != fitnessTarget)
         {
             mazeGA.NewGeneration();
             Debug.Log($"{mazeGA.bestFitness}");
+            Debug.Log($"Generation: {mazeGA.generation}");
         }
-      
-       /* CandidateSolution cd = new CandidateSolution(10, 10, random);
-        Debug.Log($"{cd.GetFitness()}");
-        CandidateSolution cd1 = new CandidateSolution(10, 10, random);
-        Debug.Log($"{cd1.GetFitness()}");
-        CandidateSolution cd2 = new CandidateSolution(10, 10, random);
-        Debug.Log($"{cd2.GetFitness()}");
-        CandidateSolution cd3 = new CandidateSolution(10, 10, random);
-        Debug.Log($"{cd3.GetFitness()}");
-        CandidateSolution cd4 = new CandidateSolution(10, 10, random);
-        Debug.Log($"{cd4.GetFitness()}");
-        CandidateSolution cd5 = cd.mutate(0.05f);
-        Debug.Log($"{cd5.GetFitness()}");*/
+
+        Gene[,] bestGenes = mazeGA.bestGenes;
+
+
+        BuildOuterWalls.Invoke();
+
+        for (int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < depth; j++)
+            {
+                if (bestGenes[i, j].hasLeftWall())
+                {
+                    Instantiate(Wall, new Vector3((i * 5) - 2.5f, 2.5f, j * 5), Quaternion.identity);
+                }
+                if (bestGenes[i, j].hasRightWall())
+                {
+                    Instantiate(Wall, new Vector3((i * 5) + 2.5f, 2.5f, j * 5), Quaternion.identity);
+                }
+                if (bestGenes[i, j].hasFrontWall())
+                {
+                    Instantiate(Wall, new Vector3(i * 5, 2.5f, (j * 5) + 2.5f), Quaternion.Euler(0, 90, 0));
+                }
+                if (bestGenes[i, j].hasBackWall())
+                {
+                    Instantiate(Wall, new Vector3(i * 5, 2.5f,(j * 5) - 2.5f), Quaternion.Euler(0, 90, 0));
+                }
+            }
+        }
+
+        SpawnPrefabs.Invoke();
+    }
+
+    public void SetMazeSizes(int width, int depth)
+    {
+        this.width = width;
+        this.depth = depth;
     }
 }

@@ -13,6 +13,8 @@ public class Managers : MonoBehaviour
     public static InventoryManager Inventory { get; private set; }
     public static AudioManager Audio { get; private set; }
     public static MissionManager Mission { get; private set; }
+    public static ScoreManager Score { get; private set; }
+    public static MazeGenerationManager Maze { get; private set; }
 
     private List<IGameManager> startSequence;
 
@@ -25,12 +27,16 @@ public class Managers : MonoBehaviour
         Inventory = GetComponent<InventoryManager>();
         Audio = GetComponent<AudioManager>();
         Mission = GetComponent<MissionManager>();
+        Score = GetComponent<ScoreManager>();
+        Maze = GetComponent<MazeGenerationManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
         startSequence.Add(Inventory);
         startSequence.Add(Audio);
         startSequence.Add(Mission);
+        startSequence.Add(Score);
+        startSequence.Add(Maze);
 
         StartCoroutine(StartupManagers());
     }

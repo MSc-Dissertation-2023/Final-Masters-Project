@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class GeneticAlgorithm
 {
@@ -42,18 +43,28 @@ public class GeneticAlgorithm
 
         List<CandidateSolution> newPopulation = new List<CandidateSolution>();
 
-        for (int i = 0; i < population.Count; i++)
+        /*for (int i = 0; i < population.Count; i++)
         {
             CandidateSolution parent = ChooseParent();
+            
+            CandidateSolution child = parent.mutate(MutationRate);
+            newPopulation.Add(child);
+        }*/
+
+        population = population.OrderBy(individual => individual.fitness).ToList();
+
+        for (int i = population.Count - 1; i >= population.Count / 2; i--)
+        {
+            CandidateSolution parent = population[i];
             newPopulation.Add(parent);
 
             CandidateSolution child = parent.mutate(MutationRate);
             newPopulation.Add(child);
         }
 
-        population.Clear();
-        population = newPopulation;
 
+        population = newPopulation;
+        Debug.Log($"{population.Count}");
         generation++;
     }
 
@@ -91,6 +102,5 @@ public class GeneticAlgorithm
         }
         return null;
     }
-
 }
 
