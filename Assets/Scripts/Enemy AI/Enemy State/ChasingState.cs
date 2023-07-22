@@ -8,6 +8,8 @@ public class ChasingState : EnemyState
 
     public override void Update()
     {
+        if (!enemy.isAlive) return;
+
         agent.SetDestination(player.transform.position);
         animator.SetBool("Walking", true);
 
@@ -20,16 +22,16 @@ public class ChasingState : EnemyState
             enemy.transform.forward,
             out RaycastHit hitInfo,
             Quaternion.identity,
-            enemy.attackingRange
+            enemy.AttackingRange
         );
 
         if (boxColliding)
         {
             PlayerCharacter playerCharacter = hitInfo.transform.GetComponent<PlayerCharacter>();
 
-            if (playerCharacter != null && hitInfo.distance < enemy.attackingRange)
+            if (playerCharacter != null && hitInfo.distance < enemy.AttackingRange)
             {
-                Debug.Log("Transitioned to attacking");
+                // Debug.Log("Transitioned to attacking");
                 animator.SetBool("Walking", false);
                 enemy.ChangeState(new AttackingState(enemy));
             }

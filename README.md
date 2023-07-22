@@ -2,6 +2,8 @@
 
 # Assets
 * Zombies - Romero from mixamo
+* Ammo Box - Unity Asset Store https://assetstore.unity.com/packages/3d/props/weapons/ammo-box-7701#content
+
 
 # Miscellaeneous
 - Hurt/Damaged UI/UX
@@ -20,7 +22,7 @@
 - Non-gamebreaking bug: When settings agent.isStopped = false which resumes the pathfinding. The object might be in the process of being destroyed which have already deleted the navmesh agent before the game object is destroyed
   * AttackingState/<Attack>d__7:MoveNext () (at Assets/Scripts/Enemy AI/Enemy State/AttackingState.cs:76)
 - Loading just scene 1 won't hve certain audio elements loaded
-- 
+-
 
 # Scripts & Functions
 * SceneController

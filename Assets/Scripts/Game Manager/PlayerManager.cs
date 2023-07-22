@@ -6,41 +6,50 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
+
     [SerializeField] public PlayerCharacter playerCharacter;
-    [SerializeField] float maxHealth = 100;
-    [SerializeField] int maxAmmo = 50;
-    [SerializeField] int startingDamage = 25;
+    ShootingMetrics shootingMetric;
+    DamageMetrics damageMetric;
+
+    float startingHealth = 100;
+    int startingAmmo = 50;
+    int startingDamage = 25;
 
     public float health => playerCharacter.health;
     public float ammo => playerCharacter.ammo;
     public float damage => playerCharacter.damage;
-    public int shotsFired = 0;
-    public int shotsHit = 0;
-    public float totalDamageTaken = 0;
-    public float timeElapsed = 0;
 
     void Awake()
     {
+        // For Level 2
+        if(GameObject.Find("Player Metrics") != null) {
+            shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
+            damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
+        }
+        // For Level 1
         if (playerCharacter != null)
         {
-            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
         }
-        
     }
 
     public void Startup()
     {
+        // For Level 1
         if (playerCharacter != null)
         {
-            playerCharacter.UpdateData(maxHealth, maxAmmo, startingDamage);
+            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
         }
         status = ManagerStatus.Started;
     }
 
     public void ApplyDamage(float damage)
     {
-        totalDamageTaken += damage;
         playerCharacter.Hurt(damage);
+        if (damageMetric != null) {
+            damageMetric.RegisterDamageTaken(damage);
+            damageMetric.incrementHitsTaken();
+        }
     }
 
     public void HealPlayer(float healAmount)
@@ -55,7 +64,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void ConsumeAmmo()
     {
-        shotsFired += 1;
+        if(shootingMetric != null) { shootingMetric.incrementShotsFired(); }
         playerCharacter.ConsumeAmmo();
     }
 
@@ -66,12 +75,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void OnSuccessfulShot()
     {
-        shotsHit += 1;
-    }
-
-    public float HitMissRatio()
-    {
-        return shotsHit / shotsFired;
+        if(shootingMetric != null) { shootingMetric.incrementShotsHit(); }
     }
 
     public static implicit operator PlayerManager(GameObject v)

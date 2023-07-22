@@ -7,6 +7,7 @@ public abstract class EnemyState : IEnemyState
     protected NavMeshAgent agent;
     protected GameObject player;
     protected PlayerCharacter playerChar;
+    public Coroutine attackRoutine;
 
     public EnemyState(Enemy enemy)
     {

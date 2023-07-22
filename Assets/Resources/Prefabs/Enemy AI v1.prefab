@@ -336,43 +336,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1907530624832798302, guid: 3b0ce4d8affdbd145aca2e83d201503e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7269689406374565532}
+      addedObject: {fileID: -5244577520239416985}
     - targetCorrespondingSourceObject: {fileID: 1907530624832798302, guid: 3b0ce4d8affdbd145aca2e83d201503e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5244577520239416985}
+      addedObject: {fileID: 8668227173784273627}
   m_SourcePrefab: {fileID: 100100000, guid: 3b0ce4d8affdbd145aca2e83d201503e, type: 3}
 --- !u!1 &7765314895922144979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1907530624832798302, guid: 3b0ce4d8affdbd145aca2e83d201503e, type: 3}
   m_PrefabInstance: {fileID: 8195170602826029197}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7269689406374565532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7765314895922144979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ec4b0f5957ff640b8a940e5a99f115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  health: 100
-  damage: 15
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  playerChar: {fileID: 0}
-  healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
-  ammoPickupPrefab: {fileID: 4546835102997334662, guid: 4b5c969ba0992ef429f01b4956787c82, type: 3}
-  damageUpgradePickupPrefab: {fileID: 3220695746481013695, guid: afc669c51b8e0464aa2f5ad24fbdb1c6, type: 3}
-  attackingRange: 5
-  soundSource: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: b9819e0897c798d4a9ad51b4d667b1f2, type: 3}
-  moanSound1: {fileID: 8300000, guid: 79fec7549e428a84f9f0d8126ad75cc2, type: 3}
-  moanSound2: {fileID: 8300000, guid: 5a83e8bde83fd92438504f3454c3fc07, type: 3}
-  moanSound3: {fileID: 8300000, guid: ac9ebe8c6107d534bbbd435ea319ae5c, type: 3}
 --- !u!65 &-5244577520239416985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -394,3 +367,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8668227173784273627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7765314895922144979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ab60182b60b1a41b31b07bd2873f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  health: 100
+  agent: {fileID: 0}
+  player: {fileID: 0}
+  playerChar: {fileID: 0}
+  healthPickupPrefab: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
+  ammoPickupPrefab: {fileID: 4546835102997334662, guid: 4b5c969ba0992ef429f01b4956787c82, type: 3}
+  damageUpgradePickupPrefab: {fileID: 3220695746481013695, guid: afc669c51b8e0464aa2f5ad24fbdb1c6, type: 3}
+  attackingRange: 2
+  speed: 5
+  isAlive: 1
+  soundSource: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: b9819e0897c798d4a9ad51b4d667b1f2, type: 3}
+  moanSound1: {fileID: 8300000, guid: 79fec7549e428a84f9f0d8126ad75cc2, type: 3}
+  moanSound2: {fileID: 8300000, guid: 5a83e8bde83fd92438504f3454c3fc07, type: 3}
+  moanSound3: {fileID: 8300000, guid: ac9ebe8c6107d534bbbd435ea319ae5c, type: 3}

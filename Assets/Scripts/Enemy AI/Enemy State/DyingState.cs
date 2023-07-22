@@ -12,6 +12,7 @@ public class DyingState : EnemyState
 	// Update is called once per frame
 	public override void Update()
 	{
+		enemy.isAlive = false;
 		enemy.StartCoroutine(Die());
 	}
 
