@@ -13,7 +13,7 @@ public class RequestGuestToken : MonoBehaviour
 
     IEnumerator GetToken() {
         string ApiURL = System.Environment.GetEnvironmentVariable("API_URL");
-         using (UnityWebRequest www = UnityWebRequest.Post(ApiURL, "", "application/json"))
+        using (UnityWebRequest www = UnityWebRequest.Post(ApiURL, "", "application/json"))
         {
             yield return www.SendWebRequest();
 
@@ -23,12 +23,9 @@ public class RequestGuestToken : MonoBehaviour
             }
             else
             {
-                // Handle the response and store the token
+                // Get the server's response
                 string responseText = www.downloadHandler.text;
-                // Assuming the token is provided as a JSON string in the response
-                // You may need to adapt this to the actual format of the API response
-                // For example, if the token is provided as a direct string, you can directly assign it to the 'token' variable.
-                // If it's in a more complex format like a JSON object, you'll need to deserialize it first.
+                // Save the server's response
                 Token = responseText;
 
                 Debug.Log("API Request complete!");
