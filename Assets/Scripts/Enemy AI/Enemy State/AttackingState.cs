@@ -59,7 +59,14 @@ public class AttackingState : EnemyState
 			// start damaging the player
 			if (playerIsInEnemyAttackRange(player, enemy) && isDamaging)
 			{
-				playerChar.Hurt(enemy.GetDamage());
+				BoxCollider enemyObject = enemy.GetComponent<BoxCollider>();
+				Vector3 direction = player.transform.position - enemyObject.transform.position;
+
+				if (Vector3.Dot(enemyObject.transform.forward, direction.normalized) > 0.25f)
+				{
+
+					playerChar.Hurt(enemy.GetDamage());
+				}
 			}
 
 			yield return new WaitForSeconds(0.14f);  // wait until 34th frame
