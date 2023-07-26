@@ -9,11 +9,11 @@ workflows:
       - unity/test:
           context: unity
           executor:
-            editor_version: editor-windows-2022.3.1f1-windows-il2cpp-1.1.2
+            editor_version: editor-ubuntu-2022.3.1f1-webgl-1.1.2
             name: unity/windows-2019
             size: large
-            target_platform: windows-il2cpp
-          name: test-windows
+            target_platform: WebGL
+          name: test-webgl
           project-path: ''
           step-name: Check if the tests run and results are uploaded
           test-platform: editmode
