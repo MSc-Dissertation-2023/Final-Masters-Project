@@ -1008,7 +1008,7 @@ MonoBehaviour:
   enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
   exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
   healthPickup: {fileID: 1723621210080334634, guid: 154ce7acbf800ea4895e3d3072fd25c6, type: 3}
-  numberOfHealthPickUps: 4
+  numberOfHealthPickUps: 1
   PublishWithDepth:
     m_PersistentCalls:
       m_Calls:
