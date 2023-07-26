@@ -1,4 +1,4 @@
-# Final-Masters-Project
+# MSc Dissertation Kent 2023
 
 # Assets
 * Zombies - Romero from mixamo
