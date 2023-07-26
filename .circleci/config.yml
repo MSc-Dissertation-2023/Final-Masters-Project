@@ -10,7 +10,7 @@ workflows:
           context: unity
           executor:
             editor_version: editor-ubuntu-2022.3.1f1-webgl-1.1.2
-            name: unity/windows-2019
+            name: unity/ubuntu
             size: large
             target_platform: WebGL
           name: test-webgl
