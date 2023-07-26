@@ -9,7 +9,7 @@ workflows:
       - unity/test:
           context: unity
           executor:
-            editor_version: 2022.3.1f1
+            editor_version: editor-windows-2022.3.1f1-windows-il2cpp-1.1.2
             name: unity/windows-2019
             size: large
             target_platform: windows-il2cpp
