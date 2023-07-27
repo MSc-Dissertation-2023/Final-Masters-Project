@@ -1,8 +1,7 @@
 name: Acquire activation file
 on:
-  workflow_dispatch:
-    branches:
-      - sheng-devops
+  branches:
+    - sheng-devops
 jobs:
   activation:
     name: Request manual activation file 🔑
