@@ -1,38 +1,38 @@
-# name: Build and Deploy
-# on:
-#   push:
-#     branches:
-#       - sheng-devops
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - sheng-devops
 
-# jobs:
-#   build:
-#     name: Build for WebGL
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+jobs:
+  build:
+    name: Build for WebGL
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-#     - name: Install Unity
-#       uses: game-ci/unity-builder@v2
-#       with:
-#         unityVersion: '2023.1.8f1'
-#         targetPlatform: WebGL
+    - name: Install Unity
+      uses: game-ci/unity-builder@v2
+      with:
+        unityVersion: '2023.1.8f1'
+        targetPlatform: WebGL
 
-#     - name: Build
-#       run: |
-#         mkdir Build
-#         mv Builds/WebGL/* Build/
+    - name: Build
+      run: |
+        mkdir Build
+        mv Builds/WebGL/* Build/
 
-#     - name: Setup Git
-#       run: |
-#         git config --local user.email "action@github.com"
-#         git config --local user.name "GitHub Action"
+    - name: Setup Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
 
-#     - name: Push to another repo
-#       run: |
-#         cd Build
-#         git init
-#         git remote add origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/MSc-Dissertation-2023/webgl-build.git
-#         git add .
-#         git commit -m "Add WebGL build"
-#         git push -u origin master --force
+    - name: Push to another repo
+      run: |
+        cd Build
+        git init
+        git remote add origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/MSc-Dissertation-2023/webgl-build.git
+        git add .
+        git commit -m "Add WebGL build"
+        git push -u origin master --force
