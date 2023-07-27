@@ -1,38 +1,64 @@
-name: Build and Deploy
+name: Actions 😎
+
 on:
   push:
     branches:
-      - sheng-devops
+      sheng-devops
 
 jobs:
   build:
-    name: Build for WebGL
+    name: Build my project ✨
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install Unity
-      uses: game-ci/unity-builder@v2
-      with:
-        unityVersion: '2023.1.8f1'
-        targetPlatform: WebGL
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-    - name: Build
-      run: |
-        mkdir Build
-        mv Builds/WebGL/* Build/
+      - name: Restore LFS cache
+        uses: actions/cache@v3
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-    - name: Setup Git
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
 
-    - name: Push to another repo
-      run: |
-        cd Build
-        git init
-        git remote add origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/MSc-Dissertation-2023/webgl-build.git
-        git add .
-        git commit -m "Add WebGL build"
-        git push -u origin master --force
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: WebGL
+
+      # Output
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build
+          path: build
