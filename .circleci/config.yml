@@ -6,8 +6,6 @@ orbs:
 workflows:
   test-and-build:
     jobs:
-      - unity/create-activation-file:
-          editor_version: 2022.3.1f1
       - unity/test:
           context: Dissertation
           executor:
