@@ -4,7 +4,6 @@
 * Zombies - Romero from mixamo
 * Ammo Box - Unity Asset Store https://assetstore.unity.com/packages/3d/props/weapons/ammo-box-7701#content
 
-
 # Miscellaeneous
 - Hurt/Damaged UI/UX
 - Do not pick health up if health is full
