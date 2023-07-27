@@ -73,7 +73,7 @@ public class MazeSceneController : MonoBehaviour
 
     void Update()
     {
-        time = (int)Time.realtimeSinceStartup;
+        time = (int)Time.timeSinceLevelLoad;
         timer.text = $"Time: {time}";
     }
 

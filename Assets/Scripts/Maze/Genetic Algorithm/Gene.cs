@@ -20,90 +20,56 @@ public class Gene
         switch (genotype)
         {
             case 0:
-                leftWall = true;
-                rightWall = true;
-                topWall = true;
-                bottomWall = false;
+                SetPhenotype(true, true, true, false);
                 break;
             case 1:
-                leftWall = true;
-                rightWall = false;
-                topWall = true;
-                bottomWall = true;
+                SetPhenotype(true, false, true, true);
                 break;
             case 2:
-                leftWall = true;
-                rightWall = true;
-                topWall = false;
-                bottomWall = true;
+                SetPhenotype(true, true, false, true);
                 break;
             case 3:
-                leftWall = false;
-                rightWall = true;
-                topWall = true;
-                bottomWall = true;
+                SetPhenotype(false, true, true, true);
                 break;
             case 4:
-                leftWall = true;
-                rightWall = false;
-                topWall = true;
-                bottomWall = false;
+                SetPhenotype(true, false, true, false);
                 break;
             case 5:
-                leftWall = false;
-                rightWall = true;
-                topWall = true;
-                bottomWall = false;
+                SetPhenotype(false, true, true, false);
                 break;
             case 6:
-                leftWall = true;
-                rightWall = false;
-                topWall = false;
-                bottomWall = true;
+                SetPhenotype(true, false, false, true);
                 break;
             case 7:
-                leftWall = false;
-                rightWall = true;
-                topWall = false;
-                bottomWall = true;
+                SetPhenotype(false, true, false, true);
                 break;
             case 8:
-                leftWall = true;
-                rightWall = true;
-                topWall = false;
-                bottomWall = false;
+                SetPhenotype(true, true, false, false);
                 break;
             case 9:
-                leftWall = false;
-                rightWall = false;
-                topWall = true;
-                bottomWall = true;
+                SetPhenotype(false, false, true, true);
                 break;
             case 10:
-                leftWall = true;
-                rightWall = false;
-                topWall = false;
-                bottomWall = false;
+                SetPhenotype(true, false, false, false);
                 break;
             case 11:
-                leftWall = false;
-                rightWall = false;
-                topWall = true;
-                bottomWall = false;
+                SetPhenotype(false, false, true, false);
                 break;
             case 12:
-                leftWall = false;
-                rightWall = true;
-                topWall = false;
-                bottomWall = false;
+                SetPhenotype(false, true, false, false);
                 break;
             case 13:
-                leftWall = false;
-                rightWall = false;
-                topWall = false;
-                bottomWall = true;
+                SetPhenotype(false, false, false, true);
                 break;
         }
+    }
+
+    private void SetPhenotype(bool leftWall, bool rightWall, bool topWall, bool bottomWall)
+    {
+        this.leftWall = leftWall;
+        this.rightWall = rightWall;
+        this.topWall = topWall;
+        this.bottomWall = bottomWall;
     }
 
     public bool hasLeftWall() { return leftWall; }
