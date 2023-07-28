@@ -72,7 +72,8 @@ jobs:
       - name: Push changes
         run: |
           git remote add webgl git@github.com:MSc-Dissertation-2023/webgl-build.git
-          git push -f webgl-build main
+          git branch -M webgl
+          git push -u origin webgl
 
       # second implementation
       # - name: Pushes to another repository
