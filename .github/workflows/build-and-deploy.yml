@@ -74,6 +74,7 @@ jobs:
           destination-repository-name: 'webgl-build'
           user-email: cyusheng93@gmail.com
           target-branch: main
+          create-target-branch-if-needed: true
 
       # # Add this after your existing build and upload steps
       # - name: Push to Another GitHub Repository
