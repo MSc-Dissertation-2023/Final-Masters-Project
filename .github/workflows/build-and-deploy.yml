@@ -64,15 +64,26 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Update build"
 
-      # Add this after your existing build and upload steps
-      - name: Push to Another GitHub Repository
-        uses: ad-m/github-push-action@master
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          ssh: true
-          repository: MSc-Dissertation-2023/webgl-build
-          branch: main
-          directory: build
-          force: true
+          source-directory: 'Build'
+          destination-github-username: 'MSc-Dissertation-2023'
+          destination-repository-name: 'webgl-build'
+          user-email: cyusheng93@gmail.com
+          target-branch: main
+
+      # # Add this after your existing build and upload steps
+      # - name: Push to Another GitHub Repository
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     ssh: true
+      #     repository: MSc-Dissertation-2023/webgl-build
+      #     branch: main
+      #     directory: build
+      #     force: true
 
 
       # Output
