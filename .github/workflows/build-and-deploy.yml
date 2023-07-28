@@ -48,7 +48,7 @@ jobs:
       #     githubToken: ${{ secrets.GITHUB_TOKEN }}
       #     testMode: EditMode
 
-      Build
+      # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
         env:
