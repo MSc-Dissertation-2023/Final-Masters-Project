@@ -95,12 +95,12 @@ jobs:
       - name: Push to Another GitHub Repository
         uses: ad-m/github-push-action@master
         with:
-          # ssh: true
           github_token: ${{ secrets.GH_PAT }}
           repository: MSc-Dissertation-2023/webgl-build
           branch: main
           directory: build
           force: true
+          # ssh: true
 
 
       # Output
