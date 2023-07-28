@@ -71,11 +71,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: eu-west-2
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r WebGL.zip ./build/WebGL/WebGL
 
       - name: Sync output to S3
         run: |
-          cd ./build/WebGL/WebGL
-          zip -r WebGL.zip .
           aws s3 cp WebGL.zip s3://mdk-2023/WebGL.zip --delete
 
       # third implementation
