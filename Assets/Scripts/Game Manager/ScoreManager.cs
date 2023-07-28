@@ -22,4 +22,9 @@ public class ScoreManager : MonoBehaviour, IGameManager
     {
         Score += score;
     }
+
+    public int GetScore()
+    {
+        return Score;
+    }
 }

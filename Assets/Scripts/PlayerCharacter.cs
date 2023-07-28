@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    public float health = 100;
-    public int ammo = 50;
-    public int damage = 25;
+    public float health;
+    public int ammo;
+    public int damage;
     [SerializeField] public AudioSource soundSource;
     [SerializeField] AudioClip hurtSound;
 
@@ -23,8 +23,6 @@ public class PlayerCharacter : MonoBehaviour
     public void Start()
     {
         soundSource = GetComponent<AudioSource>();
-        GameEvents.NotifyAmmo(ammo);
-        GameEvents.NotifyHealth(health);
     }
 
     public void ConsumeAmmo()

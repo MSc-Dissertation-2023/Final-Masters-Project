@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        score = 0;
+        score = Managers.Score.GetScore();
         scoreLabel.text = score.ToString();
         settingsPopup.Close();
         if (endLevelPopup != null)
@@ -47,6 +47,7 @@ public class UIController : MonoBehaviour
     public void OnEnemyKilled()
     {
         score += 1;
+        Managers.Score.AddToScore(1);
         scoreLabel.text = score.ToString();
     }
 

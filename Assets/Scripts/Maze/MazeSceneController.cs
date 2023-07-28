@@ -109,6 +109,7 @@ public class MazeSceneController : MonoBehaviour
             Instantiate(healthPickup, new Vector3(x * 5, 2f, z * 5), Quaternion.identity);
 
         }
+        Managers.Player.OnSceneLoaded();
     }
 
     public void PublishMazeSizes()

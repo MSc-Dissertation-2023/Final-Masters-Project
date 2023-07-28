@@ -61,6 +61,6 @@ public class PlayerManagerTest
     {
         playerManager.playerCharacter.ammo = 50;
         playerManager.ConsumeAmmo();
-        Assert.AreEqual(playerManager.playerCharacter.ammo, 49);
+        Assert.AreEqual(Managers.Player.playerCharacter.ammo, 49);
     }
 }

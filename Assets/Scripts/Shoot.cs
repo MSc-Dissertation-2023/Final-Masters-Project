@@ -18,13 +18,11 @@ public class Shoot : MonoBehaviour
     public float distance = 100f;
 
     private PlayerCharacter playerChar;
-    private PlayerManager playerManager;
 
     void Start()
     {
         cam = GetComponent<Camera>();
         playerChar = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-        playerManager = GameObject.Find("Player Manager").GetComponent<PlayerManager>();
     }
 
     void OnGUI()
@@ -42,9 +40,11 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //When the left mouse button is clicked && not hovering over game object (popup) && enough ammo
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && playerManager.ammo > 0)
+        
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && Managers.Player.ammo > 0)
         {
-            playerManager.ConsumeAmmo();
+            Debug.Log(Managers.Player.ammo);
+            Managers.Player.ConsumeAmmo();
             //Play gunshot sound
             soundSource.PlayOneShot(gunshot);
             //Find what the middle of the screen is pointing at
@@ -64,9 +64,9 @@ public class Shoot : MonoBehaviour
                 if (target != null)
                 {
                     //Create blood effect on impact
-                    playerManager.OnSuccessfulShot();
+                    Managers.Player.OnSuccessfulShot();
                     StartCoroutine(BloodSplat(hit.point));
-                    target.TakeDamage(playerManager.damage);
+                    target.TakeDamage(Managers.Player.damage);
                     // Old implemetnation - to be removed
                     // target.ReactToHit(playerChar.damage);
                 }
