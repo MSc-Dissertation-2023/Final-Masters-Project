@@ -64,18 +64,30 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Update build"
 
-      - name: Pushes to another repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          source-directory: 'Build'
-          destination-github-username: 'MSc-Dissertation-2023'
-          destination-repository-name: 'webgl-build'
-          user-email: cyusheng93@gmail.com
-          target-branch: main
-          create-target-branch-if-needed: true
+          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
 
+      - name: Push changes
+        run: |
+          git remote add webgl git@github.com:MSc-Dissertation-2023/webgl-build.git
+          git push -f webgl-build main
+
+      # second implementation
+      # - name: Pushes to another repository
+      #   uses: cpina/github-action-push-to-another-repository@main
+      #   env:
+      #     SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      #   with:
+      #     source-directory: 'Build'
+      #     destination-github-username: 'MSc-Dissertation-2023'
+      #     destination-repository-name: 'webgl-build'
+      #     user-email: cyusheng93@gmail.com
+      #     target-branch: main
+      #     create-target-branch-if-needed: true
+
+      # first implementation
       # # Add this after your existing build and upload steps
       # - name: Push to Another GitHub Repository
       #   uses: ad-m/github-push-action@master
