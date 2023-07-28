@@ -90,8 +90,7 @@ jobs:
       #     target-branch: main
       #     create-target-branch-if-needed: true
 
-      first implementation
-      # Add this after your existing build and upload steps
+      # first implementation
       - name: Push to Another GitHub Repository
         uses: ad-m/github-push-action@master
         with:
