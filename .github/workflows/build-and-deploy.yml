@@ -64,16 +64,18 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Update build"
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
+      # third implementation
+      # - name: Setup SSH
+      #   uses: webfactory/ssh-agent@v0.5.3
+      #   with:
+      #     ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
 
-      - name: Push changes
-        run: |
-          git remote add webgl git@github.com:MSc-Dissertation-2023/webgl-build.git
-          git branch -M webgl
-          git push -u origin webgl
+      # third implementation
+      # - name: Push changes
+      #   run: |
+      #     git remote add webgl git@github.com:MSc-Dissertation-2023/webgl-build.git
+      #     git branch -M webgl
+      #     git push -u origin webgl
 
       # second implementation
       # - name: Pushes to another repository
@@ -88,16 +90,17 @@ jobs:
       #     target-branch: main
       #     create-target-branch-if-needed: true
 
-      # first implementation
-      # # Add this after your existing build and upload steps
-      # - name: Push to Another GitHub Repository
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     ssh: true
-      #     repository: MSc-Dissertation-2023/webgl-build
-      #     branch: main
-      #     directory: build
-      #     force: true
+      first implementation
+      # Add this after your existing build and upload steps
+      - name: Push to Another GitHub Repository
+        uses: ad-m/github-push-action@master
+        with:
+          # ssh: true
+          github_token: ${{ secrets.GH_PAT }}
+          repository: MSc-Dissertation-2023/webgl-build
+          branch: main
+          directory: build
+          force: true
 
 
       # Output
