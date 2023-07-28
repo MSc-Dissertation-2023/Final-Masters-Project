@@ -69,8 +69,8 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_PAT }}
-          repository: MSc-Dissertation-2023/webgl-build # replace with your target repository
-          branch: main # or the branch you wish to push to
+          repository: MSc-Dissertation-2023/webgl-build
+          branch: main
           directory: build
           force: true
 
