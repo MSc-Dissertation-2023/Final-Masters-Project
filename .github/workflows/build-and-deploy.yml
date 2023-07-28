@@ -58,11 +58,23 @@ jobs:
         with:
           targetPlatform: WebGL
 
-      - name: Commit files
+      # - name: Commit files
+      #   run: |
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git commit -a -m "Update build"
+
+      # fourth implementation
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: eu-west-2
+
+      - name: Sync output to S3
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -a -m "Update build"
+          aws s3 sync ./build/WebGL s3://mdk-2023 --delete
 
       # third implementation
       # - name: Setup SSH
@@ -91,14 +103,14 @@ jobs:
       #     create-target-branch-if-needed: true
 
       # first implementation
-      - name: Push to Another GitHub Repository
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_PAT }}
-          repository: MSc-Dissertation-2023/webgl-build
-          branch: main
-          directory: build
-          force: true
+      # - name: Push to Another GitHub Repository
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GH_PAT }}
+      #     repository: MSc-Dissertation-2023/webgl-build
+      #     branch: main
+      #     directory: build
+      #     force: true
           # ssh: true
 
 
