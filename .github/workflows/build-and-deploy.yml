@@ -74,7 +74,7 @@ jobs:
 
       - name: Sync output to S3
         run: |
-          aws s3 sync ./build/WebGL s3://mdk-2023 --delete
+          aws s3 sync ./build/WebGL/WebGL s3://mdk-2023 --delete
 
       # third implementation
       # - name: Setup SSH
