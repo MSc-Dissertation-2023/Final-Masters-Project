@@ -77,7 +77,7 @@ jobs:
 
       - name: Sync output to S3
         run: |
-          aws s3 cp WebGL.zip s3://mdk-2023/WebGL.zip --delete
+          aws s3 sync WebGL.zip s3://mdk-2023/WebGL.zip --delete
 
       # third implementation
       # - name: Setup SSH
