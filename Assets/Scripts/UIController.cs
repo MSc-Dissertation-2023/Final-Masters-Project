@@ -107,7 +107,7 @@ public class UIController : MonoBehaviour
     }
     void OnDisable()
     {
-        MazeEvents.ObjectiveReached += OpenCodeWindow;
+        MazeEvents.ObjectiveReached -= OpenCodeWindow;
         GameEvents.EnemyKilled -= OnEnemyKilled;
         GameEvents.GamePaused -= PauseGame;
         GameEvents.GameUnpaused -= UnpauseGame;

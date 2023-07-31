@@ -75,7 +75,7 @@ public class CandidateSolution
 
     private int GetRandomGene()
     {
-        return UnityEngine.Random.Range(0, 14);
+        return UnityEngine.Random.Range(0, 12);
     }
 
     private IEnumerable<int[]> getReachableNeighbours(int xPos, int zPos)

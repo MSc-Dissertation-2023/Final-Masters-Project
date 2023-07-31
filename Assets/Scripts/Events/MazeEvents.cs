@@ -17,6 +17,9 @@ public class MazeEvents : MonoBehaviour
 }
 
 [System.Serializable]
+public class ObjectiveReachedEvent : UnityEvent { };
+
+[System.Serializable]
 public class SendCodeEvent : UnityEvent<string> { };
 
 [System.Serializable]
