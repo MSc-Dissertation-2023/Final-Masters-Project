@@ -7,12 +7,15 @@ public class StartupController : MonoBehaviour
 {
     [SerializeField] Slider progressBar;
     [SerializeField] StartScreen start;
+    [SerializeField] LeaderboardPopup leaderboardPopup;
+
     private bool gameReady;
 
     void Start()
     {
         gameReady = false;
         start.Open();
+        leaderboardPopup.Close();
     }
     void OnEnable()
     {
