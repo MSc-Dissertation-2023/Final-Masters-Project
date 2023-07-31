@@ -71,13 +71,14 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: eu-west-2
-      - uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r WebGL.zip ./build/WebGL/WebGL
 
       - name: Sync output to S3
         run: |
-          aws s3 sync WebGL.zip s3://mdk-2023/WebGL.zip --delete
+          aws s3 sync ./build/WebGL/WebGL s3://mdk-2023/WebGL.zip --delete
+          aws s3 cp ./Build/WebGL.data.gz s3://mdk-2023/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
+          aws s3 cp ./Build/WebGL.framework.js.gz s3://mdk-2023/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
+          aws s3 cp ./Build/WebGL.loader.js s3://mdk-2023/WebGL.loader.js --content-type 'application/javascript'
+          aws s3 cp ./Build/WebGL.wasm.gz s3://mdk-2023/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
 
       # third implementation
       # - name: Setup SSH
