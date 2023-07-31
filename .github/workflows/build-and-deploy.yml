@@ -74,7 +74,7 @@ jobs:
 
       - name: Sync output to S3
         run: |
-          aws s3 sync ./build/WebGL/WebGL s3://mdk-2023/WebGL.zip --delete
+          aws s3 sync ./build/WebGL/WebGL s3://mdk-2023 --delete
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.data.gz s3://mdk-2023/Build/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.framework.js.gz s3://mdk-2023/Build/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.loader.js s3://mdk-2023/Build/WebGL.loader.js --content-type 'application/javascript'
