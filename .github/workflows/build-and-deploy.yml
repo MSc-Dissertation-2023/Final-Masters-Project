@@ -75,10 +75,10 @@ jobs:
       - name: Sync output to S3
         run: |
           aws s3 sync ./build/WebGL/WebGL s3://mdk-2023/WebGL.zip --delete
-          aws s3 cp ./Build/WebGL.data.gz s3://mdk-2023/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
-          aws s3 cp ./Build/WebGL.framework.js.gz s3://mdk-2023/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
-          aws s3 cp ./Build/WebGL.loader.js s3://mdk-2023/WebGL.loader.js --content-type 'application/javascript'
-          aws s3 cp ./Build/WebGL.wasm.gz s3://mdk-2023/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.data.gz s3://mdk-2023/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.framework.js.gz s3://mdk-2023/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.loader.js s3://mdk-2023/WebGL.loader.js --content-type 'application/javascript'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.wasm.gz s3://mdk-2023/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
 
       # third implementation
       # - name: Setup SSH
