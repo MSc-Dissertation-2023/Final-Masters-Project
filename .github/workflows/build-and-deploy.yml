@@ -58,13 +58,6 @@ jobs:
         with:
           targetPlatform: WebGL
 
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git commit -a -m "Update build"
-
-      # fourth implementation
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -79,47 +72,3 @@ jobs:
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.framework.js.gz s3://mdk-2023/Build/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.loader.js s3://mdk-2023/Build/WebGL.loader.js --content-type 'application/javascript'
           aws s3 cp ./build/WebGL/WebGL/Build/WebGL.wasm.gz s3://mdk-2023/Build/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
-
-      # third implementation
-      # - name: Setup SSH
-      #   uses: webfactory/ssh-agent@v0.5.3
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
-
-      # third implementation
-      # - name: Push changes
-      #   run: |
-      #     git remote add webgl git@github.com:MSc-Dissertation-2023/webgl-build.git
-      #     git branch -M webgl
-      #     git push -u origin webgl
-
-      # second implementation
-      # - name: Pushes to another repository
-      #   uses: cpina/github-action-push-to-another-repository@main
-      #   env:
-      #     SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-      #   with:
-      #     source-directory: 'Build'
-      #     destination-github-username: 'MSc-Dissertation-2023'
-      #     destination-repository-name: 'webgl-build'
-      #     user-email: cyusheng93@gmail.com
-      #     target-branch: main
-      #     create-target-branch-if-needed: true
-
-      # first implementation
-      # - name: Push to Another GitHub Repository
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GH_PAT }}
-      #     repository: MSc-Dissertation-2023/webgl-build
-      #     branch: main
-      #     directory: build
-      #     force: true
-          # ssh: true
-
-
-      # Output
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Build
-      #     path: build
