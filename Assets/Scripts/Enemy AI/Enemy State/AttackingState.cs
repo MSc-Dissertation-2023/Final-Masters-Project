@@ -62,7 +62,7 @@ public class AttackingState : EnemyState
 				BoxCollider enemyObject = enemy.GetComponent<BoxCollider>();
 				Vector3 direction = player.transform.position - enemyObject.transform.position;
 
-				if (Vector3.Dot(enemyObject.transform.forward, direction.normalized) > 0.25f)
+				if (Vector3.Dot(enemyObject.transform.forward, direction.normalized) > 0f)
 				{
 
 					playerChar.Hurt(enemy.GetDamage());
