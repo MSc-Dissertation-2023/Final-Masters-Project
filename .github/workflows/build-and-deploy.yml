@@ -4,6 +4,7 @@ on:
   push:
     branches:
       main
+      sheng-devops
 
 jobs:
   build:
@@ -28,6 +29,7 @@ jobs:
       - name: Git LFS Pull
         run: |
           git lfs pull
+          git add .
           git reset --hard
 
       # Cache
