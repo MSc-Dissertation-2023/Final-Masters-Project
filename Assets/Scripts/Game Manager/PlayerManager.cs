@@ -2,44 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
-    [SerializeField] public PlayerCharacter playerCharacter;
+    public PlayerCharacter playerCharacter;
     ShootingMetrics shootingMetric;
     DamageMetrics damageMetric;
 
-    float startingHealth = 100;
-    int startingAmmo = 50;
-    int startingDamage = 25;
+    float Health = 100;
+    int Ammo = 50;
+    int Damage = 25;
 
     public float health => playerCharacter.health;
-    public float ammo => playerCharacter.ammo;
-    public float damage => playerCharacter.damage;
+    public int ammo => playerCharacter.ammo;
+    public int damage => playerCharacter.damage;
 
-    void Awake()
-    {
-        // For Level 2
-        if(GameObject.Find("Player Metrics") != null) {
-            shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
-            damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
-        }
-        // For Level 1
-        if (playerCharacter != null)
-        {
-            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
-        }
-    }
+ 
 
     public void Startup()
     {
-        // For Level 1
-        if (playerCharacter != null)
-        {
-            playerCharacter.UpdateData(startingHealth, startingAmmo, startingDamage);
-        }
         status = ManagerStatus.Started;
     }
 
@@ -81,6 +65,29 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public static implicit operator PlayerManager(GameObject v)
     {
         throw new NotImplementedException();
+    }
+
+
+    public void OnSceneLoaded()
+    {
+        playerCharacter = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
+        
+        // For Level 2
+        if (GameObject.Find("Player Metrics") != null)
+        {
+            shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
+            damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
+        }
+        
+        if (playerCharacter != null)
+        {
+            playerCharacter.UpdateData(Health, Ammo, Damage);
+        }
+    }
+
+    public void SaveHealth()
+    {
+        Health = health;
     }
 
     // Implement other high-level player management functions here, such as switching players, saving player data, loading player data, etc...

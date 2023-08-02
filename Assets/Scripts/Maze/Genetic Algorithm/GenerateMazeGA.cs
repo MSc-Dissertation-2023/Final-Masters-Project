@@ -31,7 +31,6 @@ public class GenerateMazeGA : MonoBehaviour
     {
         RequestMazeSizes.Invoke();
     }
-
     void Start()
     {
         random = new System.Random();

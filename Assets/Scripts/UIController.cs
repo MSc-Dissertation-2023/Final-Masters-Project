@@ -25,12 +25,9 @@ public class UIController : MonoBehaviour
     private bool paused = false;
     private bool isGameEnded = false;
 
-    private int score;
-
     void Start()
     {
-        score = 0;
-        scoreLabel.text = score.ToString();
+        scoreLabel.text = Managers.Score.score.ToString();
         settingsPopup.Close();
         if (endLevelPopup != null)
         {
@@ -46,8 +43,8 @@ public class UIController : MonoBehaviour
 
     public void OnEnemyKilled()
     {
-        score += 1;
-        scoreLabel.text = score.ToString();
+        Managers.Score.AddToScore(1);
+        scoreLabel.text = Managers.Score.score.ToString();
     }
 
     public void UpdateHealthDisplay(float health)
@@ -65,7 +62,7 @@ public class UIController : MonoBehaviour
 
         if (!isGameEnded) {
             isGameEnded = true;
-            finalScore.text = $"Score: {score}";
+            finalScore.text = $"Score: {Managers.Score.score}";
             endGamePopup.Open();
         }
     }
@@ -106,7 +103,7 @@ public class UIController : MonoBehaviour
     }
     void OnDisable()
     {
-        MazeEvents.ObjectiveReached += OpenCodeWindow;
+        MazeEvents.ObjectiveReached -= OpenCodeWindow;
         GameEvents.EnemyKilled -= OnEnemyKilled;
         GameEvents.GamePaused -= PauseGame;
         GameEvents.GameUnpaused -= UnpauseGame;

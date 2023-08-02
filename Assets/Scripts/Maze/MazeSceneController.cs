@@ -73,7 +73,7 @@ public class MazeSceneController : MonoBehaviour
 
     void Update()
     {
-        time = (int)Time.realtimeSinceStartup;
+        time = (int)Time.timeSinceLevelLoad;
         timer.text = $"Time: {time}";
     }
 
@@ -109,6 +109,7 @@ public class MazeSceneController : MonoBehaviour
             Instantiate(healthPickup, new Vector3(x * 5, 2f, z * 5), Quaternion.identity);
 
         }
+        Managers.Player.OnSceneLoaded();
     }
 
     public void PublishMazeSizes()

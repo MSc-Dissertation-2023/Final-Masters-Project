@@ -50,8 +50,8 @@ public class EnterCodePopup : MonoBehaviour
         string compare = enterCodeField.text;
         if (compare != null || compare != "")
         {
-            Debug.Log(compare);
-            Debug.Log($"puzzleCode is {puzzleCode}");
+            //Debug.Log(compare);
+            //Debug.Log($"puzzleCode is {puzzleCode}");
             if (compare.Equals(puzzleCode))
             {
                 Close();

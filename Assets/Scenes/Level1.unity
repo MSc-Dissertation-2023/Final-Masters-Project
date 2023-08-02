@@ -3329,6 +3329,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 03f8df0ac512a1d49930f753f369f8ae, type: 3}
     - target: {fileID: 7733983680727764374, guid: a447c6d9ff0b6794bb780726816b0c8f, type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733983680727764374, guid: a447c6d9ff0b6794bb780726816b0c8f, type: 3}
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
