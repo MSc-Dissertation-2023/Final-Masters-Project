@@ -6,25 +6,20 @@ public class ScoreManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
-    public int Score { get; private set; }
+    public int score { get; private set; }
 
 
     public void Startup()
     {
         Debug.Log("Score Manager manager starting...");
 
-        Score = 0;
+        score = 0;
 
         status = ManagerStatus.Started;
     }
 
-    public void AddToScore(int score)
+    public void AddToScore(int value)
     {
-        Score += score;
-    }
-
-    public int GetScore()
-    {
-        return Score;
+        score += value;
     }
 }

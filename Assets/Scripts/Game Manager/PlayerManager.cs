@@ -83,7 +83,6 @@ public class PlayerManager : MonoBehaviour, IGameManager
         {
             playerCharacter.UpdateData(Health, Ammo, Damage);
         }
-        Debug.Log(playerCharacter);
     }
 
     public void SaveHealth()
