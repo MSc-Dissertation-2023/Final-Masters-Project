@@ -32,7 +32,7 @@ public class Managers : MonoBehaviour
         Score = GetComponent<ScoreManager>();
         Maze = GetComponent<MazeGenerationManager>();
         Data = GetComponent<DataManager>();
-        Token = GetComponent<TokenManager>()
+        Token = GetComponent<TokenManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
