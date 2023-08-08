@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour, IGameManager
         status = ManagerStatus.Started;
     }
 
-    /*public void SaveStats()
+    public void SaveStats()
     {
 
         StartCoroutine(CallAPILevelOne());
@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour, IGameManager
     {
 
 
-        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/StageOneStats?name={name}&score={score}", "", "application/json"))
+        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/StageOneStats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.token}", "", "application/json"))
         {
             yield return www.SendWebRequest();
 
@@ -45,5 +45,5 @@ public class DataManager : MonoBehaviour, IGameManager
                 Debug.Log(www.error);
             }
         }
-    }*/
+    }
 }
