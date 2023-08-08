@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour, IGameManager
     {
 
 
-        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/StageOneStats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.token}", "", "application/json"))
+        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.token}", "", "application/json"))
         {
             yield return www.SendWebRequest();
 
