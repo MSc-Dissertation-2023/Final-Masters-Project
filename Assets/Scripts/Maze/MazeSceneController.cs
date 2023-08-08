@@ -119,7 +119,6 @@ public class MazeSceneController : MonoBehaviour
 
     public void PublishGameTime()
     {
-        Managers.Data.levelOneTime = time;
         PublishTime.Invoke(time);
     }
 }

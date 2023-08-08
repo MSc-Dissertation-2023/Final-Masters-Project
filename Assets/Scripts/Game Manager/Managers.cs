@@ -15,8 +15,6 @@ public class Managers : MonoBehaviour
     public static MissionManager Mission { get; private set; }
     public static ScoreManager Score { get; private set; }
     public static MazeGenerationManager Maze { get; private set; }
-    public static DataManager Data { get; private set; }
-
 
     private List<IGameManager> startSequence;
 
@@ -31,7 +29,6 @@ public class Managers : MonoBehaviour
         Mission = GetComponent<MissionManager>();
         Score = GetComponent<ScoreManager>();
         Maze = GetComponent<MazeGenerationManager>();
-        Data = GetComponent<DataManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
@@ -40,7 +37,6 @@ public class Managers : MonoBehaviour
         startSequence.Add(Mission);
         startSequence.Add(Score);
         startSequence.Add(Maze);
-        startSequence.Add(Data);
 
         StartCoroutine(StartupManagers());
     }
