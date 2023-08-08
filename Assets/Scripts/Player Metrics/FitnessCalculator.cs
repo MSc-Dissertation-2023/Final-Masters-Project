@@ -5,10 +5,15 @@ using UnityEngine.Networking;
 
 public class FitnessCalculator : MonoBehaviour
 {
+   // kill count
    private float w1 = 1.5f;
+   // APM
    private float w2 = 1.5f;
-   private float w3 = 2.5f;
-   private float w4 = 2.0f;
+   // hits taken
+   private float w3 = -3.0f;
+   // time elapsed
+   private float w4 = 1.5f;
+   // hit miss ratio
    private float w5 = 2.5f;
    private float fitness;
    PlayerMetrics player;
