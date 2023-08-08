@@ -21,8 +21,6 @@ public class LeaderboardPopup : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        //entryContainer = transform.Find("HighScoreEntryContainer");
-        //entryTemplate = entryContainer.Find("HighScoreEntryTemplate");
         
         entryTemplate.gameObject.SetActive(false);
 
