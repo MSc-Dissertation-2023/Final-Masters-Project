@@ -8,10 +8,8 @@ public class DataManager : MonoBehaviour, IGameManager
     public ManagerStatus status { get; private set; }
 
     public int levelOneHealth { get; set; }
-
     public int levelOneTime { get; set; }
 
-    
 
     public void Startup()
     {
@@ -23,16 +21,12 @@ public class DataManager : MonoBehaviour, IGameManager
 
     public void SaveStats()
     {
-
         StartCoroutine(CallAPILevelOne());
-
     }
 
     IEnumerator CallAPILevelOne()
     {
-
-
-        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.token}", "", "application/json"))
+        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.GetTokenData()}", "", "application/json"))
         {
             yield return www.SendWebRequest();
 

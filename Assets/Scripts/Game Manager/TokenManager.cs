@@ -41,4 +41,10 @@ public class TokenManager : MonoBehaviour, IGameManager
             }
         }
     }
+
+    public string GetTokenData()
+    {
+        return token;
+    }
+
 }
