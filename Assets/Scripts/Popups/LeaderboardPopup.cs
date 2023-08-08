@@ -9,20 +9,20 @@ using System;
 
 public class LeaderboardPopup : MonoBehaviour
 {
-    private Transform entryContainer;
-    private Transform entryTemplate;
+    public Transform entryContainer;
+    public Transform entryTemplate;
     private string jsonResponse;
 
 
 
-    public int tableEntries = 10;
+    public int tableEntries = 100;
     public float templateHeight = 20f;
 
     public void Open()
     {
         gameObject.SetActive(true);
-        entryContainer = transform.Find("HighScoreEntryContainer");
-        entryTemplate = entryContainer.Find("HighScoreEntryTemplate");
+        //entryContainer = transform.Find("HighScoreEntryContainer");
+        //entryTemplate = entryContainer.Find("HighScoreEntryTemplate");
         
         entryTemplate.gameObject.SetActive(false);
 

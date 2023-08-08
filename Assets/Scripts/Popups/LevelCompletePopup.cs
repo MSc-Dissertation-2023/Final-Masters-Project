@@ -31,6 +31,7 @@ public class LevelCompletePopup : MonoBehaviour
     public void proceed()
     {
         Managers.Player.SaveHealth();
+        Managers.Data.SaveStats();
         gameObject.SetActive(false);
         GameEvents.NotifyUnpaused();
         Managers.Mission.GoToNext();
