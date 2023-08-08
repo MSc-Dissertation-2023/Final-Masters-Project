@@ -15,10 +15,10 @@ public class Managers : MonoBehaviour
     public static MissionManager Mission { get; private set; }
     public static ScoreManager Score { get; private set; }
     public static MazeGenerationManager Maze { get; private set; }
+    public static TokenManager Token { get; private set; }
 
     private List<IGameManager> startSequence;
 
-   
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -29,6 +29,7 @@ public class Managers : MonoBehaviour
         Mission = GetComponent<MissionManager>();
         Score = GetComponent<ScoreManager>();
         Maze = GetComponent<MazeGenerationManager>();
+        Token = GetComponent<TokenManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
@@ -37,6 +38,7 @@ public class Managers : MonoBehaviour
         startSequence.Add(Mission);
         startSequence.Add(Score);
         startSequence.Add(Maze);
+        startSequence.Add(Token);
 
         StartCoroutine(StartupManagers());
     }

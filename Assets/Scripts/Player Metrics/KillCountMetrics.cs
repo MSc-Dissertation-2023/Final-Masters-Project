@@ -12,6 +12,10 @@ public class KillCountMetrics : MonoBehaviour
     }
 
     public float getKillCount() {
+        return killCount;
+    }
+
+    public float getKillMetrics() {
         return (float)killCount / maxKillCount;
     }
 }

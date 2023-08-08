@@ -10,14 +10,16 @@ public class PlayerMetrics : MonoBehaviour
   KillCountMetrics kills;
   DamageMetrics damage;
   private float APM = 0;
-
   private int maxAPM = 500;
   public float getHitMissRatio => shooting.hitMissRatio();
-  public float getAPM => Mathf.Min(APM, maxAPM) / maxAPM;
-  public float getKillCount => kills.getKillCount();
-  public float getHitsTaken => damage.getHitsTakenCount();
+  public float getAPMetrics => Mathf.Min(APM, maxAPM) / maxAPM;
+  public float getTimerMetrics => timer.getTimerMetrics;
+  public float getKillMetrics => kills.getKillMetrics();
+  public float getTimer => timer.getTimer;
+  public float getAPM => APM;
+  public float getHitsTaken => damage.getTotalHitsTaken;
   public float getTotalDamageTaken => damage.getTotalDamageTaken;
-  public float getTimeElapsed => timer.getTimer;
+  public float getKillCount => kills.getKillCount();
 
   void Start()
   {
