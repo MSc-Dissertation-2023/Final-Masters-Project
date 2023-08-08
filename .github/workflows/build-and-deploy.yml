@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - sheng-devops-2
 
 jobs:
   build:
@@ -39,15 +40,14 @@ jobs:
           restore-keys: |
             Library-
 
-      # Test
-      # - name: Run tests
-      #   uses: game-ci/unity-test-runner@v2.2.0
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #   with:
-      #     githubToken: ${{ secrets.GITHUB_TOKEN }}
-      #     testMode: EditMode
-
+      Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2.2.0
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: EditMode
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
