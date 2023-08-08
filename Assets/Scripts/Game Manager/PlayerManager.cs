@@ -87,6 +87,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     public void SaveHealth()
     {
+        Managers.Data.levelOneHealth = (int)health;
         Health = health;
     }
 
