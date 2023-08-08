@@ -56,7 +56,7 @@ public class FitnessCalculator : MonoBehaviour
 
          if (www.result != UnityWebRequest.Result.Success)
          {
-               Debug.Log(www.error);
+            Debug.Log(www.error);
          }
          else
          {
