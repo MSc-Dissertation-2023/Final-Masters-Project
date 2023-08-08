@@ -8,7 +8,8 @@ public class DamageMetrics : MonoBehaviour
     public float getTotalDamageTaken => totalDamageTaken;
     private int hitsTakenCount = 0;
     private int maxHitsTaken = 50;
-    public float getHitsTaken => getHitsTakenCount();
+    public float getHitsTakenMetrics => hitsTakenMetrics();
+    public float getTotalHitsTaken => hitsTakenCount;
 
     public void RegisterDamageTaken(float amount) {
         totalDamageTaken += amount;
@@ -18,7 +19,7 @@ public class DamageMetrics : MonoBehaviour
         hitsTakenCount += 1;
     }
 
-    public float getHitsTakenCount() {
+    public float hitsTakenMetrics() {
         return (float) Mathf.Min(hitsTakenCount) / maxHitsTaken;
     }
 }
