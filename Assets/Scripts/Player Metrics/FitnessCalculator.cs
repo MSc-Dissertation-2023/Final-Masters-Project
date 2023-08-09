@@ -10,7 +10,7 @@ public class FitnessCalculator : MonoBehaviour
    // APM
    private float w2 = 1.5f;
    // hits taken
-   private float w3 = -3.0f;
+   private float w3 = 3.0f;
    // time elapsed
    private float w4 = 1.5f;
    // hit miss ratio
@@ -50,7 +50,7 @@ public class FitnessCalculator : MonoBehaviour
    }
 
    private float weightedHitsTaken() {
-      return w3 * player.getHitsTaken;
+      return w3 * player.getHitsTakenMetrics;
    }
 
    IEnumerator PostStatistics() {

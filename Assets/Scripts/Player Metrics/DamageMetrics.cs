@@ -20,6 +20,6 @@ public class DamageMetrics : MonoBehaviour
     }
 
     public float hitsTakenMetrics() {
-        return (float) Mathf.Min(hitsTakenCount) / maxHitsTaken;
+        return (float) Mathf.Max(1, hitsTakenCount) / maxHitsTaken;
     }
 }
