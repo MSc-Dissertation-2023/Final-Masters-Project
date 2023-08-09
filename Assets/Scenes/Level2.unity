@@ -441,6 +441,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterNameField: {fileID: 459216729}
+  requestScore:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &62809591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a295abae7342e94b9c69deb5784d0dd, type: 3}
@@ -5489,7 +5492,6 @@ GameObject:
   - component: {fileID: 543447165}
   - component: {fileID: 543447164}
   - component: {fileID: 543447163}
-  - component: {fileID: 543447166}
   m_Layer: 0
   m_Name: Wall42
   m_TagString: Untagged
@@ -5583,19 +5585,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543447161}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &543447166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543447161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13ea2132fe6b7bd4c8758f874592da30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  device: {fileID: 0}
 --- !u!1 &561466834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,7 +5897,7 @@ MonoBehaviour:
   soundSource: {fileID: 585781250}
   openSound: {fileID: 8300000, guid: ef34552194bd6c94cbfad17e3071b47f, type: 3}
   closeSound: {fileID: 8300000, guid: 1fd54589483dbb3408b0c0511a9ab4cf, type: 3}
-  open: 1
+  open: 0
 --- !u!208 &585781249
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -6138,8 +6127,8 @@ Transform:
   m_LocalScale: {x: 3.333333, y: 1, z: 0.3333333}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 782514423}
   - {fileID: 1847077052}
+  - {fileID: 782514423}
   - {fileID: 1845505554}
   m_Father: {fileID: 1701006161}
   m_RootOrder: -1
@@ -14486,7 +14475,7 @@ MonoBehaviour:
   soundSource: {fileID: 1358458697}
   openSound: {fileID: 8300000, guid: ef34552194bd6c94cbfad17e3071b47f, type: 3}
   closeSound: {fileID: 8300000, guid: 1fd54589483dbb3408b0c0511a9ab4cf, type: 3}
-  open: 0
+  open: 1
 --- !u!208 &1358458696
 NavMeshObstacle:
   m_ObjectHideFlags: 0
