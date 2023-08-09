@@ -11,9 +11,6 @@ public class LeaderboardPopup : MonoBehaviour
 {
     public Transform entryContainer;
     public Transform entryTemplate;
-    private string jsonResponse;
-
-
 
     public int tableEntries = 100;
     public float templateHeight = 20f;
