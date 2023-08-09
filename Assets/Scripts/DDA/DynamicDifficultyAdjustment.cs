@@ -22,30 +22,35 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
     void AdjustDifficulty() {
         float adjustment = CalculateAdjustment();
         enemyFactory.speed += enemyFactory.speed * adjustment;
-        enemyFactory.damage += enemyFactory.damage * adjustment;
+        // enemyFactory.damage += enemyFactory.damage * adjustment;
         int newEnemyCount = Mathf.RoundToInt(scene.getEnemyCount() + (scene.getEnemyCount() * adjustment));
         // Debug.Log(newEnemyCount)
         scene.setEnemyCount(newEnemyCount);
-
-        // Debug.Log($"Adj: {adjustment}");
     }
 
     private float CalculateAdjustment() {
         float enemyFitness = enemyMetrics.getFitness();
         float playerFitness = fitnessCalculator.GetFitness();
 
-        // Debug.Log($"Enemy Fitness: {enemyFitness}, Player Fitness: {playerFitness}");
+
 
         float weightAdjustment = 0.0f;
-        float threshold = 0.25f;
+        float threshold = 0.15f;
 
         float fitnessDifference = playerFitness - enemyFitness;
 
-        if(Mathf.Abs(fitnessDifference) >= threshold) {
-            weightAdjustment = ((playerFitness - threshold)/(1 - threshold));
-        } else {
-            weightAdjustment = threshold - playerFitness;
+
+        if(Mathf.Abs(fitnessDifference) > threshold) {
+            if (fitnessDifference > 0) {
+                // Player fitness is higher than enemy's
+                weightAdjustment = ((playerFitness - threshold)/(1 - threshold));
+            } else {
+                // Player fitness is lower than enemy's
+                weightAdjustment = threshold - playerFitness;
+            }
         }
+
+        // Debug.Log($"Enemy Fit: {enemyFitness}, Player Fit: {playerFitness}, Adj: {weightAdjustment}");
 
         return weightAdjustment;
     }
