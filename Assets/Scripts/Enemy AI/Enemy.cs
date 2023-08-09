@@ -111,11 +111,11 @@ public class Enemy : MonoBehaviour
 		{
 				Instantiate(ammoPickupPrefab, enemyDropsPos, Quaternion.identity);
 		}
-		else if (rand < 0.6) // Additional 30% chance
+		else if (rand < 0.5) // Additional 20% chance
 		{
 				Instantiate(healthPickupPrefab, enemyDropsPos, Quaternion.identity);
 		}
-		else if (rand < 0.75) // Additional 15% chance
+		else if (rand < 0.6) // Additional 10% chance
 		{
 				Instantiate(damageUpgradePickupPrefab, enemyDropsPos, Quaternion.identity); // Assuming you have a damagePrefab
 		}
