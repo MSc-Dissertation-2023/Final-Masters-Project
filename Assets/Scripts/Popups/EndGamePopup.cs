@@ -12,12 +12,21 @@ public class EndGamePopup : MonoBehaviour
     [SerializeField]
     private InputField enterNameField;
 
+    [SerializeField, Header("Request time from scene controller to work out the score.")]
+    private RequestScoreEvent requestScore;
+
     private bool scoreSaved = false;
 
     public void Open()
     {
         gameObject.SetActive(true);
         GameEvents.NotifyPaused();
+        if (GameObject.Find("MazeController") != null)
+        {
+            Managers.Player.SaveHealth();
+            requestScore.Invoke();
+            Managers.Data.SaveStats();
+        }
     }
 
     public void Close()
