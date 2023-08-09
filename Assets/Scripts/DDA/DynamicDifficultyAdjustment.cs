@@ -21,8 +21,6 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
 
     void AdjustDifficulty() {
         float adjustment = CalculateAdjustment();
-        enemyFactory.speed += enemyFactory.speed * adjustment;
-        // enemyFactory.damage += enemyFactory.damage * adjustment;
         int newEnemyCount = Mathf.RoundToInt(scene.getEnemyCount() + (scene.getEnemyCount() * adjustment));
         // Debug.Log(newEnemyCount)
         scene.setEnemyCount(newEnemyCount);
@@ -32,13 +30,10 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         float enemyFitness = enemyMetrics.getFitness();
         float playerFitness = fitnessCalculator.GetFitness();
 
-
-
         float weightAdjustment = 0.0f;
         float threshold = 0.15f;
 
         float fitnessDifference = playerFitness - enemyFitness;
-
 
         if(Mathf.Abs(fitnessDifference) > threshold) {
             if (fitnessDifference > 0) {

@@ -24,14 +24,14 @@ public class EnemyMetrics : MonoBehaviour
         float previousFitness = 0.0f;
 
         foreach(EnemyStat stat in liveEnemyStats) {
-            currentFitness += (liveEnemyStats.Count/30.0f) * (1/(2.0f *(liveEnemyStats.Count)) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
+            currentFitness += (liveEnemyStats.Count/40.0f) * (1/(2.0f *(liveEnemyStats.Count)) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
         }
 
         foreach(EnemyStat stat in deadEnemyStats) {
             previousFitness += (deadEnemyStats.Count/300.0f) * (1/(2.0f *(deadEnemyStats.Count)) * (1 + (1 - (Mathf.Min(stat.StartDistance, stat.EndDistance)/stat.StartDistance))));
         }
 
-        previousFitness = previousFitness * 0.1f;
+        previousFitness *= 0.1f;
 
         float sum = currentFitness + previousFitness;
 
