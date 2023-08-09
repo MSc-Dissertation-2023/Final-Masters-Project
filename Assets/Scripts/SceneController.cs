@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
   //Array of enemies
   public List<GameObject> enemies;
   EnemyMetrics enemyMetrics;
-  private int numberOfEnemies = 5;
+  private int numberOfEnemies = 3;
 
   private List<SpawnLocation> spawnLocations = new List<SpawnLocation>()
     {
@@ -41,13 +41,13 @@ public class SceneController : MonoBehaviour
       for (int i = 0; i < numberOfEnemies - enemies.Count; i++) {
         enemies.Add(null);
       }
-
     }
 
+    // Debug.Log($"Number of Enemies: {numberOfEnemies}, Enemies Count: {enemies.Count}");
     for (int i = 0; i < numberOfEnemies; i++)
     {
       //If any are dead
-      if (enemies[i] == null && !(numberOfEnemies < enemies.Count))
+      if (numberOfEnemies == enemies.Count && enemies[i] == null)
       {
         //Spawn at random location
         int spawnLocation = DetermineSpawnLocation();

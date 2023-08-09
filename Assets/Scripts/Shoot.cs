@@ -40,10 +40,9 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //When the left mouse button is clicked && not hovering over game object (popup) && enough ammo
-        
+
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && Managers.Player.ammo > 0)
         {
-            Debug.Log(Managers.Player.ammo);
             Managers.Player.ConsumeAmmo();
             //Play gunshot sound
             soundSource.PlayOneShot(gunshot);
