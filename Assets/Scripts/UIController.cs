@@ -49,7 +49,14 @@ public class UIController : MonoBehaviour
 
     public void UpdateHealthDisplay(float health)
     {
-        healthLabel.text = $"HP: {health}";
+        if (health > 0)
+        {
+            healthLabel.text = $"HP: {(int)health}";
+        }
+        else
+        {
+            healthLabel.text = $"HP: 0";
+        }  
     }
 
     public void UpdateAmmoDisplay(int ammo)
@@ -101,6 +108,7 @@ public class UIController : MonoBehaviour
         GameEvents.LevelCompleted += OnLevelComplete;
 
     }
+
     void OnDisable()
     {
         MazeEvents.ObjectiveReached -= OpenCodeWindow;

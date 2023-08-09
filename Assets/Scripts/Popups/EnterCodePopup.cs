@@ -42,7 +42,7 @@ public class EnterCodePopup : MonoBehaviour
     public void SetCode(string code)
     {
         puzzleCode = code;
-        Debug.Log($"puzzleCode is {puzzleCode}");
+        //Debug.Log($"puzzleCode is {puzzleCode}");
     }
 
     public void OnSubmit()
