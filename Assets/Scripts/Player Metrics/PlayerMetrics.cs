@@ -15,6 +15,7 @@ public class PlayerMetrics : MonoBehaviour
   public float getAPMetrics => Mathf.Min(APM, maxAPM) / maxAPM;
   public float getTimerMetrics => timer.getTimerMetrics;
   public float getKillMetrics => kills.getKillMetrics();
+  public float getHitsTakenMetrics => damage.getHitsTakenMetrics;
   public float getTimer => timer.getTimer;
   public float getAPM => APM;
   public float getHitsTaken => damage.getTotalHitsTaken;

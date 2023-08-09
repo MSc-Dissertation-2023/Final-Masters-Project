@@ -42,7 +42,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        health -= damage;
+        health = Mathf.Round(health - damage);
         if (!soundSource.isPlaying)
         {
             soundSource.PlayOneShot(hurtSound);

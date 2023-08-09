@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     public PlayerCharacter playerChar;
+    public PlayerManager playerManager;
     KillCountMetrics killMetrics;
     EnemyMetrics enemyMetrics;
     public GameObject healthPickupPrefab;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerChar = player.GetComponent<PlayerCharacter>();
+        playerManager = Managers.Player;
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
@@ -114,7 +116,6 @@ public class Enemy : MonoBehaviour
 				Instantiate(healthPickupPrefab, enemyDropsPos, Quaternion.identity);
 		}
 		else if (rand < 0.30) // Additional 10% chance
-
 		{
 				Instantiate(damageUpgradePickupPrefab, enemyDropsPos, Quaternion.identity); // Assuming you have a damagePrefab
 		}
