@@ -65,7 +65,7 @@ public class AttackingState : EnemyState
 				if (Vector3.Dot(enemyObject.transform.forward, direction.normalized) > 0f)
 				{
 
-					playerChar.Hurt(enemy.GetDamage());
+					playerManager.ApplyDamage(enemy.GetDamage());
 				}
 			}
 
