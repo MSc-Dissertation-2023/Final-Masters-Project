@@ -1,4 +1,16 @@
-# MSc Dissertation Kent 2023
+# MSc Dissertation Kent 2023 - Masters of Dungeons
+
+## What is Master of Dungeons?
+Master of Dungeons is a game developed in Unity that contains both elements of Procedurally Generated Content (PCG) and Dynamic Difficulty Adjustment (DDA).
+
+The game has two stages. The first stage of the game is a PCG puzzle maze and the player may choose one of the four pre-defined algorithms for generating different maze layouts. To reach the second stage, the player has to find 3 color coded numbers littered around the maze and input the numbers according to their color code at the exit of the maze. Additionally, the maze will always spawn two zombies that constantly chases the player.
+
+The second stage of the game is a DDA First Person Shooter (FPS). The aim of the second stage is to stay alive and kill as many zombies as possible. Killing enemies will have a chance to spawn 3 different pickups, health, ammo and damage upgrade. The second stage of the game takes into account the fitness of the enemies and the player which is then used to dynamically adjust the difficulty of the game.
+
+The player will receive a score at the end of the game which depends on the player's performance in both stage one and stage two.
+
+## How does scoring work?
+At the first stage of the game, the scoring is based on
 
 # Assets
 * Zombies - Romero from mixamo
