@@ -10,7 +10,12 @@ The second stage of the game is a DDA First Person Shooter (FPS). The aim of the
 The player will receive a score at the end of the game which depends on the player's performance in both stage one and stage two.
 
 ## How does scoring work?
-At the first stage of the game, the scoring is based on
+At the first stage of the game, the scoring is inversely related to time taken to complete the maze.
+At the second stage of the game, every zombie kill grants one score. The final score will score of stage 1 + score of stage 2.
+
+## Dependencies
+Unity - 2022.3.1f1
+Text Mesh Pro - 3.0.6
 
 # Assets
 * Zombies - Romero from mixamo
