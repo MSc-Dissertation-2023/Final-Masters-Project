@@ -13,14 +13,14 @@ public class PlayerManager : MonoBehaviour, IGameManager
     DamageMetrics damageMetric;
 
     float Health = 100;
-    int Ammo = 50;
+    int Ammo = 100;
     int Damage = 25;
 
     public float health => playerCharacter.health;
     public int ammo => playerCharacter.ammo;
     public int damage => playerCharacter.damage;
 
- 
+
 
     public void Startup()
     {
@@ -71,14 +71,14 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public void OnSceneLoaded()
     {
         playerCharacter = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
-        
+
         // For Level 2
         if (GameObject.Find("Player Metrics") != null)
         {
             shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
             damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
         }
-        
+
         if (playerCharacter != null)
         {
             playerCharacter.UpdateData(Health, Ammo, Damage);
