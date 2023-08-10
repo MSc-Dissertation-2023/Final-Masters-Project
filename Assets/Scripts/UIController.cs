@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 /*
  * A class to track score and display in HUD
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
 
 
     [SerializeField] TMP_Text healthLabel;
+    [SerializeField] Slider healthBar;
     [SerializeField] TMP_Text ammoLabel;
 
     [SerializeField] SettingsPopup settingsPopup;
@@ -44,7 +46,7 @@ public class UIController : MonoBehaviour
     public void OnEnemyKilled()
     {
         Managers.Score.AddToScore(1);
-        scoreLabel.text = Managers.Score.score.ToString();
+        scoreLabel.text = $"Score: {Managers.Score.score.ToString()}";
     }
 
     public void UpdateHealthDisplay(float health)
@@ -56,7 +58,10 @@ public class UIController : MonoBehaviour
         else
         {
             healthLabel.text = $"HP: 0";
-        }  
+        }
+        
+        healthBar.value = health/100;
+
     }
 
     public void UpdateAmmoDisplay(int ammo)

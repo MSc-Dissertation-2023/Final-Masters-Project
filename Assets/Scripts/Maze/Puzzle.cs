@@ -45,7 +45,7 @@ public class Puzzle : MonoBehaviour
 
 
     private int[] Code;
-    private Color[] Colours = {Color.red, Color.blue, Color.green};
+    private Color[] Colours = {Color.red, Color.blue, Color.yellow};
 
     void Start()
     {
