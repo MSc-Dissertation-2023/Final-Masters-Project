@@ -74,7 +74,7 @@ public class EnemyMetrics : MonoBehaviour
 
     IEnumerator PostStatistics(float totalFitness, float currentFitness, float previousFitness, int liveEnemiesCount, int deadEnemiesCount) {
         using (UnityWebRequest www = UnityWebRequest.Post(
-            $"www.mdk2023.com/stage_two_enemy_metrics?total_fitness={totalFitness}&current_fitness={currentFitness}&previous_fitness={previousFitness}&live_enemies_count={liveEnemiesCount}&dead_enemies_count={deadEnemiesCount}", "", "application/json"))
+            $"www.mdk2023.com/stage_two_enemy_metrics?total_fitness={totalFitness}&current_fitness={currentFitness}&previous_fitness={previousFitness}&live_enemies_count={liveEnemiesCount}&dead_enemies_count={deadEnemiesCount}&token={TokenManager.token}", "", "application/json"))
         {
             yield return www.SendWebRequest();
 
