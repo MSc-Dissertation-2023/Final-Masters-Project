@@ -16,6 +16,8 @@ At the second stage of the game, every zombie kill grants one score. The final s
 ## Dependencies
 Unity - 2022.3.1f1
 Text Mesh Pro - 3.0.6
+Newsoft.json - 13.0.6
+UnityEngine.AI (NavMesh)
 
 # Assets
 * Zombies - Romero from mixamo - https://www.mixamo.com/#/?page=1&query=romero&type=Character
@@ -41,7 +43,9 @@ Text Mesh Pro - 3.0.6
    - table0
 * Broom Tall - by Rakshi Games - https://opengameart.org/content/free-broom-tall
 * Medieval Furniture - by Mev Lyshkin - https://opengameart.org/content/medieval-furniture
+* Numbers - by TMPxyz - https://opengameart.org/content/numbers
 * Textures - https://www.textures.com/
+* Skybox - "sunsetflat" by LedIris (07/08/2009) - https://opengameart.org/content/red-eclipse-skyboxes
 
 
 # Miscellaeneous
