@@ -18,8 +18,31 @@ Unity - 2022.3.1f1
 Text Mesh Pro - 3.0.6
 
 # Assets
-* Zombies - Romero from mixamo
+* Zombies - Romero from mixamo - https://www.mixamo.com/#/?page=1&query=romero&type=Character
+* Animations - https://www.mixamo.com/:
+   - Dying Backwards
+   - Orc Idle
+   - Walking
+   - Zombie Attack
 * Ammo Box - Unity Asset Store https://assetstore.unity.com/packages/3d/props/weapons/ammo-box-7701#content
+* Torture Tools [Open Dugeons] - https://opengameart.org/content/torture-tools-open-dungeons
+   - TortureRoom1 - Mesh CC0 by Eugene Loza
+     Textures used:
+     wood-texture-1385971795zJs_CC0_by_Petr_Kovar.jpg
+     iron_Medieval_CC0_by_Nobiax_diffuse.tga
+     Other texture elements by Eugene Loza (CC0)
+   - TortureRoom2 - Mesh CC0 by Eugene Loza
+     Texture CC0 by Eugene Loza DSCF6355_1024_notseamless.png
+* Bed - by OrbitStudios, Fernando Ferreira - https://opengameart.org/content/old-metal-bed-with-blend
+* Wooden Furniture - by Enetheru - https://opengameart.org/content/wooden-furniture
+   - bench
+   - chair
+   - table
+   - table0
+* Broom Tall - by Rakshi Games - https://opengameart.org/content/free-broom-tall
+* Medieval Furniture - by Mev Lyshkin - https://opengameart.org/content/medieval-furniture
+* Textures - https://www.textures.com/
+
 
 # Miscellaeneous
 - Hurt/Damaged UI/UX
