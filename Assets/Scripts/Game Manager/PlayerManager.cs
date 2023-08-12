@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
     DamageMetrics damageMetric;
 
     float Health = 100;
-    int Ammo = 50;
+    int Ammo = 100;
     int Damage = 25;
 
     public float health => playerCharacter.health;
