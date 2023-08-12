@@ -56,6 +56,9 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         using (UnityWebRequest www = UnityWebRequest.Post(
             $"www.mdk2023.com/stage_two_dda?player_fitness={playerFitness}&enemy_fitness={enemyFitness}&weight_adjustment={weightAdjustment}&token={TokenManager.token}", "", "application/json"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
+
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)

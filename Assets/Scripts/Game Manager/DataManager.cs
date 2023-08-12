@@ -28,6 +28,8 @@ public class DataManager : MonoBehaviour, IGameManager
     {
         using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.GetTokenData()}&maze_algorithm={Managers.Maze.Algorithm.ToString()}", "", "application/json"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)

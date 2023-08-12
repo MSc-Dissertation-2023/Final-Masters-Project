@@ -15,6 +15,8 @@ public class RequestGuestToken : MonoBehaviour
         string ApiURL = System.Environment.GetEnvironmentVariable("API_URL");
         using (UnityWebRequest www = UnityWebRequest.Post(ApiURL, "", "application/json"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
