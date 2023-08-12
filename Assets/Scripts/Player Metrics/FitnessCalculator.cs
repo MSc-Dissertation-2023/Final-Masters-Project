@@ -57,6 +57,8 @@ public class FitnessCalculator : MonoBehaviour
       using (UnityWebRequest www = UnityWebRequest.Post(
          $"www.mdk2023.com/stage_two_stats?kills={player.getKillCount}&actions={player.getAPM}&timer={player.getTimer}&hits_taken={player.getHitsTaken}&total_damage_taken={player.getTotalDamageTaken}&hit_miss_ratio={player.getHitMissRatio}&token={token}", "", "application/json"))
       {
+         www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+         www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
          yield return www.SendWebRequest();
 
          if (www.result != UnityWebRequest.Result.Success)

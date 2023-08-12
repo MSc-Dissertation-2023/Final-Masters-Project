@@ -18,12 +18,10 @@ public class LeaderboardPopup : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        
+
         entryTemplate.gameObject.SetActive(false);
 
         StartCoroutine(CallAPI());
-
-
     }
 
     public void Close()
@@ -35,6 +33,8 @@ public class LeaderboardPopup : MonoBehaviour
     {
         using (UnityWebRequest www = UnityWebRequest.Get($"www.mdk2023.com/leaderboards"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
@@ -74,4 +74,3 @@ public class LeaderboardPopup : MonoBehaviour
         public DateTime updated_at { get; set; }
     }
 }
-

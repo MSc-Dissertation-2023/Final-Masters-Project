@@ -31,7 +31,7 @@ public class EndGamePopup : MonoBehaviour
 
     public void Close()
     {
-        gameObject.SetActive(false);     
+        gameObject.SetActive(false);
     }
 
     public void restart()
@@ -43,7 +43,7 @@ public class EndGamePopup : MonoBehaviour
 
     public void saveScore()
     {
-        if (!scoreSaved) 
+        if (!scoreSaved)
         {
             StartCoroutine(CallAPI());
         }
@@ -56,6 +56,8 @@ public class EndGamePopup : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/leaderboards?name={name}&score={score}", "", "application/json"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)

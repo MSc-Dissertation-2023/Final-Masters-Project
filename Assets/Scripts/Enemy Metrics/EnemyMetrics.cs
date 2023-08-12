@@ -76,6 +76,8 @@ public class EnemyMetrics : MonoBehaviour
         using (UnityWebRequest www = UnityWebRequest.Post(
             $"www.mdk2023.com/stage_two_enemy_metrics?total_fitness={totalFitness}&current_fitness={currentFitness}&previous_fitness={previousFitness}&live_enemies_count={liveEnemiesCount}&dead_enemies_count={deadEnemiesCount}&token={TokenManager.token}", "", "application/json"))
         {
+            www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
+            www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
