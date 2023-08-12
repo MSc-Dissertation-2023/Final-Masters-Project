@@ -23,7 +23,10 @@ public class OpeningDoor : Switchable
         //Move up if closed
         Vector3 pos = transform.position + offset;
         transform.position = pos;
-        soundSource.PlayOneShot(closeSound);
+        if(closeSound != null)
+        {
+            soundSource.PlayOneShot(closeSound);
+        }
         open = true;
     }
 
@@ -33,7 +36,10 @@ public class OpeningDoor : Switchable
         //Move down if open
         Vector3 pos = transform.position - offset;
         transform.position = pos;
-        soundSource.PlayOneShot(openSound);
+        if(openSound != null)
+        {
+            soundSource.PlayOneShot(openSound);
+        }
         open = false;
     }
 }

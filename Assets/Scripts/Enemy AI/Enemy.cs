@@ -107,15 +107,16 @@ public class Enemy : MonoBehaviour
 
 		float rand = Random.value; // Generates a random float between 0.0 and 1.0
 
+
 		if (rand < 0.15) // 15% chance
 		{
             Instantiate(ammoPickupPrefab, enemyDropsPos, Quaternion.identity);
 		}
-		else if (rand < 0.30) // 15% chance
+		else if (rand < 0.25) // 10% chance
 		{
             Instantiate(healthPickupPrefab, enemyDropsPos, Quaternion.identity);
 		}
-		else if (rand < 0.35) // 5% chance
+		else if (rand < 0.3) // Additional 5% chance
 		{
             Instantiate(damageUpgradePickupPrefab, enemyDropsPos, Quaternion.identity); // Assuming you have a damagePrefab
 		}
