@@ -110,6 +110,7 @@ public class MazeSceneController : MonoBehaviour
 
         }
         Managers.Player.OnSceneLoaded();
+        Managers.Mission.LoadPlayerPrefs();
     }
 
     public void PublishMazeSizes()

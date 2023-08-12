@@ -32,7 +32,18 @@ public class AudioManager : MonoBehaviour, IGameManager
         Debug.Log("Audio manager starting...");
      
         status = ManagerStatus.Started;
-        
+
+        soundVolume = PlayerPrefs.GetFloat("Volume");
+
+        if (PlayerPrefs.GetString("Sound").Equals("False"))
+        {
+            soundMute = false;
+        }
+        else
+        {
+            soundMute = true;
+        }
+
     }
 
     public void Start()

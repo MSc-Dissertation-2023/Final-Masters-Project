@@ -27,6 +27,10 @@ public class EndGamePopup : MonoBehaviour
             requestScore.Invoke();
             Managers.Data.SaveStats();
         }
+        else
+        {
+            enterNameField.text = PlayerPrefs.GetString("Name");
+        }
     }
 
     public void Close()
@@ -46,6 +50,7 @@ public class EndGamePopup : MonoBehaviour
         if (!scoreSaved) 
         {
             StartCoroutine(CallAPI());
+            PlayerPrefs.SetString("Name", enterNameField.text);
         }
     }
 

@@ -8,6 +8,7 @@ public class StartupController : MonoBehaviour
     [SerializeField] Slider progressBar;
     [SerializeField] StartScreen start;
     [SerializeField] LeaderboardPopup leaderboardPopup;
+    [SerializeField] SettingsPopup settingsPopup;
 
     private bool gameReady;
 
@@ -16,6 +17,7 @@ public class StartupController : MonoBehaviour
         gameReady = false;
         start.Open();
         leaderboardPopup.Close();
+        settingsPopup.Close();
     }
     void OnEnable()
     {
@@ -47,5 +49,10 @@ public class StartupController : MonoBehaviour
         {
             Managers.Mission.GoToNext();
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

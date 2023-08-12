@@ -25,6 +25,7 @@ public class SceneController : MonoBehaviour
   void Start()
   {
     Managers.Player.OnSceneLoaded();
+    Managers.Mission.LoadPlayerPrefs();
     enemyMetrics = GameObject.Find("Enemy Metrics").GetComponent<EnemyMetrics>();
 
     enemies = new List<GameObject>();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StartScreen : MonoBehaviour
 {
+
     public void Open()
     {
         gameObject.SetActive(true);
