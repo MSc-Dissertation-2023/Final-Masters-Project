@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public int ammo => playerCharacter.ammo;
     public int damage => playerCharacter.damage;
 
- 
+
 
     public void Startup()
     {
@@ -71,14 +71,14 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public void OnSceneLoaded()
     {
         playerCharacter = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
-        
+
         // For Level 2
         if (GameObject.Find("Player Metrics") != null)
         {
             shootingMetric = GameObject.Find("Player Metrics").GetComponent<ShootingMetrics>();
             damageMetric = GameObject.Find("Player Metrics").GetComponent<DamageMetrics>();
         }
-        
+
         if (playerCharacter != null)
         {
             playerCharacter.UpdateData(Health, Ammo, Damage);

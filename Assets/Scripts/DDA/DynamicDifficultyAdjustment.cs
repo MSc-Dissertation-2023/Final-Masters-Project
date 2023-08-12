@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class DynamicDifficultyAdjustment : MonoBehaviour
 {
@@ -21,8 +22,6 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
 
     void AdjustDifficulty() {
         float adjustment = CalculateAdjustment();
-        enemyFactory.speed += enemyFactory.speed * adjustment;
-        // enemyFactory.damage += enemyFactory.damage * adjustment;
         int newEnemyCount = Mathf.RoundToInt(scene.getEnemyCount() + (scene.getEnemyCount() * adjustment));
         // Debug.Log(newEnemyCount)
         scene.setEnemyCount(newEnemyCount);
@@ -32,13 +31,10 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         float enemyFitness = enemyMetrics.getFitness();
         float playerFitness = fitnessCalculator.GetFitness();
 
-
-
         float weightAdjustment = 0.0f;
         float threshold = 0.15f;
 
         float fitnessDifference = playerFitness - enemyFitness;
-
 
         if(Mathf.Abs(fitnessDifference) > threshold) {
             if (fitnessDifference > 0) {
@@ -51,7 +47,25 @@ public class DynamicDifficultyAdjustment : MonoBehaviour
         }
 
         // Debug.Log($"Enemy Fit: {enemyFitness}, Player Fit: {playerFitness}, Adj: {weightAdjustment}");
+        StartCoroutine(PostStatistics(playerFitness, enemyFitness, weightAdjustment));
 
         return weightAdjustment;
+    }
+
+    IEnumerator PostStatistics(float playerFitness, float enemyFitness, float weightAdjustment) {
+        using (UnityWebRequest www = UnityWebRequest.Post(
+            $"www.mdk2023.com/stage_two_dda?player_fitness={playerFitness}&enemy_fitness={enemyFitness}&weight_adjustment={weightAdjustment}&token={TokenManager.token}", "", "application/json"))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Post DDA API Request complete!");
+            }
+        }
     }
 }
