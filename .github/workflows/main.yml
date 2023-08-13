@@ -93,12 +93,6 @@ jobs:
           name: build-StandaloneWindows64
           path: build/StandaloneWindows64
 
-  build:
-    name: Upload Release Asset
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Build project
         run: |
           mkdir -p app/build/outputs/apk/release
