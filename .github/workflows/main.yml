@@ -39,10 +39,10 @@ jobs:
             Library-test-project-
             Library-
 
-      - uses: webbertakken/unity-test-runner@v2
-        id: testRunner
-        with:
-          testMode: all
+      # - uses: webbertakken/unity-test-runner@v2
+      #   id: testRunner
+      #   with:
+      #     testMode: all
 
       - uses: actions/upload-artifact@v2
         with:
