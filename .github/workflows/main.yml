@@ -1,97 +1,96 @@
-name: Build/Deploy Game 🎮
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Assets/**'
-      - 'Packages/**'
-      - 'ProjectSettings/**'
-  pull_request:
-    types:
-      - opened
-    branches:
-      - main
-    paths:
-      - 'Assets/**'
-      - 'Packages/**'
-      - 'ProjectSettings/**'
-  release:
-    types:
-      - published
-  workflow_dispatch:
-    inputs:
-      workflow_mode:
-        description: '[release] [Android, iOS, StandaloneLinux64, WebGL, StandaloneWindows64, WSAPlayer, StandaloneOSX, Steam]'
-        required: false
-        default: ''
+name: GameCI Template 🎮
 
-  buildWithWindows:
-    name: Build for ${{ matrix.targetPlatform }}
-    runs-on: windows-2019
-    needs: [buildWithLinux, buildWithMac]
-    outputs:
-      buildVersion: ${{ steps.build.outputs.buildVersion }}
+on: push
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+
+  # testRunner:
+  #   name: Test all modes 📝
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Create LFS file list
+  #       run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+  #     - name: Restore LFS cache
+  #       uses: actions/cache@v2
+  #       id: lfs-cache
+  #       with:
+  #         path: .git/lfs
+  #         key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+  #     - name: Git LFS Pull
+  #       run: |
+  #         git lfs pull
+  #         git add .
+  #         git reset --hard
+
+  #     - name: Restore Library cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: Library
+  #         key: Library-test-project
+  #         restore-keys: |
+  #           Library-test-project-
+  #           Library-
+
+  #     - uses: webbertakken/unity-test-runner@v2
+  #       id: testRunner
+  #       with:
+  #         testMode: all
+
+  #     - uses: actions/upload-artifact@v2
+  #       with:
+  #         name: Test results (all modes)
+  #         path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+  buildWindows:
+    needs: testRunner
+    name: Build for Windows 🖥️
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        targetPlatform:
-          - StandaloneWindows
-          - StandaloneWindows64
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
       - name: Restore LFS cache
-        uses: actions/cache@v3
+        uses: actions/cache@v2
         id: lfs-cache
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
       - name: Git LFS Pull
         run: |
           git lfs pull
           git add .
           git reset --hard
-      - uses: actions/cache@v3
+
+      - name: Restore Library cache
+        uses: actions/cache@v2
         with:
           path: Library
-          key: Library-buildWindows-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-build-StandaloneWindows64
           restore-keys: |
-            Library-buildWindows-${{ matrix.targetPlatform }}-
-            Library-buildWindows-
-      - name: Build Unity Project
-        id: build
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+            Library-build-
+            Library-
+
+      - uses: webbertakken/unity-builder@v2
         with:
-          targetPlatform: ${{ matrix.targetPlatform }}
-          buildMethod: Cgs.Editor.BuildCgs.BuildOptions
-      - name: Upload Build
-        uses: actions/upload-artifact@v3
-        if: github.event.action == 'published' || contains(github.event.inputs.workflow_mode, matrix.targetPlatform) || (contains(github.event.inputs.workflow_mode, 'Steam') && contains(matrix.targetPlatform, 'StandaloneWindows'))
+          targetPlatform: StandaloneWindows64
+
+      - uses: actions/upload-artifact@v2
         with:
-          name: cgs-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
-      - name: Zip Build
-        uses: vimtor/action-zip@v1
-        if: github.event.action == 'published' && matrix.targetPlatform != 'WSAPlayer'
-        with:
-          files: build/${{ matrix.targetPlatform }}/
-          dest: build/cgs-${{ matrix.targetPlatform }}.zip
-      - name: Upload Zip to GitHub Release
-        uses: svenstaro/upload-release-action@v2
-        if: github.event.action == 'published' && matrix.targetPlatform != 'WSAPlayer'
-        with:
-          repo_token: ${{ secrets.CGS_PAT }}
-          asset_name: cgs-${{ matrix.targetPlatform }}.zip
-          file: build/cgs-${{ matrix.targetPlatform }}.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: ${{ github.event.release.body }}
+          name: build-StandaloneWindows64
+          path: build/StandaloneWindows64
+
+ 
