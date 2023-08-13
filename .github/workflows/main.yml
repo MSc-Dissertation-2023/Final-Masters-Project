@@ -1,31 +1,30 @@
 name: Build/Deploy Game 🎮
-on: push
- push:
- branches:
- — develop
- paths:
- — ‘Assets/**’
- — ‘Packages/**’
- — ‘ProjectSettings/**’
- pull_request:
- types:
- — opened
- branches:
- — main
- paths:
- — ‘Assets/**’
- — ‘Packages/**’
- — ‘ProjectSettings/**’
- release:
- types:
- — published
- workflow_dispatch:
- inputs:
- workflow_mode:
- description: ‘[release] [Android, iOS, StandaloneLinux64, WebGL, StandaloneWindows, StandaloneWindows64, WSAPlayer, StandaloneOSX, Steam]’
- required: false
- default: ‘’
-jobs:
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      workflow_mode:
+        description: '[release] [Android, iOS, StandaloneLinux64, WebGL, StandaloneWindows64, WSAPlayer, StandaloneOSX, Steam]'
+        required: false
+        default: ''
 
   buildWithWindows:
     name: Build for ${{ matrix.targetPlatform }}
