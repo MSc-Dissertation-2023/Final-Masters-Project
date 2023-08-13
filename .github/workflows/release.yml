@@ -2,7 +2,7 @@ name: Release Workflow
 
 on:
   workflow_run:
-    workflows: ["Build for Windows 🖥️"]
+    workflows: ["GameCI Template 🎮"]
     types:
       - completed
 
