@@ -17,7 +17,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
         with:
-          name: build-StandaloneWindows64
+          name: Library-build-StandaloneWindows64
           path: build
 
       - name: Create Release
