@@ -1,14 +1,11 @@
 name: Release Workflow
 
-# on:
-#   workflow_run:
-#     workflows: ["GameCI Template 🎮"]
-#     types:
-#       - completed
-on: 
-  push:
-    branches:
-      - james
+on:
+  workflow_run:
+    workflows: ["GameCI Template 🎮"]
+    types:
+      - completed
+
 jobs:
   deploy_release:
     runs-on: ubuntu-latest
@@ -19,7 +16,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Library-build-StandaloneWindows64
+          name: build-StandaloneWindows64
           path: build
 
       - name: Create Release
