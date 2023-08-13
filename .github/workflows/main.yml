@@ -93,21 +93,19 @@ jobs:
           name: build-StandaloneWindows64
           path: build/StandaloneWindows64
 
-     deployPages:
-    needs: buildWindows
-    name: Deploy to Github 🚀
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-Windows
-          path: build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: main
-          folder: build/Windows
+     - name: build
+    run: make build
+  - name: version
+    run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
+    id: version
+  - name: release
+    uses: actions/create-release@v1
+    id: create_release
+    with:
+      draft: false
+      prerelease: false
+      release_name: ${{ steps.version.outputs.version }}
+      tag_name: ${{ github.ref }}
+      body_path: CHANGELOG.md
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
