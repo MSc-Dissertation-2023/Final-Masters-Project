@@ -49,90 +49,28 @@ jobs:
       #     testMode: EditMode
 
       # Build
-      # - name: Build project
-      #   uses: game-ci/unity-builder@v2
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      #   with:
-      #     targetPlatform: WebGL
-
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v2
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-      #     aws-region: eu-west-2
-
-      # - name: Sync output to S3
-      #   run: |
-      #     aws s3 sync ./build/WebGL/WebGL s3://mdk-2023 --delete
-      #     aws s3 cp ./build/WebGL/WebGL/Build/WebGL.data.gz s3://mdk-2023/Build/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
-      #     aws s3 cp ./build/WebGL/WebGL/Build/WebGL.framework.js.gz s3://mdk-2023/Build/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
-      #     aws s3 cp ./build/WebGL/WebGL/Build/WebGL.loader.js s3://mdk-2023/Build/WebGL.loader.js --content-type 'application/javascript'
-      #     aws s3 cp ./build/WebGL/WebGL/Build/WebGL.wasm.gz s3://mdk-2023/Build/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
-
-       buildWindows:
-    needs: testRunner
-    name: Build for Windows 🖥️
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          targetPlatform: WebGL
 
-      - name: Git LFS Pull
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: eu-west-2
+
+      - name: Sync output to S3
         run: |
-          git lfs pull
-          git add .
-          git reset --hard
+          aws s3 sync ./build/WebGL/WebGL s3://mdk-2023 --delete
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.data.gz s3://mdk-2023/Build/WebGL.data.gz --content-type 'application/octet-stream' --content-encoding 'gzip'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.framework.js.gz s3://mdk-2023/Build/WebGL.framework.js.gz --content-type 'application/wasm' --content-encoding 'gzip'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.loader.js s3://mdk-2023/Build/WebGL.loader.js --content-type 'application/javascript'
+          aws s3 cp ./build/WebGL/WebGL/Build/WebGL.wasm.gz s3://mdk-2023/Build/WebGL.wasm.gz --content-type 'application/wasm' --content-encoding 'gzip'
 
-      - name: Restore Library cache
-        uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-build-StandaloneWindows64
-          restore-keys: |
-            Library-build-
-            Library-
-
-      - uses: game-ci/unity-builder@v2
-        with:
-          targetPlatform: StandaloneWindows64
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build-StandaloneWindows64
-          path: build/StandaloneWindows64
-
-
-  deployPages:
-    needs: buildWindows
-    name: Deploy to Github Pages 🚀
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-Windows
-          path: build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: main
-          folder: build/Windows
+      
