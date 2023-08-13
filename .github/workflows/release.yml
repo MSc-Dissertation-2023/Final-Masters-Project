@@ -1,10 +1,11 @@
 name: Release Workflow
 
-on:
-  workflow_run:
-    workflows: ["Build for Windows 🖥️"]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Build for Windows 🖥️"]
+#     types:
+#       - completed
+on: push
 
 jobs:
   deploy_release:
