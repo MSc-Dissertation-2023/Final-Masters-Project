@@ -113,11 +113,11 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: build-WebGL
+          name: build-Windows
           path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages
-          folder: build/WebGL
+          branch: main
+          folder: build/Windows
