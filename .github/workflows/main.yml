@@ -93,13 +93,21 @@ jobs:
           name: build-StandaloneWindows64
           path: build/StandaloneWindows64
 
-      - name: Build project
-        run: |
-          mkdir -p app/build/outputs/apk/release
-          echo hello > app/build/outputs/apk/release/app-release-unsigned.apk
-      - name: Release with Notes
-        uses: softprops/action-gh-release@v1
+     deployPages:
+    needs: buildWindows
+    name: Deploy to Github 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
         with:
-          files: app/build/outputs/apk/release/app-release-unsigned.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: build-Windows
+          path: build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: main
+          folder: build/Windows
