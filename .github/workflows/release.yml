@@ -37,7 +37,7 @@
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ./build/StandaloneWindows64  # Path to the artifact
-            asset_name: YourAppName-StandaloneWindows64.zip  # Set the desired asset name
+            asset_name: Final-Masters-Project-StandaloneWindows64.zip  # Set the desired asset name
             asset_content_type: application/zip
 
   
