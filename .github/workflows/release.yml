@@ -1,11 +1,10 @@
 name: Release Workflow
 
-# on:
-#   workflow_run:
-#     workflows: ["Build for Windows 🖥️"]
-#     types:
-#       - completed
-on: push
+on:
+  workflow_run:
+    workflows: ["Build for Windows 🖥️"]
+    types:
+      - completed
 
 jobs:
   deploy_release:
@@ -17,7 +16,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
         with:
-          name: Library-build-StandaloneWindows64
+          name: build-StandaloneWindows64
           path: build
 
       - name: Create Release
@@ -39,5 +38,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/StandaloneWindows64  # Path to the artifact
-          asset_name: "YourAppName-StandaloneWindows64.zip"  # Set the desired asset name
+          asset_name: "Final-Masters-Project-StandaloneWindows64.zip"  # Set the desired asset name
           asset_content_type: application/zip
