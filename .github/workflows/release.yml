@@ -1,11 +1,14 @@
 name: Release Workflow
 
-on:
-  workflow_run:
-    workflows: ["GameCI Template 🎮"]
-    types:
-      - completed
-
+# on:
+#   workflow_run:
+#     workflows: ["GameCI Template 🎮"]
+#     types:
+#       - completed
+on: 
+  push:
+    branches:
+      - main
 jobs:
   deploy_release:
     runs-on: ubuntu-latest
