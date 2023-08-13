@@ -1,5 +1,5 @@
 name: Build/Deploy Game 🎮
-on:
+on: push
  push:
  branches:
  — develop
