@@ -168,7 +168,7 @@ Transform:
   m_Children:
   - {fileID: 9022710429784590689}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4964315148520786953
 MeshFilter:
@@ -554,6 +554,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 4668642bcba2546498c099964538ec0a, type: 3}
     - {fileID: -8700617353114198275, guid: 4668642bcba2546498c099964538ec0a, type: 3}
+    - {fileID: -516098083770646512, guid: 4668642bcba2546498c099964538ec0a, type: 3}
+    - {fileID: 8416272007918961125, guid: 4668642bcba2546498c099964538ec0a, type: 3}
+    - {fileID: -1599826595754709761, guid: 4668642bcba2546498c099964538ec0a, type: 3}
+    - {fileID: -2045257923548263128, guid: 4668642bcba2546498c099964538ec0a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 281855664364225751, guid: 4668642bcba2546498c099964538ec0a, type: 3}
