@@ -2687,32 +2687,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312116382}
   m_Mesh: {fileID: 6101324636678443301, guid: 2ef9f53cfcabb9d468f733025e5cbce7, type: 3}
---- !u!1 &313012936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 653638531733607328, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
-  m_PrefabInstance: {fileID: 999933363}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &313012938
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313012936}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &330170808
 GameObject:
   m_ObjectHideFlags: 0
@@ -11415,6 +11389,10 @@ PrefabInstance:
       propertyPath: bulletHole
       value: 
       objectReference: {fileID: 4555847783815403704, guid: 85a0b8a69f1d26341b62561c8cca5037, type: 3}
+    - target: {fileID: 5264671332761008499, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+      propertyPath: soundSource
+      value: 
+      objectReference: {fileID: 999933364}
     - target: {fileID: 5495457599543071281, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
       propertyPath: hurtSound
       value: 
@@ -11474,15 +11452,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 448674558164920870, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+    - {fileID: 653638531733607328, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9161222652521724438, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1731424587}
-    - targetCorrespondingSourceObject: {fileID: 653638531733607328, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 313012938}
   m_SourcePrefab: {fileID: 100100000, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+--- !u!82 &999933364 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2985668081684421216, guid: f766f4d4a79e4444d9bc2defa683a46a, type: 3}
+  m_PrefabInstance: {fileID: 999933363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1001716690
 PrefabInstance:
   m_ObjectHideFlags: 0
