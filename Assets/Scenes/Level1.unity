@@ -1096,8 +1096,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OuterWall: {fileID: 9094247702845712971, guid: 2588f9bf6dbc06c41bf49af5cf6ed1d1, type: 3}
-  width: 10
-  depth: 10
+  width: 12
+  depth: 12
   player: {fileID: 6689093384212792756, guid: 6acf0acbaa02ac243a1342d637b257b4, type: 3}
   enemy: {fileID: 7765314895922144979, guid: a02cc986b9ee59d4fbab9b503b975727, type: 3}
   exit: {fileID: 4310341467933156848, guid: b632e82e9b539a449b4dfff43967cbfc, type: 3}
