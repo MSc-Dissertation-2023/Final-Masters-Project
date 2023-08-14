@@ -119,6 +119,9 @@ jobs:
           release_name: "Release v1.0.0"  # Set the desired release name
           draft: false
           prerelease: false
+      
+      - name: Compress Directory
+        run: zip -r StandaloneWindows64.zip build/StandaloneWindows64
 
       - name: Upload build artifact
         id: upload-release-asset
@@ -127,6 +130,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/build/StandaloneWindows64
-          asset_name: "build-StandaloneWindows64.zip"  # Set the desired asset name
+          asset_path: StandaloneWindows64.zip
+          asset_name: "Masters-of-Dungeons-StandaloneWindows64.zip"  # Set the desired asset name
           asset_content_type: application/zip
