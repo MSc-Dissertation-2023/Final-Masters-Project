@@ -26,7 +26,7 @@ public class DataManager : MonoBehaviour, IGameManager
 
     IEnumerator CallAPILevelOne()
     {
-        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.GetTokenData()}&maze_algorithm={Managers.Maze.Algorithm.ToString()}", "", "application/json"))
+        using (UnityWebRequest www = UnityWebRequest.Post($"www.mdk2023.com/stage_one_stats?health={levelOneHealth}&time={levelOneTime}&token={Managers.Token.GetTokenData()}&maze_algorithm={Managers.Maze.Algorithm.ToString()}&maze_size={Managers.Maze.Size}", "", "application/json"))
         {
             www.SetRequestHeader("Content-Type", "application/json"); // Set content type for the data you're sending.
             www.SetRequestHeader("Accept", "application/json"); // Set the type of data you're expecting back.

@@ -45,6 +45,10 @@ public class LevelCompletePopup : MonoBehaviour
     private void CalculateScore()
     {
         Score = (2000 / Time);
+        if (Managers.Maze.Size == 12)
+        {
+            Score = (int)(Score*1.44);
+        }
         levelScore.text = $"Score: {Score}";
     }
 

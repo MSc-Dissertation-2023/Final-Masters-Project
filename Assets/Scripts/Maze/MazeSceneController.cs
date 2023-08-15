@@ -47,6 +47,9 @@ public class MazeSceneController : MonoBehaviour
     
     void Awake()
     {
+        width = Managers.Maze.Size;
+        depth = Managers.Maze.Size;
+
         RecBackAndPrim = MazeController.GetComponent<MazeGenerator>();
         RecDiv = MazeController.GetComponent<MazeGeneratorDivision>();
         GenAlgo = MazeController.GetComponent<GenerateMazeGA>();
