@@ -10,14 +10,21 @@ public class MazeGenerationManager : MonoBehaviour, IGameManager
 
     public MazeAlgorithm Algorithm { get; private set; }
 
+    public int Size { get; private set; }
+
     [SerializeField]
     private TMP_Text MazeSelector;
+
+    [SerializeField]
+    private TMP_Text MazeSize;
 
     public void Startup()
     {
         Debug.Log("Maze Generation Manager manager starting...");
 
         Algorithm = MazeAlgorithm.RecursiveBacktracker;
+
+        Size = 10;
 
         status = ManagerStatus.Started;
     }
@@ -42,5 +49,17 @@ public class MazeGenerationManager : MonoBehaviour, IGameManager
         }
 
         Debug.Log(Algorithm.ToString());
+    }
+
+    public void SetMazeSize()
+    {
+        if (MazeSize.text.Equals("Small"))
+        {
+            Size = 10;
+        }
+        if (MazeSize.text.Equals("Large"))
+        {
+            Size = 12;
+        }
     }
 }

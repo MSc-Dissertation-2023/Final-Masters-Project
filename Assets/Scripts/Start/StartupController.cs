@@ -9,6 +9,7 @@ public class StartupController : MonoBehaviour
     [SerializeField] StartScreen start;
     [SerializeField] LeaderboardPopup leaderboardPopup;
     [SerializeField] SettingsPopup settingsPopup;
+    [SerializeField] LoadingPopup loadingPopup;
 
     private bool gameReady;
 
@@ -18,6 +19,7 @@ public class StartupController : MonoBehaviour
         start.Open();
         leaderboardPopup.Close();
         settingsPopup.Close();
+        loadingPopup.Close();
     }
     void OnEnable()
     {
@@ -47,6 +49,7 @@ public class StartupController : MonoBehaviour
     {
         if (gameReady)
         {
+            loadingPopup.Open();
             Managers.Mission.GoToNext();
         }
     }
