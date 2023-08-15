@@ -47,4 +47,10 @@ public class MissionManager : MonoBehaviour, IGameManager
         GameEvents.NotifyLevelComplete(0, 0);
         Debug.Log("Reach objective called");
     }
+
+    public void LoadPlayerPrefs()
+    {
+        GameEvents.ChangeSensitivity(PlayerPrefs.GetFloat("Sensitivity"));
+       
+    }
 }

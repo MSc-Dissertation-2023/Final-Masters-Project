@@ -33,14 +33,4 @@ public class GeneticAlgorithmTest
     {
         Assert.AreEqual(GA.bestFitness, 5*5);
     }
-
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator GeneticAlgorithmTestWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
-    }
 }
