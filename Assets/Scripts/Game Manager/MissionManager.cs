@@ -50,7 +50,9 @@ public class MissionManager : MonoBehaviour, IGameManager
 
     public void LoadPlayerPrefs()
     {
-        GameEvents.ChangeSensitivity(PlayerPrefs.GetFloat("Sensitivity"));
-       
+        if(PlayerPrefs.HasKey("Sensitivity"))
+        {
+            GameEvents.ChangeSensitivity(PlayerPrefs.GetFloat("Sensitivity"));
+        }       
     }
 }
