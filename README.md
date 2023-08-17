@@ -1,8 +1,52 @@
-# MSc Dissertation Kent 2023
+# MSc Dissertation Kent 2023 - Masters of Dungeons
+
+## What is Master of Dungeons?
+Master of Dungeons is a game developed in Unity that contains both elements of Procedurally Generated Content (PCG) and Dynamic Difficulty Adjustment (DDA).
+
+The game has two stages. The first stage of the game is a PCG puzzle maze and the player may choose one of the four pre-defined algorithms for generating different maze layouts. To reach the second stage, the player has to find 3 color coded numbers littered around the maze and input the numbers according to their color code at the exit of the maze. Additionally, the maze will always spawn two zombies that constantly chases the player.
+
+The second stage of the game is a DDA First Person Shooter (FPS). The aim of the second stage is to stay alive and kill as many zombies as possible. Killing enemies will have a chance to spawn 3 different pickups, health, ammo and damage upgrade. The second stage of the game takes into account the fitness of the enemies and the player which is then used to dynamically adjust the difficulty of the game.
+
+The player will receive a score at the end of the game which depends on the player's performance in both stage one and stage two.
+
+## How does scoring work?
+At the first stage of the game, the scoring is inversely related to time taken to complete the maze.
+At the second stage of the game, every zombie kill grants one score. The final score will score of stage 1 + score of stage 2.
+
+## Dependencies
+Unity - 2022.3.1f1
+Text Mesh Pro - 3.0.6
+Newsoft.json - 13.0.6
+UnityEngine.AI (NavMesh)
 
 # Assets
-* Zombies - Romero from mixamo
+* Zombies - Romero from mixamo - https://www.mixamo.com/#/?page=1&query=romero&type=Character
+* Animations - https://www.mixamo.com/:
+   - Dying Backwards
+   - Orc Idle
+   - Walking
+   - Zombie Attack
 * Ammo Box - Unity Asset Store https://assetstore.unity.com/packages/3d/props/weapons/ammo-box-7701#content
+* Torture Tools [Open Dugeons] - https://opengameart.org/content/torture-tools-open-dungeons
+   - TortureRoom1 - Mesh CC0 by Eugene Loza
+     Textures used:
+     wood-texture-1385971795zJs_CC0_by_Petr_Kovar.jpg
+     iron_Medieval_CC0_by_Nobiax_diffuse.tga
+     Other texture elements by Eugene Loza (CC0)
+   - TortureRoom2 - Mesh CC0 by Eugene Loza
+     Texture CC0 by Eugene Loza DSCF6355_1024_notseamless.png
+* Bed - by OrbitStudios, Fernando Ferreira - https://opengameart.org/content/old-metal-bed-with-blend
+* Wooden Furniture - by Enetheru - https://opengameart.org/content/wooden-furniture
+   - bench
+   - chair
+   - table
+   - table0
+* Broom Tall - by Rakshi Games - https://opengameart.org/content/free-broom-tall
+* Medieval Furniture - by Mev Lyshkin - https://opengameart.org/content/medieval-furniture
+* Numbers - by TMPxyz - https://opengameart.org/content/numbers
+* Textures - https://www.textures.com/
+* Skybox - "sunsetflat" by LedIris (07/08/2009) - https://opengameart.org/content/red-eclipse-skyboxes
+
 
 # Miscellaeneous
 - Hurt/Damaged UI/UX
