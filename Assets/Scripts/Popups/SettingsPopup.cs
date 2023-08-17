@@ -18,9 +18,14 @@ public class SettingsPopup : MonoBehaviour
         gameObject.SetActive(true);
         GameEvents.NotifyPaused();
 
-        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume");
-
+        if(PlayerPrefs.HasKey("Sensitivity"))
+        {
+            sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        if(PlayerPrefs.HasKey("Volume"))
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
     }
 
     public void Close()

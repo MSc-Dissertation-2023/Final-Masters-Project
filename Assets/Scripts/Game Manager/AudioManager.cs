@@ -35,14 +35,19 @@ public class AudioManager : MonoBehaviour, IGameManager
 
         soundVolume = PlayerPrefs.GetFloat("Volume");
 
-        if (PlayerPrefs.GetString("Sound").Equals("False"))
+        if(PlayerPrefs.HasKey("Sound"))
         {
-            soundMute = false;
+            if (PlayerPrefs.GetString("Sound").Equals("True"))
+            {
+                soundMute = true;
+            }
+            else
+            {
+                soundMute = false;
+            }
         }
-        else
-        {
-            soundMute = true;
-        }
+        
+       
 
     }
 
