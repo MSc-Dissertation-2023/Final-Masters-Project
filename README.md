@@ -46,7 +46,12 @@ UnityEngine.AI (NavMesh)
 * Numbers - by TMPxyz - https://opengameart.org/content/numbers
 * Textures - https://www.textures.com/
 * Skybox - "sunsetflat" by LedIris (07/08/2009) - https://opengameart.org/content/red-eclipse-skyboxes
-* Sound Effects and Background Music - https://freesound.org/
+* Sound Effects and Background Music
+   - Gunshot by snapsound - https://freesound.org/people/snapssound/sounds/536630/
+   - Zombie Sound Pack - by artisticdude - https://opengameart.org/content/zombies-sound-pack
+   - Hurt / Death Sound Effect For Character - by Badre-Eddine - https://opengameart.org/content/hurt-death-sound-effect-for-character
+   - Background Music - CrEEP by TokyoGeisha - https://opengameart.org/content/creepy
+   - Door Open Door Close Set - by qubodup - https://opengameart.org/content/door-open-door-close-set
 
 
 # Miscellaeneous
