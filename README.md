@@ -46,6 +46,7 @@ UnityEngine.AI (NavMesh)
 * Numbers - by TMPxyz - https://opengameart.org/content/numbers
 * Textures - https://www.textures.com/
 * Skybox - "sunsetflat" by LedIris (07/08/2009) - https://opengameart.org/content/red-eclipse-skyboxes
+* Sound Effects and Background Music - https://freesound.org/
 
 
 # Miscellaeneous
